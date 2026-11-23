@@ -1,0 +1,38 @@
+[  449065 ms] janela = 4
+[  449316 ms] erro simulado = 0%
+[  449566 ms] perda simulada = 0%
+[  449818 ms] === NOVA MENSAGEM (texto): 201 bytes -> 13 quadros DATA + 1 END | Selective Repeat janela=4 timeout=1117 ms ===
+[  449818 ms] TX DATA seq=0 len=16 FCS=0x42 crc_us=16 janela=[0..3] linha=49B/408ms
+[  449829 ms]    quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+����������������������������������������������������������������16 FCS=0xD4 crc_us=9 janela=[0..3] linha=49B/408ms
+[  450267 ms]    quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+[  450704 ms] TX DATA seq=2 len=16 FCS=0xAD crc_us=8 janela=[0..3] linha=49B/408ms
+[  450704 ms]    quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+[  451141 ms] TX DATA seq=3 len=16 FCS=0xD9 crc_us=9 janela=[0..3] linha=49B/408ms
+[  451141 ms]    quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+[  452476 ms] RX ACK prox=4 mapa=0x00 guardados_no_RX=[] -> base=4 rtt_ms=898
+[  452476 ms] TX DATA seq=4 len=16 FCS=0xF0 crc_us=8 janela=[4..7] linha=49B/408ms
+[  452487 ms]    quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+[  452925 ms] TX DATA seq=5 len=16 FCS=0xC9 crc_us=9 janela=[4..7] linha=49B/408ms
+[  452925 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  453362 ms] TX DATA seq=6 len=16 FCS=0x07 crc_us=8 janela=[4..7] linha=49B/408ms
+[  453362 ms]    quadro=[01 06 10 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 07] dados="RSTUVWXYZABCDEFG"
+[  453799 ms] TX DATA seq=7 len=16 FCS=0xF7 crc_us=9 janela=[4..7] linha=49B/408ms
+[  453799 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  455134 ms] RX ACK prox=8 mapa=0x00 guardados_no_RX=[] -> base=8 rtt_ms=898
+[  455134 ms] TX DATA seq=8 len=16 FCS=0x71 crc_us=8 janela=[8..11] linha=49B/408ms
+[  455145 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  455583 ms] TX DATA seq=9 len=16 FCS=0x51 crc_us=8 janela=[8..11] linha=49B/408ms
+[  455583 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  456020 ms] TX DATA seq=10 len=16 FCS=0x9F crc_us=8 janela=[8..11] linha=49B/408ms
+[  456020 ms]    quadro=[01 0A 10 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 9F] dados="DEFGHIJKLMNOPQRS"
+[  456457 ms] TX DATA seq=11 len=16 FCS=0x27 crc_us=9 janela=[8..11] linha=49B/408ms
+[  456457 ms]    quadro=[01 0B 10 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 27] dados="TUVWXYZABCDEFGHI"
+[  457792 ms] RX ACK prox=12 mapa=0x00 guardados_no_RX=[] -> base=12 rtt_ms=898
+[  457792 ms] TX DATA seq=12 len=9 FCS=0x99 crc_us=6 janela=[12..15] linha=35B/291ms
+[  457803 ms]    quadro=[01 0C 09 4A 4B 4C 4D 4E 4F 50 51 52 99] dados="JKLMNOPQR"
+[  459011 ms] RX ACK prox=13 mapa=0x00 guardados_no_RX=[] -> base=13 rtt_ms=898
+[  459011 ms] TX END seq=13 len=0 FCS=0x54 crc_us=2 janela=[13..16] linha=17B/141ms
+[  459022 ms]    quadro=[03 0D 00 54]
+[  460080 ms] RX ACK prox=14 mapa=0x00 guardados_no_RX=[] -> base=14 rtt_ms=898
+[  460080 ms] === MENSAGEM ENTREGUE em 10263 ms | envios=14 retransmissoes=0 (por ACK=0, por timeout=0) ACKs=5 (ignorados=0) erros_sim=0 perdas_sim=0 | 19.6 bytes/s ===

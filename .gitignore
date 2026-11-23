@@ -1,0 +1,36 @@
+# Ambientes e dependências
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Build e binários
+build/
+dist/
+*.o
+*.exe
+*.bin
+*.elf
+
+# Simulador compilado
+tests/sim
+tests/sim_img
+
+# Saídas locais dos scripts (as evidências oficiais ficam em evidencias/)
+pc/recebida_*
+pc/evidencias/
+
+# LaTeX auxiliares
+*.aux
+*.log
+*.toc
+*.lof
+*.lot
+*.out
+
+# IDEs e Sistema Operacional
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

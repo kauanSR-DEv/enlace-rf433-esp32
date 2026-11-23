@@ -1,0 +1,13 @@
+[ 3041782 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+[ 3041793 ms] RX DATA seq=0 len=16 FCS ok -> ACEITO (em ordem)
+[ 3041793 ms]    entregue em ordem: seq=0 (16 bytes)
+[ 3042220 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+[ 3042231 ms] RX DATA seq=1 len=16 FCS ok -> ACEITO (em ordem)
+[ 3042231 ms]    entregue em ordem: seq=1 (16 bytes)
+[ 3042540 ms] RX quadro truncado/corrompido na linha (seq lido=2) -> descartado
+[ 3042835 ms] RX quadro truncado/corrompido na linha (seq lido=3) -> descartado
+[ 3043260 ms] TX ACK prox=2 mapa=0x00 FCS=0xEF quadro=[02 02 01 00 EF] linha=59B/491ms
+[ 3049758 ms] RX quadro truncado/corrompido na linha (seq lido=2) -> descartado
+[ 3050399 ms] RX quadro truncado/corrompido na linha (seq lido=3) -> descartado
+���������������������������������������������������������������� quadros_msg=2 bytes=32 | aceitos=432 guardados_fora_de_ordem=143 duplicados=59 fora_da_janela=0 erros_FCS=17 truncados=116 ACKs=277 ruido_descartado=34
+[ 3068220 ms] 26 s sem quadros: mensagem incompleta (32 bytes) DESCARTADA, esperando SEQ 0

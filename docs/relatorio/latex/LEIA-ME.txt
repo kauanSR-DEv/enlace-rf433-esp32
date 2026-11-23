@@ -1,0 +1,4 @@
+Compilar com XeLaTeX (3 vezes, para atualizar sumario e listas):
+  xelatex relatorio.tex
+Requer a classe abnTeX2 (abntex2.cls incluida, ajustada para o idioma brazilian do babel)
+e as fontes Liberation Sans / Liberation Mono.

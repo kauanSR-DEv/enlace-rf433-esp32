@@ -1,0 +1,105 @@
+����������������������������������������������������������������[  821713 ms] erro simulado = 0%
+[  821965 ms] perda simulada = 0%
+[  822216 ms] === NOVA MENSAGEM (texto): 201 bytes -> 13 quadros DATA + 1 END | Selective Repeat janela=4 timeout=1117 ms ===
+[  822216 ms] TX DATA seq=0 len=16 FCS=0x42 crc_us=16 janela=[0..3] linha=49B/408ms
+[  822227 ms]    quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+[  822665 ms] TX DATA seq=1 len=16 FCS=0xD4 crc_us=9 janela=[0..3] linha=49B/408ms
+[  822665 ms]    quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+[  823102 ms] TX DATA seq=2 len=16 FCS=0xAD crc_us=8 janela=[0..3] linha=49B/408ms
+[  823102 ms]    quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+[  823539 ms] TX DATA seq=3 len=16 FCS=0xD9 crc_us=9 janela=[0..3] linha=49B/408ms
+[  823539 ms]    quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+[  824875 ms] RX ACK prox=4 mapa=0x00 guardados_no_RX=[] -> base=4 rtt_ms=900
+[  824875 ms] TX DATA seq=4 len=16 FCS=0xF0 crc_us=8 janela=[4..7] linha=49B/408ms
+[  824886 ms]    quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+[  825324 ms] TX DATA seq=5 len=16 FCS=0xC9 crc_us=9 janela=[4..7] linha=49B/408ms
+[  825324 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  825761 ms] TX DATA seq=6 len=16 FCS=0x07 crc_us=8 janela=[4..7] linha=49B/408ms
+[  825761 ms]    quadro=[01 06 10 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 07] dados="RSTUVWXYZABCDEFG"
+[  826198 ms] TX DATA seq=7 len=16 FCS=0xF7 crc_us=9 janela=[4..7] linha=49B/408ms
+[  826198 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  827521 ms] RX ACK prox=4 mapa=0x04 guardados_no_RX=[6] -> base=4 rtt_ms=3546
+[  827521 ms]    quadro seq=4 nao confirmado neste ACK -> retransmissao seletiva
+[  827533 ms]    quadro seq=5 nao confirmado neste ACK -> retransmissao seletiva
+[  827533 ms] TX DATA (retransmissao seletiva) seq=4 len=16 FCS=0xF0 crc_us=8 janela=[4..7] linha=49B/408ms
+[  827544 ms]    quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+[  827982 ms] TX DATA (retransmissao seletiva) seq=5 len=16 FCS=0xC9 crc_us=9 janela=[4..7] linha=49B/408ms
+[  827982 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  828419 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[  828419 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xF7 crc_us=8 janela=[4..7] linha=49B/408ms
+[  828430 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  829985 ms] TIMEOUT do quadro seq=4 -> retransmissao seletiva (so ele)
+[  829985 ms] TX DATA (retransmissao seletiva) seq=4 len=16 FCS=0xF0 crc_us=8 janela=[4..7] linha=49B/408ms
+[  829996 ms]    quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+[  830434 ms] TIMEOUT do quadro seq=5 -> retransmissao seletiva (so ele)
+[  830434 ms] TX DATA (retransmissao seletiva) seq=5 len=16 FCS=0xC9 crc_us=8 janela=[4..7] linha=49B/408ms
+[  830445 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  830883 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[  830883 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xF7 crc_us=9 janela=[4..7] linha=49B/408ms
+[  830894 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  832227 ms] RX ACK prox=5 mapa=0x02 guardados_no_RX=[6] -> base=5 rtt_ms=1793
+[  832227 ms]    quadro seq=5 nao confirmado neste ACK -> retransmissao seletiva
+[  832239 ms] TX DATA (retransmissao seletiva) seq=5 len=16 FCS=0xC9 crc_us=8 janela=[5..8] linha=49B/408ms
+[  832250 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  832676 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[  832676 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xF7 crc_us=9 janela=[5..8] linha=49B/408ms
+[  832687 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  833125 ms] TX DATA seq=8 len=16 FCS=0x71 crc_us=9 janela=[5..8] linha=49B/408ms
+[  833125 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  834679 ms] TIMEOUT do quadro seq=5 -> retransmissao seletiva (so ele)
+[  834679 ms] TX DATA (retransmissao seletiva) seq=5 len=16 FCS=0xC9 crc_us=8 janela=[5..8] linha=49B/408ms
+[  834690 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  835128 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[  835128 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xF7 crc_us=8 janela=[5..8] linha=49B/408ms
+[  835139 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  835577 ms] TIMEOUT do quadro seq=8 -> retransmissao seletiva (so ele)
+[  835577 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x71 crc_us=8 janela=[5..8] linha=49B/408ms
+[  835588 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  836923 ms] RX ACK prox=9 mapa=0x00 guardados_no_RX=[] -> base=9 rtt_ms=898
+[  836924 ms] TX DATA seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  836935 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  837373 ms] TX DATA seq=10 len=16 FCS=0x9F crc_us=8 janela=[9..12] linha=49B/408ms
+[  837373 ms]    quadro=[01 0A 10 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 9F] dados="DEFGHIJKLMNOPQRS"
+[  837810 ms] TX DATA seq=11 len=16 FCS=0x27 crc_us=9 janela=[9..12] linha=49B/408ms
+[  837810 ms]    quadro=[01 0B 10 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 27] dados="TUVWXYZABCDEFGHI"
+[  838247 ms] TX DATA seq=12 len=9 FCS=0x99 crc_us=6 janela=[9..12] linha=35B/291ms
+[  838247 ms]    quadro=[01 0C 09 4A 4B 4C 4D 4E 4F 50 51 52 99] dados="JKLMNOPQR"
+[  839465 ms] RX ACK prox=9 mapa=0x0E guardados_no_RX=[10 11 12] -> base=9 rtt_ms=3440
+[  839466 ms]    quadro seq=9 nao confirmado neste ACK -> retransmissao seletiva
+[  839477 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  839488 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  841032 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  841032 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  841043 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  842598 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  842598 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  842609 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  844164 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  844164 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  844175 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  845730 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  845730 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  845741 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  847296 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  847296 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  847307 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  848862 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  848862 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  848873 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  850428 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  850428 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  850439 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  851994 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  851994 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  852005 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  853560 ms] TIMEOUT do quadro seq=9 -> retransmissao seletiva (so ele)
+[  853560 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0x51 crc_us=8 janela=[9..12] linha=49B/408ms
+[  853571 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  854906 ms] RX ACK prox=13 mapa=0x00 guardados_no_RX=[] -> base=13 rtt_ms=16339
+[  854906 ms] TX END seq=13 len=0 FCS=0x54 crc_us=2 janela=[13..16] linha=17B/141ms
+[  854918 ms]    quadro=[03 0D 00 54]
+[  856194 ms] TIMEOUT do quadro seq=13 -> retransmissao seletiva (so ele)
+[  856194 ms] TX END (retransmissao seletiva) seq=13 len=0 FCS=0x54 crc_us=2 janela=[13..16] linha=17B/141ms
+[  856205 ms]    quadro=[03 0D 00 54]
+[  857263 ms] RX ACK prox=14 mapa=0x00 guardados_no_RX=[] -> base=14 rtt_ms=899
+[  857263 ms] === MENSAGEM ENTREGUE em 35047 ms | envios=36 retransmissoes=22 (por ACK=4, por timeout=18) ACKs=7 (ignorados=0) erros_sim=0 perdas_sim=0 | 5.7 bytes/s ===

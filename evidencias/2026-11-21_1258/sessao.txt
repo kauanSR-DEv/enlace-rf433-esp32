@@ -1,0 +1,10 @@
+Data: 21/11/2026 12:58
+Modo: unico
+Porta TX: COM5
+Porta RX: COM6
+Versao: v4 Selective Repeat
+STATUS TX: STATUS: ativo=0 base=0 proximo=0 total=0 | Selective Repeat janela=4 erro=0% perda=0% | baud=1200 timeout=1117 ms | ruido_descartado=0
+STATUS RX: (linha corrompida na captura, no inicio da sessao; os logs de cada teste estao integros)
+Repeticoes: 3
+Grupos: distancia, janela, erro, ruido, imagem
+Imagem: pc\teste_32x32.png

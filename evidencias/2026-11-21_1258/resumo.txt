@@ -1,0 +1,57 @@
+Bateria de testes - 21/11/2026 13:47 - v4 Selective Repeat
+
+RESUMO POR CENARIO (media dos testes entregues e integros)
+cenario         distancia_m  janela  erro_sim_pct  perda_sim_pct  repeticoes  sucessos  tempo_medio_s  bytes_por_s_medio  retransmissoes_media  rx_erros_FCS_media
+--------------  -----------  ------  ------------  -------------  ----------  --------  -------------  -----------------  --------------------  ------------------
+distancia_0.5m  0,50         4       0             0              3           3         10,26          19,60              0,00                  0,00              
+distancia_1.0m  1,00         4       0             0              3           2         13,88          15,55              2,50                  0,00              
+distancia_1.5m  1,50         4       0             0              3           2         29,85          6,95               18,00                 0,00              
+distancia_2.0m  2,00         4       0             0              3           3         19,79          10,20              8,00                  0,00              
+janela_1_SAW    1,00         1       0             0              3           3         41,53          4,83               15,00                 0,00              
+janela_4        1,00         4       0             0              3           3         26,90          8,70               14,00                 0,00              
+janela_8        1,00         8       0             0              3           3         18,13          11,70              9,67                  0,00              
+erro_sim_30     1,00         4       30            0              3           3         28,06          7,47               14,00                 5,67              
+perda_sim_30    1,00         4       0             30             3           3         41,22          6,30               38,33                 0,00              
+ruido_real      1,00         4       0             0              3           2         46,89          10,70              19,00                 0,00              
+imagem_limpa    1,00         4       0             0              3           3         44,06          11,17              15,33                 0,00              
+imagem_erro_30  1,00         4       30            0              3           3         59,51          8,23               32,00                 13,33             
+
+TODOS OS TESTES
+id  cenario         repeticao  resultado  integridade_rx  tempo_ms  bytes_por_s  retransmissoes  rx_erros_FCS  observacao
+--  --------------  ---------  ---------  --------------  --------  -----------  --------------  ------------  ----------
+1   distancia_0.5m  1          ENTREGUE   OK              10263     19,60        0               0                       
+2   distancia_0.5m  2          ENTREGUE   OK              10262     19,60        0               0                       
+3   distancia_0.5m  3          ENTREGUE   OK              10262     19,60        0               0                       
+4   distancia_1.0m  1          FALHA      NAO_RECEBIDO    25317     7,90         24              0                       
+5   distancia_1.0m  2          ENTREGUE   OK              17502     11,50        5               0                       
+6   distancia_1.0m  3          ENTREGUE   OK              10263     19,60        0               0                       
+7   distancia_1.5m  1          FALHA      NAO_RECEBIDO    57541     3,50         45              0                       
+8   distancia_1.5m  2          ENTREGUE   OK              24646     8,20         14              0                       
+9   distancia_1.5m  3          ENTREGUE   OK              35047     5,70         22              0                       
+10  distancia_2.0m  1          ENTREGUE   OK              21734     9,20         12              0                       
+11  distancia_2.0m  2          ENTREGUE   OK              18819     10,70        6               0                       
+12  distancia_2.0m  3          ENTREGUE   OK              18821     10,70        6               0                       
+13  janela_1_SAW    1          ENTREGUE   OK              39965     5,00         14              0                       
+14  janela_1_SAW    2          ENTREGUE   OK              43097     4,70         16              0                       
+15  janela_1_SAW    3          ENTREGUE   OK              41531     4,80         15              0                       
+16  janela_4        1          ENTREGUE   OK              43066     4,70         28              0                       
+17  janela_4        2          ENTREGUE   OK              18820     10,70        8               0                       
+18  janela_4        3          ENTREGUE   OK              18821     10,70        6               0                       
+19  janela_8        1          ENTREGUE   OK              20434     9,80         12              0                       
+20  janela_8        2          ENTREGUE   OK              21296     9,40         14              0                       
+21  janela_8        3          ENTREGUE   OK              12664     15,90        3               0                       
+22  erro_sim_30     1          ENTREGUE   OK              29659     6,80         17              8                       
+23  erro_sim_30     2          ENTREGUE   OK              33851     5,90         17              8                       
+24  erro_sim_30     3          ENTREGUE   OK              20664     9,70         8               1                       
+25  perda_sim_30    1          ENTREGUE   OK              27016     7,40         13              0                       
+26  perda_sim_30    2          ENTREGUE   OK              22783     8,80         18              0                       
+27  perda_sim_30    3          ENTREGUE   OK              73862     2,70         84              0                       
+28  ruido_real      1          ENTREGUE   OK              49908     10,00        23              0                       
+29  ruido_real      2          FALHA      NAO_RECEBIDO    22400     22,40        26                                      
+30  ruido_real      3          ENTREGUE   OK              43874     11,40        15              0                       
+31  imagem_limpa    1          ENTREGUE   OK              45104     10,90        16                                      
+32  imagem_limpa    2          ENTREGUE   OK              43539     11,30        15              0                       
+33  imagem_limpa    3          ENTREGUE   OK              43537     11,30        15              0                       
+34  imagem_erro_30  1          ENTREGUE   OK              58934     8,30         28              10                      
+35  imagem_erro_30  2          ENTREGUE   OK              57774     8,50         30              14                      
+36  imagem_erro_30  3          ENTREGUE   OK              61808     7,90         38              16                      

@@ -1,0 +1,235 @@
+[ 2943609 ms] janela = 4
+[ 2943860 ms] erro simulado = 30%
+[ 2944111 ms] perda simulada = 0%
+PRONTO_IMAGEM 490
+[ 2944506 ms] imagem recebida pelo USB: 490 bytes
+[ 2944506 ms] === NOVA MENSAGEM (imagem): 491 bytes -> 31 quadros DATA + 1 END | Selective Repeat janela=4 timeout=1117 ms ===
+[ 2944518 ms] TX DATA seq=0 len=16 FCS=0xD1 crc_us=16 janela=[0..3] linha=49B/408ms
+[ 2944518 ms]    quadro=[01 00 10 49 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 D1] dados="I.PNG........IHD"
+[ 2944529 ms]    [SIM] bit invertido no campo DATA (mascara 0x01) -> enviado=[01 00 10 49 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 48 48 44 D1]
+[ 2944967 ms] TX DATA seq=1 len=16 FCS=0x5F crc_us=8 janela=[0..3] linha=49B/408ms
+[ 2944967 ms]    quadro=[01 01 10 52 00 00 00 20 00 00 00 20 08 02 00 00 00 FC 18 5F] dados="R... ... ......."
+[ 2945404 ms] TX DATA seq=2 len=16 FCS=0x16 crc_us=8 janela=[0..3] linha=49B/408ms
+[ 2945404 ms]    quadro=[01 02 10 ED A3 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FF 16] dados="......IDATx.c..."
+[ 2945415 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 02 10 ED A3 00 00 01 B1 49 44 C1 54 78 DA 63 FC FF FF 16]
+[ 2945853 ms] TX DATA seq=3 len=16 FCS=0x95 crc_us=9 janela=[0..3] linha=49B/408ms
+[ 2945853 ms]    quadro=[01 03 10 3F 03 2D 01 13 03 8D 01 0B 84 62 8C 5E 48 75 A3 95] dados="?.-.......b.^Hu."
+[ 2947188 ms] RX ACK prox=0 mapa=0x0A guardados_no_RX=[1 3] -> base=0 rtt_ms=0
+[ 2947188 ms]    quadro seq=0 nao confirmado neste ACK -> retransmissao seletiva
+[ 2947199 ms]    quadro seq=2 nao confirmado neste ACK -> retransmissao seletiva
+[ 2947199 ms] TX DATA (retransmissao seletiva) seq=0 len=16 FCS=0xD1 crc_us=8 janela=[0..3] linha=49B/408ms
+[ 2947210 ms]    quadro=[01 00 10 49 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 D1] dados="I.PNG........IHD"
+[ 2947648 ms] TX DATA (retransmissao seletiva) seq=2 len=16 FCS=0x16 crc_us=9 janela=[0..3] linha=49B/408ms
+[ 2947648 ms]    quadro=[01 02 10 ED A3 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FF 16] dados="......IDATx.c..."
+[ 2947659 ms]    [SIM] bit invertido no campo DATA (mascara 0x02) -> enviado=[01 02 10 ED A1 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FF 16]
+[ 2949214 ms] TIMEOUT do quadro seq=0 -> retransmissao seletiva (so ele)
+[ 2949214 ms] TX DATA (retransmissao seletiva) seq=0 len=16 FCS=0xD1 crc_us=9 janela=[0..3] linha=49B/408ms
+[ 2949225 ms]    quadro=[01 00 10 49 89 50 4E 47 0D 0A 1A 0A 00 00 00 0D 49 48 44 D1] dados="I.PNG........IHD"
+[ 2949663 ms] TIMEOUT do quadro seq=2 -> retransmissao seletiva (so ele)
+[ 2949663 ms] TX DATA (retransmissao seletiva) seq=2 len=16 FCS=0x16 crc_us=8 janela=[0..3] linha=49B/408ms
+[ 2949674 ms]    quadro=[01 02 10 ED A3 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FF 16] dados="......IDATx.c..."
+[ 2949685 ms]    [SIM] bit invertido no campo DATA (mascara 0x01) -> enviado=[01 02 10 ED A3 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FE 16]
+[ 2951021 ms] RX ACK prox=2 mapa=0x02 guardados_no_RX=[3] -> base=2 rtt_ms=5618
+[ 2951021 ms] TX DATA seq=4 len=16 FCS=0xEB crc_us=8 janela=[2..5] linha=49B/408ms
+[ 2951032 ms]    quadro=[01 04 10 FF 2F 8D 47 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB] dados="./.GX....2......"
+[ 2951043 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 04 10 FF 2F 8D C7 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB]
+[ 2951481 ms] TIMEOUT do quadro seq=2 -> retransmissao seletiva (so ele)
+[ 2951481 ms] TX DATA (retransmissao seletiva) seq=2 len=16 FCS=0x16 crc_us=9 janela=[2..5] linha=49B/408ms
+[ 2951492 ms]    quadro=[01 02 10 ED A3 00 00 01 B1 49 44 41 54 78 DA 63 FC FF FF 16] dados="......IDATx.c..."
+[ 2951930 ms] TX DATA seq=5 len=16 FCS=0x38 crc_us=9 janela=[2..5] linha=49B/408ms
+[ 2951930 ms]    quadro=[01 05 10 F0 FA 16 83 A8 1A 03 03 03 83 9A 33 C3 AF 6F 0C 38] dados="...........3..o."
+[ 2953265 ms] RX ACK prox=4 mapa=0x02 guardados_no_RX=[5] -> base=4 rtt_ms=6976
+[ 2953265 ms]    quadro seq=4 nao confirmado neste ACK -> retransmissao seletiva
+[ 2953276 ms] TX DATA (retransmissao seletiva) seq=4 len=16 FCS=0xEB crc_us=8 janela=[4..7] linha=49B/408ms
+[ 2953287 ms]    quadro=[01 04 10 FF 2F 8D 47 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB] dados="./.GX....2......"
+[ 2953287 ms]    [SIM] bit invertido no campo DATA (mascara 0x20) -> enviado=[01 04 10 FF 2F 8D 47 58 00 05 8F CF 32 FC DC CD C0 C0 C0 EB]
+[ 2953725 ms] TX DATA seq=6 len=16 FCS=0x8A crc_us=9 janela=[4..7] linha=49B/408ms
+[ 2953725 ms]    quadro=[01 06 10 B7 F7 31 B0 72 30 B0 B0 33 98 25 30 70 09 31 30 8A] dados="..1.r0..3.%0p.10"
+[ 2954162 ms] TX DATA seq=7 len=16 FCS=0xA4 crc_us=9 janela=[4..7] linha=49B/408ms
+[ 2954162 ms]    quadro=[01 07 10 30 30 AC 4C 63 10 56 62 60 64 60 F8 FB 87 41 C5 A4] dados="00.Lc.Vb`d`...A."
+[ 2954173 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 07 10 30 B0 AC 4C 63 10 56 62 60 64 60 F8 FB 87 41 C5 A4]
+[ 2955508 ms] RX ACK prox=4 mapa=0x06 guardados_no_RX=[5 6] -> base=4 rtt_ms=9219
+[ 2955508 ms]    quadro seq=4 nao confirmado neste ACK -> retransmissao seletiva
+[ 2955519 ms] TX DATA (retransmissao seletiva) seq=4 len=16 FCS=0xEB crc_us=8 janela=[4..7] linha=49B/408ms
+[ 2955530 ms]    quadro=[01 04 10 FF 2F 8D 47 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB] dados="./.GX....2......"
+[ 2955530 ms]    [SIM] bit invertido no campo DATA (mascara 0x02) -> enviado=[01 04 10 FD 2F 8D 47 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB]
+[ 2955979 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[ 2955979 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xA4 crc_us=8 janela=[4..7] linha=49B/408ms
+[ 2955990 ms]    quadro=[01 07 10 30 30 AC 4C 63 10 56 62 60 64 60 F8 FB 87 41 C5 A4] dados="00.Lc.Vb`d`...A."
+[ 2956001 ms]    [SIM] bit invertido no campo TYPE (mascara 0x40) -> enviado=[41 07 10 30 30 AC 4C 63 10 56 62 60 64 60 F8 FB 87 41 C5 A4]
+[ 2957556 ms] TIMEOUT do quadro seq=4 -> retransmissao seletiva (so ele)
+[ 2957556 ms] TX DATA (retransmissao seletiva) seq=4 len=16 FCS=0xEB crc_us=8 janela=[4..7] linha=49B/408ms
+[ 2957567 ms]    quadro=[01 04 10 FF 2F 8D 47 58 00 05 8F CF 32 DC DC CD C0 C0 C0 EB] dados="./.GX....2......"
+[ 2958005 ms] TIMEOUT do quadro seq=7 -> retransmissao seletiva (so ele)
+[ 2958005 ms] TX DATA (retransmissao seletiva) seq=7 len=16 FCS=0xA4 crc_us=8 janela=[4..7] linha=49B/408ms
+[ 2958016 ms]    quadro=[01 07 10 30 30 AC 4C 63 10 56 62 60 64 60 F8 FB 87 41 C5 A4] dados="00.Lc.Vb`d`...A."
+[ 2959351 ms] RX ACK prox=8 mapa=0x00 guardados_no_RX=[] -> base=8 rtt_ms=898
+[ 2959351 ms] TX DATA seq=8 len=16 FCS=0x0A crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2959362 ms]    quadro=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 43 0A] dados=".A...=......!j.C"
+[ 2959800 ms] TX DATA seq=9 len=16 FCS=0xC9 crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2959800 ms]    quadro=[01 09 10 D4 82 FF 30 C0 CF CF 0F 61 EC DA B5 CB D1 D1 F1 C9] dados="...0....a......."
+[ 2959811 ms]    [SIM] bit invertido no campo DATA (mascara 0x20) -> enviado=[01 09 10 D4 82 FF 10 C0 CF CF 0F 61 EC DA B5 CB D1 D1 F1 C9]
+[ 2960249 ms] TX DATA seq=10 len=16 FCS=0xCA crc_us=9 janela=[8..11] linha=49B/408ms
+[ 2960249 ms]    quadro=[01 0A 10 DB B7 6F FF FF FF DF B6 6D 9B 93 93 13 9A 82 2F CA] dados="..o.....m....../"
+[ 2960260 ms]    [SIM] bit invertido no campo DATA (mascara 0x40) -> enviado=[01 0A 10 DB B7 6F FF FF BF DF B6 6D 9B 93 93 13 9A 82 2F CA]
+[ 2960698 ms] TX DATA seq=11 len=16 FCS=0x3C crc_us=9 janela=[8..11] linha=49B/408ms
+[ 2960698 ms]    quadro=[01 0B 10 5F BE 38 39 39 AD 5A B5 EA 3F 12 40 36 8D 40 1C 3C] dados="_.899.Z..?.@6.@."
+[ 2962033 ms] RX ACK prox=8 mapa=0x08 guardados_no_RX=[11] -> base=8 rtt_ms=3580
+[ 2962033 ms]    quadro seq=8 nao confirmado neste ACK -> retransmissao seletiva
+[ 2962044 ms]    quadro seq=9 nao confirmado neste ACK -> retransmissao seletiva
+[ 2962044 ms]    quadro seq=10 nao confirmado neste ACK -> retransmissao seletiva
+[ 2962055 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x0A crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2962066 ms]    quadro=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 43 0A] dados=".A...=......!j.C"
+[ 2962504 ms] TX DATA (retransmissao seletiva) seq=9 len=16 FCS=0xC9 crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2962504 ms]    quadro=[01 09 10 D4 82 FF 30 C0 CF CF 0F 61 EC DA B5 CB D1 D1 F1 C9] dados="...0....a......."
+[ 2962941 ms] TX DATA (retransmissao seletiva) seq=10 len=16 FCS=0xCA crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2962941 ms]    quadro=[01 0A 10 DB B7 6F FF FF FF DF B6 6D 9B 93 93 13 9A 82 2F CA] dados="..o.....m....../"
+[ 2962952 ms]    [SIM] bit invertido no campo DATA (mascara 0x10) -> enviado=[01 0A 10 DB B7 6F FF EF FF DF B6 6D 9B 93 93 13 9A 82 2F CA]
+[ 2964287 ms] RX ACK prox=8 mapa=0x0A guardados_no_RX=[9 11] -> base=8 rtt_ms=5834
+[ 2964287 ms]    quadro seq=8 nao confirmado neste ACK -> retransmissao seletiva
+[ 2964298 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x0A crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2964309 ms]    quadro=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 43 0A] dados=".A...=......!j.C"
+[ 2964736 ms] TIMEOUT do quadro seq=10 -> retransmissao seletiva (so ele)
+[ 2964736 ms] TX DATA (retransmissao seletiva) seq=10 len=16 FCS=0xCA crc_us=9 janela=[8..11] linha=49B/408ms
+[ 2964747 ms]    quadro=[01 0A 10 DB B7 6F FF FF FF DF B6 6D 9B 93 93 13 9A 82 2F CA] dados="..o.....m....../"
+[ 2966082 ms] RX ACK prox=8 mapa=0x0E guardados_no_RX=[9 10 11] -> base=8 rtt_ms=7629
+[ 2966082 ms]    quadro seq=8 nao confirmado neste ACK -> retransmissao seletiva
+[ 2966093 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x0A crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2966104 ms]    quadro=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 43 0A] dados=".A...=......!j.C"
+[ 2966104 ms]    [SIM] bit invertido no campo DATA (mascara 0x08) -> enviado=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 4B 0A]
+[ 2967670 ms] TIMEOUT do quadro seq=8 -> retransmissao seletiva (so ele)
+[ 2967670 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x0A crc_us=8 janela=[8..11] linha=49B/408ms
+[ 2967681 ms]    quadro=[01 08 10 81 41 C9 06 B7 3D FF FF FF FF FF 9F 21 6A 01 43 0A] dados=".A...=......!j.C"
+[ 2969016 ms] RX ACK prox=12 mapa=0x00 guardados_no_RX=[] -> base=12 rtt_ms=7882
+[ 2969016 ms] TX DATA seq=12 len=16 FCS=0xC8 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2969027 ms]    quadro=[01 0C 10 F4 F4 F4 B4 B5 B5 71 72 72 32 30 30 78 7A 7A 2A C8] dados="......qrr200xzz*"
+[ 2969038 ms]    [SIM] bit invertido no campo DATA (mascara 0x08) -> enviado=[01 0C 10 F4 F4 F4 B4 B5 B5 71 72 7A 32 30 30 78 7A 7A 2A C8]
+[ 2969476 ms] TX DATA seq=13 len=16 FCS=0x03 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2969476 ms]    quadro=[01 0D 10 2B 2B FF FE FD 1B 59 01 37 37 77 57 57 D7 C4 89 03] dados="++....Y.77wWW..."
+[ 2969913 ms] TX DATA seq=14 len=16 FCS=0x46 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2969913 ms]    quadro=[01 0E 10 13 09 C4 01 2E 70 F5 EA 55 43 43 43 38 77 D6 AC 46] dados=".....p..UCCC8w.."
+[ 2969924 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 0E 10 13 09 C4 01 2E F0 F5 EA 55 43 43 43 38 77 D6 AC 46]
+[ 2970362 ms] TX DATA seq=15 len=16 FCS=0x0B crc_us=9 janela=[12..15] linha=49B/408ms
+[ 2970362 ms]    quadro=[01 0F 10 59 98 6A F4 F4 F4 EE DC B9 43 66 2A FA FB F7 2F 0B] dados="Y.j......Cf*.../"
+[ 2970373 ms]    [SIM] bit invertido no campo DATA (mascara 0x10) -> enviado=[01 0F 10 59 98 6A F4 F4 F4 EE DC B9 43 66 2A FA EB F7 2F 0B]
+[ 2971708 ms] RX ACK prox=12 mapa=0x02 guardados_no_RX=[13] -> base=12 rtt_ms=10574
+[ 2971708 ms]    quadro seq=12 nao confirmado neste ACK -> retransmissao seletiva
+[ 2971719 ms]    quadro seq=14 nao confirmado neste ACK -> retransmissao seletiva
+[ 2971719 ms] TX DATA (retransmissao seletiva) seq=12 len=16 FCS=0xC8 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2971730 ms]    quadro=[01 0C 10 F4 F4 F4 B4 B5 B5 71 72 72 32 30 30 78 7A 7A 2A C8] dados="......qrr200xzz*"
+[ 2972168 ms] TX DATA (retransmissao seletiva) seq=14 len=16 FCS=0x46 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2972168 ms]    quadro=[01 0E 10 13 09 C4 01 2E 70 F5 EA 55 43 43 43 38 77 D6 AC 46] dados=".....p..UCCC8w.."
+[ 2972605 ms] TIMEOUT do quadro seq=15 -> retransmissao seletiva (so ele)
+[ 2972605 ms] TX DATA (retransmissao seletiva) seq=15 len=16 FCS=0x0B crc_us=9 janela=[12..15] linha=49B/408ms
+[ 2972616 ms]    quadro=[01 0F 10 59 98 6A F4 F4 F4 EE DC B9 43 66 2A FA FB F7 2F 0B] dados="Y.j......Cf*.../"
+[ 2973951 ms] RX ACK prox=12 mapa=0x0E guardados_no_RX=[13 14 15] -> base=12 rtt_ms=12817
+[ 2973951 ms]    quadro seq=12 nao confirmado neste ACK -> retransmissao seletiva
+[ 2973962 ms] TX DATA (retransmissao seletiva) seq=12 len=16 FCS=0xC8 crc_us=8 janela=[12..15] linha=49B/408ms
+[ 2973973 ms]    quadro=[01 0C 10 F4 F4 F4 B4 B5 B5 71 72 72 32 30 30 78 7A 7A 2A C8] dados="......qrr200xzz*"
+[ 2973984 ms]    [SIM] bit invertido no campo DATA (mascara 0x02) -> enviado=[01 0C 10 F4 F4 F4 B4 B5 B5 73 72 72 32 30 30 78 7A 7A 2A C8]
+[ 2975539 ms] TIMEOUT do quadro seq=12 -> retransmissao seletiva (so ele)
+[ 2975539 ms] TX DATA (retransmissao seletiva) seq=12 len=16 FCS=0xC8 crc_us=9 janela=[12..15] linha=49B/408ms
+[ 2975550 ms]    quadro=[01 0C 10 F4 F4 F4 B4 B5 B5 71 72 72 32 30 30 78 7A 7A 2A C8] dados="......qrr200xzz*"
+[ 2976885 ms] RX ACK prox=16 mapa=0x00 guardados_no_RX=[] -> base=16 rtt_ms=3832
+[ 2976885 ms] TX DATA seq=16 len=16 FCS=0x9C crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2976896 ms]    quadro=[01 10 10 C1 C8 FC F3 E7 0F 2B 2B 2B 99 16 A8 A9 A9 5D B8 9C] dados="......+++.....]."
+[ 2976907 ms]    [SIM] bit invertido no campo TYPE (mascara 0x01) -> enviado=[00 10 10 C1 C8 FC F3 E7 0F 2B 2B 2B 99 16 A8 A9 A9 5D B8 9C]
+[ 2977345 ms] TX DATA seq=17 len=16 FCS=0x39 crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2977345 ms]    quadro=[01 11 10 70 01 1E 5B F1 F1 F1 98 6A 4E 9D 3A A5 AB AB 4B 39] dados="p..[....jN.:...K"
+[ 2977356 ms]    [SIM] bit invertido no campo DATA (mascara 0x04) -> enviado=[01 11 10 70 01 1E 5B F1 F1 F1 98 6A 4A 9D 3A A5 AB AB 4B 39]
+[ 2977794 ms] TX DATA seq=18 len=16 FCS=0x9E crc_us=9 janela=[16..19] linha=49B/408ms
+[ 2977794 ms]    quadro=[01 12 10 66 10 65 65 65 D5 D4 D4 6C D9 B2 85 9D 9D 7D A2 9E] dados="f.eee...l.....}."
+[ 2978231 ms] TX DATA seq=19 len=16 FCS=0x5E crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2978231 ms]    quadro=[01 13 10 A6 CC DB B7 5F EE DA 6A 22 2B 78 FF FE 7D 79 79 5E] dados="...._..j.+x..}yy"
+[ 2979566 ms] RX ACK prox=16 mapa=0x0C guardados_no_RX=[18 19] -> base=16 rtt_ms=6513
+[ 2979566 ms]    quadro seq=16 nao confirmado neste ACK -> retransmissao seletiva
+[ 2979577 ms]    quadro seq=17 nao confirmado neste ACK -> retransmissao seletiva
+[ 2979577 ms] TX DATA (retransmissao seletiva) seq=16 len=16 FCS=0x9C crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2979588 ms]    quadro=[01 10 10 C1 C8 FC F3 E7 0F 2B 2B 2B 99 16 A8 A9 A9 5D B8 9C] dados="......+++.....]."
+[ 2979599 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 10 10 C1 C8 FC F3 E7 0F 2B 2B 2B 99 16 A8 A9 A9 DD B8 9C]
+[ 2980037 ms] TX DATA (retransmissao seletiva) seq=17 len=16 FCS=0x39 crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2980037 ms]    quadro=[01 11 10 70 01 1E 5B F1 F1 F1 98 6A 4E 9D 3A A5 AB AB 4B 39] dados="p..[....jN.:...K"
+[ 2980048 ms]    [SIM] bit invertido no campo SEQ (mascara 0x40) -> enviado=[01 51 10 70 01 1E 5B F1 F1 F1 98 6A 4E 9D 3A A5 AB AB 4B 39]
+[ 2981603 ms] TIMEOUT do quadro seq=16 -> retransmissao seletiva (so ele)
+[ 2981603 ms] TX DATA (retransmissao seletiva) seq=16 len=16 FCS=0x9C crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2981614 ms]    quadro=[01 10 10 C1 C8 FC F3 E7 0F 2B 2B 2B 99 16 A8 A9 A9 5D B8 9C] dados="......+++.....]."
+[ 2982052 ms] TIMEOUT do quadro seq=17 -> retransmissao seletiva (so ele)
+[ 2982052 ms] TX DATA (retransmissao seletiva) seq=17 len=16 FCS=0x39 crc_us=8 janela=[16..19] linha=49B/408ms
+[ 2982063 ms]    quadro=[01 11 10 70 01 1E 5B F1 F1 F1 98 6A 4E 9D 3A A5 AB AB 4B 39] dados="p..[....jN.:...K"
+[ 2983398 ms] RX ACK prox=20 mapa=0x00 guardados_no_RX=[] -> base=20 rtt_ms=4731
+[ 2983398 ms] TX DATA seq=20 len=16 FCS=0x7D crc_us=9 janela=[20..23] linha=49B/408ms
+[ 2983409 ms]    quadro=[01 14 10 79 47 47 07 99 16 84 87 87 DF BE 7D 5B 57 88 5F 7D] dados="yGG........}[W._"
+[ 2983847 ms] TX DATA seq=21 len=16 FCS=0xFC crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2983847 ms]    quadro=[01 15 10 88 95 59 98 95 B9 51 59 02 22 FE F3 F3 27 73 01 FC] dados="..Y...QY.....'s."
+[ 2983858 ms]    [SIM] bit invertido no campo DATA (mascara 0x01) -> enviado=[01 15 10 88 95 58 98 95 B9 51 59 02 22 FE F3 F3 27 73 01 FC]
+[ 2984296 ms] TX DATA seq=22 len=16 FCS=0xDD crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2984296 ms]    quadro=[01 16 10 6E 2E 43 B3 DF BF 7F 97 97 97 3B 38 38 90 66 C1 DD] dados="n.C.......;88.f."
+[ 2984733 ms] TX DATA seq=23 len=16 FCS=0x75 crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2984733 ms]    quadro=[01 17 10 87 0F 1F E0 EC C8 9D 4B 23 8D 14 D1 14 5C B1 52 75] dados=".......K#....\.R"
+[ 2986068 ms] RX ACK prox=20 mapa=0x0C guardados_no_RX=[22 23] -> base=20 rtt_ms=7401
+[ 2986068 ms]    quadro seq=20 nao confirmado neste ACK -> retransmissao seletiva
+[ 2986079 ms]    quadro seq=21 nao confirmado neste ACK -> retransmissao seletiva
+[ 2986079 ms] TX DATA (retransmissao seletiva) seq=20 len=16 FCS=0x7D crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2986090 ms]    quadro=[01 14 10 79 47 47 07 99 16 84 87 87 DF BE 7D 5B 57 88 5F 7D] dados="yGG........}[W._"
+[ 2986528 ms] TX DATA (retransmissao seletiva) seq=21 len=16 FCS=0xFC crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2986528 ms]    quadro=[01 15 10 88 95 59 98 95 B9 51 59 02 22 FE F3 F3 27 73 01 FC] dados="..Y...QY.....'s."
+[ 2986539 ms]    [SIM] bit invertido no campo DATA (mascara 0x20) -> enviado=[01 15 10 88 95 59 98 95 B9 51 59 02 22 FE F3 F3 07 73 01 FC]
+[ 2988094 ms] TIMEOUT do quadro seq=20 -> retransmissao seletiva (so ele)
+[ 2988094 ms] TX DATA (retransmissao seletiva) seq=20 len=16 FCS=0x7D crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2988105 ms]    quadro=[01 14 10 79 47 47 07 99 16 84 87 87 DF BE 7D 5B 57 88 5F 7D] dados="yGG........}[W._"
+[ 2988543 ms] TIMEOUT do quadro seq=21 -> retransmissao seletiva (so ele)
+[ 2988543 ms] TX DATA (retransmissao seletiva) seq=21 len=16 FCS=0xFC crc_us=8 janela=[20..23] linha=49B/408ms
+[ 2988554 ms]    quadro=[01 15 10 88 95 59 98 95 B9 51 59 02 22 FE F3 F3 27 73 01 FC] dados="..Y...QY.....'s."
+[ 2989889 ms] RX ACK prox=24 mapa=0x00 guardados_no_RX=[] -> base=24 rtt_ms=4720
+[ 2989889 ms] TX DATA seq=24 len=16 FCS=0xA5 crc_us=9 janela=[24..27] linha=49B/408ms
+[ 2989900 ms]    quadro=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5] dados="g```..B..u.....!"
+[ 2990338 ms] TX DATA seq=25 len=16 FCS=0x9E crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2990338 ms]    quadro=[01 19 10 43 01 CD CB 22 26 4A 5C 47 8C B2 01 F5 C1 D0 B7 9E] dados="C....&J\G......."
+[ 2990775 ms] TX DATA seq=26 len=16 FCS=0xC9 crc_us=9 janela=[24..27] linha=49B/408ms
+[ 2990775 ms]    quadro=[01 1A 10 40 F9 F0 75 62 8C C0 AF 6C A0 83 88 A0 27 08 2A C9] dados="@..ub...l....'.*"
+[ 2991212 ms] TX DATA seq=27 len=16 FCS=0x34 crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2991212 ms]    quadro=[01 1B 10 60 A2 24 04 88 09 43 16 E2 43 19 39 BD 13 19 3D 34] dados="`.$...C..C.9...="
+[ 2991223 ms]    [SIM] bit invertido no campo DATA (mascara 0x10) -> enviado=[01 1B 10 60 A2 24 04 98 09 43 16 E2 43 19 39 BD 13 19 3D 34]
+[ 2992558 ms] RX ACK prox=24 mapa=0x06 guardados_no_RX=[25 26] -> base=24 rtt_ms=7389
+[ 2992558 ms]    quadro seq=24 nao confirmado neste ACK -> retransmissao seletiva
+[ 2992569 ms] TX DATA (retransmissao seletiva) seq=24 len=16 FCS=0xA5 crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2992580 ms]    quadro=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5] dados="g```..B..u.....!"
+[ 2992591 ms]    [SIM] bit invertido no campo FCS (mascara 0x10) -> enviado=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 B5]
+[ 2993029 ms] TIMEOUT do quadro seq=27 -> retransmissao seletiva (so ele)
+[ 2993029 ms] TX DATA (retransmissao seletiva) seq=27 len=16 FCS=0x34 crc_us=9 janela=[24..27] linha=49B/408ms
+[ 2993040 ms]    quadro=[01 1B 10 60 A2 24 04 88 09 43 16 E2 43 19 39 BD 13 19 3D 34] dados="`.$...C..C.9...="
+[ 2994375 ms] RX ACK prox=24 mapa=0x0E guardados_no_RX=[25 26 27] -> base=24 rtt_ms=9206
+[ 2994375 ms]    quadro seq=24 nao confirmado neste ACK -> retransmissao seletiva
+[ 2994386 ms] TX DATA (retransmissao seletiva) seq=24 len=16 FCS=0xA5 crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2994397 ms]    quadro=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5] dados="g```..B..u.....!"
+[ 2995952 ms] TIMEOUT do quadro seq=24 -> retransmissao seletiva (so ele)
+[ 2995952 ms] TX DATA (retransmissao seletiva) seq=24 len=16 FCS=0xA5 crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2995963 ms]    quadro=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5] dados="g```..B..u.....!"
+[ 2995974 ms]    [SIM] bit invertido no campo DATA (mascara 0x10) -> enviado=[01 18 10 67 70 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5]
+[ 2997529 ms] TIMEOUT do quadro seq=24 -> retransmissao seletiva (so ele)
+[ 2997529 ms] TX DATA (retransmissao seletiva) seq=24 len=16 FCS=0xA5 crc_us=8 janela=[24..27] linha=49B/408ms
+[ 2997540 ms]    quadro=[01 18 10 67 60 60 60 F8 F3 42 F9 C8 75 8A 8A 0A B4 00 21 A5] dados="g```..B..u.....!"
+����������������������������������������������������������������a=0x00 guardados_no_RX=[] -> base=28 rtt_ms=5398
+[ 2998875 ms] TX DATA seq=28 len=16 FCS=0xF3 crc_us=8 janela=[28..31] linha=49B/408ms
+[ 2998886 ms]    quadro=[01 1C 10 C4 5A 40 AA A1 A3 19 6D 50 B6 EC 68 D7 BE A3 B9 F3] dados=".Z@....mP..h...."
+[ 2999324 ms] TX DATA seq=29 len=16 FCS=0x56 crc_us=8 janela=[28..31] linha=49B/408ms
+[ 2999324 ms]    quadro=[01 1D 10 0F 18 87 7C EB 1A 00 00 67 C0 9C E2 81 74 43 00 56] dados="...|....g....tC."
+[ 2999761 ms] TX DATA seq=30 len=11 FCS=0x7F crc_us=6 janela=[28..31] linha=39B/325ms
+[ 2999761 ms]    quadro=[01 1E 0B 00 00 00 49 45 4E 44 AE 42 60 82 7F] dados="...IEND.B`."
+[ 3001013 ms] RX ACK prox=28 mapa=0x06 guardados_no_RX=[29 30] -> base=28 rtt_ms=7536
+[ 3001013 ms]    quadro seq=28 nao confirmado neste ACK -> retransmissao seletiva
+[ 3001024 ms] TX DATA (retransmissao seletiva) seq=28 len=16 FCS=0xF3 crc_us=8 janela=[28..31] linha=49B/408ms
+[ 3001035 ms]    quadro=[01 1C 10 C4 5A 40 AA A1 A3 19 6D 50 B6 EC 68 D7 BE A3 B9 F3] dados=".Z@....mP..h...."
+[ 3001046 ms]    [SIM] bit invertido no campo DATA (mascara 0x80) -> enviado=[01 1C 10 C4 5A 40 AA A1 A3 19 6D 50 B6 EC 68 57 BE A3 B9 F3]
+[ 3002601 ms] TIMEOUT do quadro seq=28 -> retransmissao seletiva (so ele)
+[ 3002601 ms] TX DATA (retransmissao seletiva) seq=28 len=16 FCS=0xF3 crc_us=8 janela=[28..31] linha=49B/408ms
+[ 3002612 ms]    quadro=[01 1C 10 C4 5A 40 AA A1 A3 19 6D 50 B6 EC 68 D7 BE A3 B9 F3] dados=".Z@....mP..h...."
+[ 3003947 ms] RX ACK prox=31 mapa=0x00 guardados_no_RX=[] -> base=31 rtt_ms=3833
+[ 3003947 ms] TX END seq=31 len=0 FCS=0x29 crc_us=2 janela=[31..34] linha=17B/141ms
+[ 3003958 ms]    quadro=[03 1F 00 29]
+[ 3003958 ms]    [SIM] bit invertido no campo TYPE (mascara 0x80) -> enviado=[83 1F 00 29]
+[ 3005245 ms] TIMEOUT do quadro seq=31 -> retransmissao seletiva (so ele)
+[ 3005245 ms] TX END (retransmissao seletiva) seq=31 len=0 FCS=0x29 crc_us=2 janela=[31..34] linha=17B/141ms
+[ 3005256 ms]    quadro=[03 1F 00 29]
+[ 3006314 ms] RX ACK prox=32 mapa=0x00 guardados_no_RX=[] -> base=32 rtt_ms=899
+[ 3006314 ms] === MENSAGEM ENTREGUE em 61808 ms | envios=70 retransmissoes=38 (por ACK=19, por timeout=19) ACKs=22 (ignorados=0) erros_sim=28 perdas_sim=0 | 7.9 bytes/s ===
