@@ -1,0 +1,8 @@
+﻿cenario;distancia_m;janela;erro_sim_pct;perda_sim_pct;repeticoes;sucessos;tempo_medio_s;bytes_por_s_medio;retransmissoes_media;rx_erros_FCS_media
+distancia_0.5m;0,50;4;0;0;3;3;10,26;19,60;0,00;0,00
+distancia_1.0m;1,00;4;0;0;3;3;19,46;10,37;6,67;0,00
+distancia_1.5m;1,50;4;0;0;3;3;18,82;10,70;6,00;0,00
+distancia_2.0m;2,00;4;0;0;3;1;33,69;6,00;17,00;0,00
+janela_1_SAW;1,00;1;0;0;3;3;38,91;5,13;13,33;0,00
+janela_4;1,00;4;0;0;3;3;19,79;10,23;7,33;0,00
+janela_8;1,00;8;0;0;3;3;12,66;15,90;3,00;0,00

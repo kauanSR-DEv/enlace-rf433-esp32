@@ -7,3 +7,9 @@
 | v4 | **Selective Repeat**: janela no RX, ACK com mapa de bits, temporizador por quadro, retransmissão seletiva | Vale 3 pontos e retransmite menos (20–50% mais rápido no simulador com perdas) |
 | v4 + log | Log completo no Monitor Serial: bytes do quadro em hex, FCS recebido × calculado, tempo do CRC em µs, RTT, `/resumo`, `/bench` | Evidências pedidas no enunciado |
 | **v4.1** | Preâmbulo do ACK de 24 para 48 bytes, silêncio antes do ACK de 100 para 300 ms, desistência de 12 para 20 s | O ACK de volta (B → A) era o ponto fraco do enlace |
+
+## Scripts do PC
+
+| Data | Mudança |
+|---|---|
+| 23/11/2026 | `coletar_testes.py --modo juntar`: o primeiro teste passa a usar o `STATUS` do `sessao.txt` do RX como base dos contadores (antes herdava os contadores acumulados desde que a placa ligou) |

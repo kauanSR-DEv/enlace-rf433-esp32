@@ -43,7 +43,7 @@
 \renewcommand{\arraystretch}{1.3}
 
 \titulo{ENLACE DE DADOS CONFIÁVEL VIA RÁDIO DE 433 MHz ENTRE DUAS ESP32: Detecção de erros por CRC-8 e controle de erros por \textit{Selective Repeat} ARQ}
-\autor{KAUAN SANTOS RONDON \\ LUIS FERNANDO \\ VINÍCIUS CAMPOS}
+\autor{KAUAN SANTOS RONDON \\ LUIS FERNANDO AMORIM DA SILVA \\ VINÍCIUS CAMPOS ANDRADE SILVA}
 \local{Cuiabá – MT}
 \data{2026}
 \instituicao{INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DE MATO GROSSO \\ CAMPUS CUIABÁ – CEL. OCTAYDE JORGE DA SILVA}
@@ -51,7 +51,7 @@
 \orientador[Professor:]{Ruy de Oliveira}
 \preambulo{Relatório técnico apresentado como requisito parcial de avaliação na disciplina Transmissão e Comunicação de Dados do curso de Bacharelado em Engenharia da Computação do Instituto Federal de Educação, Ciência e Tecnologia de Mato Grosso, Campus Cuiabá – Cel. Octayde Jorge da Silva.}
 
-\hypersetup{hidelinks, pdftitle={Enlace de dados confiável via rádio de 433 MHz entre duas ESP32}, pdfauthor={Kauan Santos Rondon; Luis Fernando; Vinícius Campos}, pdfsubject={Relatório técnico - Transmissão e Comunicação de Dados - IFMT}, pdfkeywords={RF 433 MHz; ESP32; CRC-8; Selective Repeat}}
+\hypersetup{hidelinks, pdftitle={Enlace de dados confiável via rádio de 433 MHz entre duas ESP32}, pdfauthor={Kauan Santos Rondon; Luis Fernando Amorim da Silva; Vinícius Campos Andrade Silva}, pdfsubject={Relatório técnico - Transmissão e Comunicação de Dados - IFMT}, pdfkeywords={RF 433 MHz; ESP32; CRC-8; Selective Repeat}}
 \begin{document}
 \selectlanguage{brazilian}
 \frenchspacing
@@ -64,7 +64,7 @@
    CAMPUS CUIABÁ – CEL. OCTAYDE JORGE DA SILVA\par}
   \vspace{0.2cm}{\normalfont BACHARELADO EM ENGENHARIA DA COMPUTAÇÃO\par}
   \vspace{2.2cm}
-  {\bfseries KAUAN SANTOS RONDON \\ LUIS FERNANDO \\ VINÍCIUS CAMPOS\par}
+  {\bfseries KAUAN SANTOS RONDON \\ LUIS FERNANDO AMORIM DA SILVA \\ VINÍCIUS CAMPOS ANDRADE SILVA\par}
   \vfill
   {\bfseries\large ENLACE DE DADOS CONFIÁVEL VIA RÁDIO DE 433 MHz ENTRE DUAS ESP32\par}
   \vspace{0.4cm}
@@ -77,7 +77,7 @@
 
 \begin{resumo}
  \SingleSpacing
- Este relatório descreve o projeto, a implementação e a avaliação experimental de um enlace de dados unidirecional e confiável entre duas placas ESP32, com comunicação exclusivamente por módulos de rádio de 433 MHz (FS1000A e MX-RM-5V) e sem bibliotecas de rádio. A camada física foi construída sobre a UART da ESP32 a 1200 bit/s, com sinal invertido, preâmbulo de sincronização, delimitador 0x7E e codificação Manchester. Os dados trafegam em quadros com os campos FLAG, TYPE, SEQ, LEN, DATA e FCS, limitados a 21 bytes. A detecção de erros utiliza CRC-8 com polinômio gerador x⁸ + x² + x + 1, e o controle de erros utiliza \textit{Selective Repeat ARQ} com janela de até 8 quadros e confirmações com mapa de bits. O receptor exibe os textos recebidos em um LCD 16x2 e repassa as imagens ao computador. Em uma bateria de 36 ensaios, 33 mensagens foram entregues sem nenhum erro, incluindo seis imagens cujo resumo SHA-256 coincidiu com o do arquivo original, com distâncias de até 2 m e sob interferência real. O cálculo do CRC consumiu cerca de 8 µs por quadro, e a janela de 8 quadros reduziu em 56\% o tempo de entrega em relação ao \textit{Stop-and-Wait}. As três mensagens não entregues foram abandonadas pelo transmissor após 20 s sem confirmação, sem entrega de dado corrompido.
+ Este relatório descreve o projeto, a implementação e a avaliação experimental de um enlace de dados unidirecional e confiável entre duas placas ESP32, com comunicação exclusivamente por módulos de rádio de 433 MHz (FS1000A e MX-RM-5V) e sem bibliotecas de rádio. A camada física foi construída sobre a UART da ESP32 a 1200 bit/s, com sinal invertido, preâmbulo de sincronização, delimitador 0x7E e codificação Manchester. Os dados trafegam em quadros com os campos FLAG, TYPE, SEQ, LEN, DATA e FCS, limitados a 21 bytes. A detecção de erros utiliza CRC-8 com polinômio gerador x⁸ + x² + x + 1, e o controle de erros utiliza \textit{Selective Repeat ARQ} com janela de até 8 quadros e confirmações com mapa de bits. O receptor exibe os textos recebidos em um LCD 16x2 e repassa as imagens ao computador. Em uma bateria de 36 ensaios, 33 mensagens foram entregues sem nenhum erro, incluindo seis imagens cujo resumo SHA-256 coincidiu com o do arquivo original, com distâncias de até 2 m e sob interferência real. Em validação posterior, com uma placa em cada computador, 19 de 21 mensagens foram entregues sem erro, com falhas apenas a 2 m, e uma imagem de 2866 bytes foi transferida íntegra a 1,8 m. O cálculo do CRC consumiu cerca de 8 µs por quadro, e a janela de 8 quadros reduziu em 56\% o tempo de entrega em relação ao \textit{Stop-and-Wait}. As três mensagens não entregues foram abandonadas pelo transmissor após 20 s sem confirmação, sem entrega de dado corrompido.
 
  \vspace{\onelineskip}
  \noindent\textbf{Palavras-chave}: RF 433 MHz; ESP32; CRC-8; Selective Repeat; controle de erros; enlace de dados.
@@ -119,6 +119,24 @@ Implementar e avaliar experimentalmente um enlace de dados confiável entre duas
 
 O código-fonte, os \textit{scripts} de teste, os \textit{logs} e os resultados brutos estão disponíveis no repositório \url{https://github.com/kauanSR-DEv/enlace-rf433-esp32}.
 
+\section{Equipe e divisão de atividades}
+
+O projeto foi desenvolvido por três integrantes, com as atribuições principais indicadas na Tabela 1. A divisão refere-se à responsabilidade por cada parte; todas as etapas, da montagem aos ensaios e à documentação, contaram com a participação dos três integrantes.
+
+\begin{table}[H]
+  \centering
+  \caption{Integrantes e atribuições principais}
+  \small\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|>{\raggedright\arraybackslash}m{4.76cm}|>{\centering\arraybackslash}m{2.93cm}|>{\centering\arraybackslash}m{6.96cm}|}
+  \hline
+  \rowcolor{gray!22}\textbf{Integrante} & \textbf{Matrícula} & \textbf{Atribuição principal} \\ \hline
+  Kauan Santos Rondon & 2025178440015 & Enlace de rádio de 433 MHz entre as placas: camada física, quadro, CRC-8 e \textit{Selective Repeat} \\ \hline
+  Luis Fernando Amorim da Silva & 2025178440031 & Montagem da placa B (receptor de dados, transmissor de ACK e LCD) \\ \hline
+  Vinícius Campos Andrade Silva & 2025178440018 & Montagem da placa A (transmissor de dados e receptor de ACK) \\ \hline
+  \end{tabular}
+  \fonte{Elaborado pelos autores (2026).}
+\end{table}
+
 
 \chapter{FUNDAMENTAÇÃO TEÓRICA}
 \section{Modulação OOK em 433 MHz}
@@ -153,7 +171,7 @@ O receptor repete o cálculo sobre os campos recebidos e compara o resultado com
 
 \section{Protocolos ARQ}
 
-Nos protocolos de repetição automática (\textit{Automatic Repeat reQuest}, ARQ), o receptor confirma os quadros recebidos e o transmissor retransmite os quadros não confirmados após um tempo limite (OLIVEIRA, 2026; TANENBAUM; WETHERALL, 2011). A Tabela 1 compara as três variantes previstas no enunciado.
+Nos protocolos de repetição automática (\textit{Automatic Repeat reQuest}, ARQ), o receptor confirma os quadros recebidos e o transmissor retransmite os quadros não confirmados após um tempo limite (OLIVEIRA, 2026; TANENBAUM; WETHERALL, 2011). A Tabela 2 compara as três variantes previstas no enunciado.
 
 \begin{table}[H]
   \centering
@@ -190,7 +208,7 @@ O desenvolvimento seguiu ciclos de implementação e ensaio em bancada. A arquit
 
 \section{Materiais}
 
-A Tabela 2 relaciona os componentes utilizados nas duas placas.
+A Tabela 3 relaciona os componentes utilizados nas duas placas.
 
 \begin{table}[H]
   \centering
@@ -216,7 +234,7 @@ A Tabela 2 relaciona os componentes utilizados nas duas placas.
 
 \section{Montagem do hardware}
 
-As duas placas possuem a mesma montagem de rádio, descrita na Tabela 3. Como a ESP32 de 30 pinos ocupa toda a largura útil de um lado da \textit{protoboard}, todos os pinos utilizados foram escolhidos do lado que permanece acessível.
+As duas placas possuem a mesma montagem de rádio, descrita na Tabela 4. Como a ESP32 de 30 pinos ocupa toda a largura útil de um lado da \textit{protoboard}, todos os pinos utilizados foram escolhidos do lado que permanece acessível.
 
 \begin{table}[H]
   \centering
@@ -245,7 +263,7 @@ As antenas são fios retos de um quarto do comprimento de onda, soldados no term
   \frac{\lambda}{4} = \frac{c}{4f} = \frac{3 \times 10^{8}}{4 \times 433{,}92 \times 10^{6}} \approx 17{,}3\ \text{cm}
 \end{equation}
 
-A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 4. As Figuras 2 a 5 mostram a montagem final.
+A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 5. As Figuras 2 a 5 mostram a montagem final.
 
 \begin{table}[H]
   \centering
@@ -294,7 +312,7 @@ A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca Li
 
 \section{Estrutura do quadro}
 
-O quadro segue a estrutura definida no enunciado e possui no máximo 21 bytes. A Tabela 5 descreve os campos; quadros com TYPE diferente dos três valores previstos ou com LEN superior a 16 são descartados pelo receptor.
+O quadro segue a estrutura definida no enunciado e possui no máximo 21 bytes. A Tabela 6 descreve os campos; quadros com TYPE diferente dos três valores previstos ou com LEN superior a 16 são descartados pelo receptor.
 
 \begin{table}[H]
   \centering
@@ -331,7 +349,7 @@ uint8_t crc8(const uint8_t *p, size_t n) {
 }
 \end{Verbatim}
 
-A Tabela 6 apresenta o cálculo passo a passo para um quadro DATA com SEQ igual a 0 e o texto Oi, cujos bytes protegidos são 01 00 02 4F 69. O transmissor envia FCS = 0x34; o receptor recalcula o valor sobre os bytes recebidos e aceita o quadro somente se obtiver o mesmo resultado.
+A Tabela 7 apresenta o cálculo passo a passo para um quadro DATA com SEQ igual a 0 e o texto Oi, cujos bytes protegidos são 01 00 02 4F 69. O transmissor envia FCS = 0x34; o receptor recalcula o valor sobre os bytes recebidos e aceita o quadro somente se obtiver o mesmo resultado.
 
 \begin{table}[H]
   \centering
@@ -361,7 +379,7 @@ A camada física foi implementada no próprio \textit{firmware}. Cada quadro é 
   \item descarte do eco: como o receptor de cada placa capta o próprio transmissor, os bytes recebidos durante a transmissão são ignorados.
 \end{enumerate}
 
-A Tabela 7 resume o tamanho de cada tipo de quadro na linha e o tempo de transmissão correspondente.
+A Tabela 8 resume o tamanho de cada tipo de quadro na linha e o tempo de transmissão correspondente.
 
 \begin{table}[H]
   \centering
@@ -383,7 +401,7 @@ O transmissor divide a mensagem em quadros DATA numerados a partir de zero e env
 
 O receptor mantém uma janela de 8 posições a partir do próximo número de sequência esperado. Quadros dentro da janela e com CRC correto são armazenados; quando o quadro esperado chega, ele e os seguintes já armazenados são entregues em ordem. Quadros já entregues são descartados e provocam a repetição do ACK. Após 425 ms de silêncio no canal, o receptor envia um único ACK para a rajada, com SEQ igual ao próximo quadro esperado e DATA[0] contendo o mapa de bits, no qual o bit i indica que o quadro SEQ + i já foi armazenado.
 
-A Tabela 8 reúne os tempos do protocolo, todos calculados no \textit{firmware} a partir da taxa de transmissão. O silêncio que antecede o ACK precisa ser maior que o intervalo entre dois quadros de uma mesma rajada; caso contrário, o receptor responderia no meio dela. O acréscimo de 300 ms e o preâmbulo de 48 bytes no ACK decorrem de uma limitação observada em bancada: logo após transmitir, o receptor da placa A, situado a poucos centímetros do próprio transmissor, permanece com ganho reduzido e demora a detectar um sinal fraco vindo da outra placa.
+A Tabela 9 reúne os tempos do protocolo, todos calculados no \textit{firmware} a partir da taxa de transmissão. O silêncio que antecede o ACK precisa ser maior que o intervalo entre dois quadros de uma mesma rajada; caso contrário, o receptor responderia no meio dela. O acréscimo de 300 ms e o preâmbulo de 48 bytes no ACK decorrem de uma limitação observada em bancada: logo após transmitir, o receptor da placa A, situado a poucos centímetros do próprio transmissor, permanece com ganho reduzido e demora a detectar um sinal fraco vindo da outra placa.
 
 \begin{table}[H]
   \centering
@@ -407,7 +425,7 @@ Casos de borda também foram tratados. Se o ACK do quadro END se perder, o recep
 
 \section{Firmware e ferramentas de apoio}
 
-O \textit{firmware} foi desenvolvido na Arduino IDE 2 com o pacote ESP32 da Espressif e dividido em três arquivos. O arquivo protocolo\_rf.h, presente em cópias idênticas nas duas placas, contém os tempos, a estrutura do quadro, o CRC-8, a codificação Manchester e o receptor de linha. O arquivo tx.ino implementa a segmentação da mensagem, o \textit{Selective Repeat} do transmissor e a recepção de imagens pelo USB; o arquivo rx.ino implementa a janela do receptor, a entrega em ordem, os ACKs, o LCD e a saída da imagem para o computador. A Tabela 9 lista os comandos disponíveis no Monitor Serial.
+O \textit{firmware} foi desenvolvido na Arduino IDE 2 com o pacote ESP32 da Espressif e dividido em três arquivos. O arquivo protocolo\_rf.h, presente em cópias idênticas nas duas placas, contém os tempos, a estrutura do quadro, o CRC-8, a codificação Manchester e o receptor de linha. O arquivo tx.ino implementa a segmentação da mensagem, o \textit{Selective Repeat} do transmissor e a recepção de imagens pelo USB; o arquivo rx.ino implementa a janela do receptor, a entrega em ordem, os ACKs, o LCD e a saída da imagem para o computador. A Tabela 10 lista os comandos disponíveis no Monitor Serial.
 
 \begin{table}[H]
   \centering
@@ -434,7 +452,7 @@ No computador, três \textit{scripts} em Python completam o sistema: enviar\_ima
 
 \section{Procedimento de ensaio}
 
-Os ensaios foram realizados em 21/11/2026, entre 12h58 e 13h47, em ambiente interno, com o \textit{firmware} na versão 4.1. As duas placas foram ligadas ao mesmo notebook, operando com bateria, sem nenhum condutor de dados entre elas; as antenas permaneceram retas, verticais e paralelas, e a distância foi medida entre as antenas. A mensagem padrão foi gerada pelo comando /teste 200, que produz 201 bytes, isto é, 13 quadros DATA e um END. O ensaio de ruído utilizou 500 caracteres e o de imagem utilizou um arquivo PNG de 32 × 32 pixels com 490 bytes. Cada cenário da Tabela 10 foi repetido três vezes, totalizando 36 ensaios.
+Os ensaios foram realizados em 21/11/2026, entre 12h58 e 13h47, em ambiente interno, com o \textit{firmware} na versão 4.1. As duas placas foram ligadas ao mesmo notebook, operando com bateria, para que o script de coleta registrasse os \textit{logs} do transmissor e do receptor com a mesma referência de tempo e associasse cada ensaio aos dois lados do enlace. A ligação USB serviu apenas para alimentação e registro; não houve nenhum condutor de dados entre as placas, e toda a comunicação ocorreu pelo rádio. A configuração final do enunciado, com uma placa em cada computador, foi verificada em 23/11/2026, conforme a Seção 4.7. Durante a campanha, as antenas permaneceram retas, verticais e paralelas, e a distância foi medida entre as antenas. A mensagem padrão foi gerada pelo comando /teste 200, que produz 201 bytes, isto é, 13 quadros DATA e um END. O ensaio de ruído utilizou 500 caracteres e o de imagem utilizou um arquivo PNG de 32 × 32 pixels com 490 bytes. Cada cenário da Tabela 11 foi repetido três vezes, totalizando 36 ensaios.
 
 \begin{table}[H]
   \centering
@@ -454,6 +472,8 @@ Os ensaios foram realizados em 21/11/2026, entre 12h58 e 13h47, em ambiente inte
 \end{table}
 
 Considerou-se entregue o ensaio em que o transmissor registrou a entrega e o conteúdo apresentado pelo receptor coincidiu integralmente com o enviado; para imagens, exigiu-se a igualdade do resumo SHA-256. Considerou-se falha o ensaio em que o transmissor abandonou a mensagem após 20 s sem confirmação.
+
+Em 23/11/2026, os grupos de distância e de janela foram repetidos com uma placa em cada computador, três vezes por cenário, totalizando 21 ensaios. O script de coleta foi executado no modo tx no computador A e no modo rx no computador B; ao final, o modo juntar associou os registros dos dois lados pelo tamanho da mensagem e pelo horário, com correção automática da diferença entre os relógios dos computadores, estimada em 0,66 s. Na mesma data, foram transmitidas duas imagens a 1,8 m e registrados o resumo da sessão e o tempo do CRC, descritos na Seção 4.7.
 
 
 \chapter{RESULTADOS E DISCUSSÃO}
@@ -476,7 +496,7 @@ Dos 36 ensaios, 33 resultaram em entrega (91,7\%) e nenhum resultou em entrega c
   \fonte{Elaborado pelos autores a partir dos \textit{logs} de 21/11/2026.}
 \end{table}
 
-O enlace funcionou até 2 m, o dobro da distância mínima exigida. A 0,5 m, as três entregas levaram 10,26 s, sem retransmissões. A última coluna da Tabela 11 identifica a origem das perdas: a 1 m e a 1,5 m, cerca de metade dos ACKs enviados pelo receptor não chegou ao transmissor. Os dados alcançavam a placa B, mas a confirmação se perdia no sentido inverso, o que levava o transmissor a retransmitir por estouro do temporizador. As três falhas da bateria tiveram essa mesma causa.
+O enlace funcionou até 2 m, o dobro da distância mínima exigida. A 0,5 m, as três entregas levaram 10,26 s, sem retransmissões. A última coluna da Tabela 12 identifica a origem das perdas: a 1 m e a 1,5 m, cerca de metade dos ACKs enviados pelo receptor não chegou ao transmissor. Os dados alcançavam a placa B, mas a confirmação se perdia no sentido inverso, o que levava o transmissor a retransmitir por estouro do temporizador. As três falhas da bateria tiveram essa mesma causa.
 
 O desempenho não decresceu de forma monotônica com a distância, já que o ensaio a 2 m superou os de 1 m e 1,5 m. Em ambiente interno, o sinal de 433 MHz chega ao receptor por múltiplos percursos, refletido por paredes e objetos, e a posição exata das placas influencia o resultado tanto quanto a distância. Além disso, os cenários foram executados em instantes diferentes, sob condições de ruído que variam ao longo do tempo.
 
@@ -488,7 +508,7 @@ Para estimar o tempo em canal sem perdas, adotou-se um modelo simples: cada quad
   T \approx \sum_{\text{rajadas}} \left( k \cdot 437\ \text{ms} + 900\ \text{ms} \right) + T_{\text{END}}
 \end{equation}
 
-Para janela 4, o modelo prevê 10,2 s, valor próximo dos 10,26 s medidos a 0,5 m, o que valida o modelo. A Tabela 12 e a Figura 6 comparam as previsões com as medições realizadas a 1 m.
+Para janela 4, o modelo prevê 10,2 s, valor próximo dos 10,26 s medidos a 0,5 m, o que valida o modelo. A Tabela 13 e a Figura 6 comparam as previsões com as medições realizadas a 1 m.
 
 \begin{table}[H]
   \centering
@@ -533,7 +553,7 @@ Com o erro simulado, todos os quadros corrompidos que chegaram ao receptor foram
 
 \section{Detecção de erros e custo do CRC}
 
-Nenhum quadro com erro foi aceito ao longo da bateria. O receptor descartou quadros com erro em dois níveis, conforme a Tabela 14.
+Nenhum quadro com erro foi aceito ao longo da bateria. O receptor descartou quadros com erro em dois níveis, conforme a Tabela 15.
 
 \begin{table}[H]
   \centering
@@ -557,7 +577,7 @@ RX quadro DATA seq=6: FCS recebido=0x07 calculado=0x33
    -> ERRO DETECTADO, descartado
 \end{Verbatim}
 
-O tempo de cálculo do CRC-8 foi medido na ESP32 a cada quadro, com os resultados da Tabela 15. Como um quadro completo leva 408 ms no ar, o custo de processamento do CRC é desprezível diante do tempo de transmissão.
+O tempo de cálculo do CRC-8 foi medido na ESP32 a cada quadro, com os resultados da Tabela 16. Como um quadro completo leva 408 ms no ar, o custo de processamento do CRC é desprezível diante do tempo de transmissão. Em 23/11, o comando /bench repetiu o cálculo 10 000 vezes sobre um quadro cheio de 19 bytes e obteve 7,79 µs por cálculo, cerca de 0,002\% dos 408 ms que o mesmo quadro ocupa no ar.
 
 \begin{table}[H]
   \centering
@@ -568,6 +588,7 @@ O tempo de cálculo do CRC-8 foi medido na ESP32 a cada quadro, com os resultado
   \rowcolor{gray!22}\textbf{Medida} & \textbf{Amostras} & \textbf{Mediana} & \textbf{Média} & \textbf{Máximo} \\ \hline
   Cálculo no transmissor & 1252 & 8 µs & 8,1 µs & 22 µs \\ \hline
   Verificação no receptor & 694 & 8 µs & 7,9 µs & 13 µs \\ \hline
+  Comando /bench (23/11, 19 bytes) & 10000 & – & 7,8 µs & – \\ \hline
   \end{tabular}
   \fonte{Elaborado pelos autores a partir dos \textit{logs} de 21/11/2026.}
 \end{table}
@@ -609,9 +630,84 @@ As seis imagens recebidas apresentaram o mesmo resumo SHA-256 do arquivo origina
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
+\section{Ensaios com dois computadores}
+
+Em 23/11/2026, o enlace foi ensaiado na configuração prevista no enunciado, com cada placa ligada a um notebook diferente, conforme a Figura 9. A Tabela 18 apresenta os 21 ensaios de distância e de janela, realizados com o mesmo procedimento da campanha de 21/11.
+
+\begin{figure}[H]
+  \centering
+  \caption{Placa A e notebook transmissor em primeiro plano; placa B e notebook receptor ao fundo}
+  \includegraphics[width=13.0cm]{fig/dois_computadores.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+\begin{table}[H]
+  \centering
+  \caption{Resultados com uma placa em cada computador (mensagem de 201 bytes)}
+  \small\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|>{\raggedright\arraybackslash}m{3.44cm}|>{\centering\arraybackslash}m{1.89cm}|>{\centering\arraybackslash}m{2.06cm}|>{\centering\arraybackslash}m{2.84cm}|>{\centering\arraybackslash}m{3.52cm}|}
+  \hline
+  \rowcolor{gray!22}\textbf{Cenário} & \textbf{Entregues} & \textbf{Tempo médio} & \textbf{Retransmissões} & \textbf{ACKs perdidos no retorno} \\ \hline
+  0,5 m, janela 4 & 3 de 3 & 10,3 s & 0 & 0 \\ \hline
+  1,0 m, janela 4 & 3 de 3 & 19,5 s & 6,7 & 0 \\ \hline
+  1,5 m, janela 4 & 3 de 3 & 18,8 s & 6,0 & 0 \\ \hline
+  2,0 m, janela 4 & 1 de 3 & 33,7 s & 17 & 0 na entrega; falhas sem recepção \\ \hline
+  1 m, janela 1 (Stop-and-Wait) & 3 de 3 & 38,9 s & 13,3 & 1 \\ \hline
+  1 m, janela 4 & 3 de 3 & 19,8 s & 7,3 & 1 \\ \hline
+  1 m, janela 8 & 3 de 3 & 12,7 s & 3,0 & 0 \\ \hline
+  \end{tabular}
+  \fonte{Elaborado pelos autores a partir dos \textit{logs} de 23/11/2026.}
+\end{table}
+
+Das 21 mensagens, 19 foram entregues e todas chegaram idênticas às enviadas. O enlace manteve-se estável até 1,5 m. A 2 m, apenas uma mensagem foi entregue; nas duas falhas, o receptor não registrou nenhum quadro da mensagem e o transmissor abandonou-a após 20 s sem confirmação, o que situa o limite de alcance dessa disposição entre 1,5 m e 2 m. Diferentemente da campanha de 21/11, em que cerca de metade dos ACKs se perdia a 1 m e a 1,5 m, apenas dois ACKs deixaram de chegar ao transmissor em toda a bateria, o que indica que parte daquelas perdas estava associada à disposição das placas junto ao mesmo computador.
+
+Com janela 8, a entrega foi 67\% mais rápida que com \textit{Stop-and-Wait}, contra 56\% em 21/11. A regularidade das retransmissões confirma a perda do primeiro quadro de cada rajada descrita na Seção 4.5: com janela 4, as mensagens de quatro rajadas exigiram em geral seis retransmissões; no \textit{Stop-and-Wait}, em que todo quadro é o primeiro da sua rajada, cerca de 13 dos 14 quadros precisaram ser retransmitidos por estouro do temporizador, o que praticamente dobrou o tempo de 18,3 s previsto pela Equação 6 para canal limpo.
+
+Foram transmitidas duas imagens a 1,8 m: o mesmo PNG de 490 bytes da campanha de 21/11 e um PNG de 1280 × 1280 pixels com 2866 bytes, que ocupa 180 quadros DATA e um END. A Tabela 19 resume as duas transferências. Os contadores do receptor são acumulados desde a inicialização da placa; os valores da imagem de 2866 bytes foram obtidos pela diferença entre as estatísticas impressas ao final de cada imagem.
+
+\begin{table}[H]
+  \centering
+  \caption{Transferência de imagens com dois computadores (1,8 m, janela 4)}
+  \small\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|>{\raggedright\arraybackslash}m{6.57cm}|>{\centering\arraybackslash}m{4.04cm}|>{\centering\arraybackslash}m{4.04cm}|}
+  \hline
+  \rowcolor{gray!22}\textbf{Medida} & \textbf{PNG de 490 bytes} & \textbf{PNG de 2866 bytes} \\ \hline
+  Quadros DATA + END & 31 + 1 & 180 + 1 \\ \hline
+  Tempo de entrega no receptor & 64,5 s & 263,1 s \\ \hline
+  Vazão útil & 7,6 bytes/s & 10,9 bytes/s \\ \hline
+  Retransmissões (por ACK / por \textit{timeout}) & 31 (10 / 21) & – \\ \hline
+  Quadros guardados fora de ordem & – & 135 \\ \hline
+  Quadros truncados descartados & – & 6 \\ \hline
+  Quadros rejeitados pelo CRC (erro real do canal) & 0 & 1 \\ \hline
+  ACKs enviados pelo receptor & – & 94 \\ \hline
+  SHA-256 igual ao original & sim & sim \\ \hline
+  \end{tabular}
+  \fonte{Elaborado pelos autores a partir dos \textit{logs} de 23/11/2026.}
+\end{table}
+
+Nos dois casos, o resumo SHA-256 calculado pelo enviar\_imagem.py antes da transmissão coincidiu com o calculado pelo receber\_imagem.py após a reconstrução, como mostra a Figura 10. Na transferência maior, o CRC rejeitou um quadro corrompido pelo próprio canal, sem erro simulado, e o quadro foi recuperado por retransmissão seletiva. O elevado número de quadros guardados fora de ordem decorre da perda do primeiro quadro de cada rajada, descrita na Seção 4.5: o receptor armazena os demais e aguarda apenas a retransmissão do ausente.
+
+\begin{figure}[H]
+  \centering
+  \caption{SHA-256 da imagem de 2866 bytes no transmissor (a) e imagem reconstruída no receptor com o mesmo resumo (b)}
+  \includegraphics[width=15.5cm]{fig/gengar_tx_rx.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+A vazão útil de 10,9 bytes/s equivale a 87 bit/s, cerca de 7\% da taxa de 1200 bit/s da UART. A diferença corresponde à codificação Manchester, que dobra o número de bits, ao preâmbulo e ao cabeçalho de cada quadro, às esperas pelos ACKs e às retransmissões provocadas pela distância próxima do limite. O LCD da placa B exibiu tanto os textos recebidos quanto o aviso de chegada de cada imagem, conforme a Figura 11.
+
+\begin{figure}[H]
+  \centering
+  \caption{LCD da placa B com texto recebido (a) e aviso de imagem de 2866 bytes (b)}
+  \includegraphics[width=15.5cm]{fig/lcd_texto_imagem.jpg}
+  \fonte{Elaborado pelos autores (2026).}
+\end{figure}
+
+O comando /resumo, executado no transmissor ao final da sessão de cerca de 78 minutos, que incluiu as tentativas de alcance acima de 1,7 m, registrou 63 mensagens, 50 entregues e 13 abandonadas, com 896 quadros enviados e 566 retransmissões. Dessas, 495 ocorreram por estouro do temporizador e 71 por lacuna no mapa de bits do ACK. A predominância do \textit{timeout} confirma que, na distância limite, a perda concentra-se nas confirmações que retornam à placa A.
+
 \section{Problemas encontrados durante o desenvolvimento}
 
-A Tabela 17 registra os principais problemas encontrados ao longo do desenvolvimento, suas causas e as soluções adotadas. Os problemas concentraram-se na camada física, e não na lógica do protocolo.
+A Tabela 20 registra os principais problemas encontrados ao longo do desenvolvimento, suas causas e as soluções adotadas. Os problemas concentraram-se na camada física, e não na lógica do protocolo.
 
 \begin{table}[H]
   \centering
@@ -632,7 +728,7 @@ A Tabela 17 registra os principais problemas encontrados ao longo do desenvolvim
 
 \section{Atendimento aos critérios do enunciado}
 
-A Tabela 18 relaciona os requisitos e critérios de aceitação do enunciado às seções deste relatório que demonstram o seu atendimento.
+A Tabela 21 relaciona os requisitos e critérios de aceitação do enunciado às seções deste relatório que demonstram o seu atendimento.
 
 \begin{table}[H]
   \centering
@@ -645,25 +741,25 @@ A Tabela 18 relaciona os requisitos e critérios de aceitação do enunciado às
   Quadro FLAG, TYPE, SEQ, LEN, DATA, FCS & Implementado conforme o enunciado & 3.3 \\ \hline
   Detecção de erros por CRC & CRC-8, 57 detecções, 0 aceites com erro & 3.4 e 4.4 \\ \hline
   Controle de erros por Selective Repeat & Janela de até 8 e ACK com mapa de bits & 3.6 e 4.5 \\ \hline
-  Texto no LCD do receptor & LCD 16x2 com paginação & 3.2 e 3.7 \\ \hline
-  Imagem reconstruída no laptop receptor & 6 de 6 imagens íntegras & 4.6 \\ \hline
-  Distância superior a 1 m & Entregas a 1 m, 1,5 m e 2 m & 4.1 \\ \hline
+  Texto no LCD do receptor & LCD 16x2 com paginação & 3.7 e 4.7 \\ \hline
+  Imagem reconstruída no laptop receptor & 8 de 8 imagens íntegras, 2 com dois computadores & 4.6 e 4.7 \\ \hline
+  Distância superior a 1 m & Entregas até 2 m; estável até 1,5 m com dois computadores & 4.1 e 4.7 \\ \hline
   Funcionamento com ruído & 2 de 3 entregas íntegras com interferência & 4.3 \\ \hline
-  Comunicação apenas por rádio & Sem condutor de dados entre as placas & 3 e 3.8 \\ \hline
-  Dado em perfeito estado & 33 de 33 entregas sem erro & 4 \\ \hline
+  Comunicação apenas por rádio & Sem condutor de dados entre as placas & 3.8 e 4.7 \\ \hline
+  Dado em perfeito estado & 54 de 54 entregas sem erro & 4.1 a 4.7 \\ \hline
   \end{tabular}
   \fonte{Elaborado pelos autores (2026).}
 \end{table}
 
 
 \chapter{CONSIDERAÇÕES FINAIS}
-O enlace implementado atendeu aos critérios de aceitação do enunciado. A comunicação ocorreu exclusivamente por rádio, alcançou 2 m, manteve-se operante sob interferência real e entregou 33 mensagens sem nenhum erro, incluindo seis imagens idênticas à original. Nos três casos em que o canal se degradou além do recuperável, o protocolo abandonou a mensagem em vez de entregar dado corrompido.
+O enlace implementado atendeu aos critérios de aceitação do enunciado. A comunicação ocorreu exclusivamente por rádio, alcançou 2 m, manteve-se operante sob interferência real e entregou 33 mensagens sem nenhum erro, incluindo seis imagens idênticas à original. Com uma placa em cada computador, uma imagem de 2866 bytes foi transferida a 1,8 m com resumo SHA-256 idêntico ao do arquivo enviado, e a repetição dos ensaios nessa configuração entregou 19 de 21 mensagens sem erro. Nos três casos em que o canal se degradou além do recuperável, o protocolo abandonou a mensagem em vez de entregar dado corrompido.
 
 O CRC-8 rejeitou todos os quadros corrompidos que chegaram ao receptor, a um custo de cerca de 8 µs por quadro, e a codificação Manchester eliminou a maior parte dos erros reais do canal antes da verificação. O \textit{Selective Repeat} com janela 8 reduziu o tempo de entrega em 56\% em relação ao \textit{Stop-and-Wait}, ao distribuir a espera pela confirmação entre vários quadros e retransmitir somente os quadros perdidos.
 
-A principal dificuldade residiu na camada física: módulos de baixo custo, canal \textit{half-duplex} e receptores sensíveis ao próprio transmissor e ao ruído da alimentação. Entre as limitações, destacam-se a vazão útil de cerca de 20 bytes/s no melhor caso, consequência da prioridade dada ao alcance, a realização dos ensaios com as duas placas no mesmo computador e o número reduzido de repetições por cenário, suficiente para caracterizar o comportamento, mas não para estimar taxas com precisão estatística.
+A principal dificuldade residiu na camada física: módulos de baixo custo, canal \textit{half-duplex} e receptores sensíveis ao próprio transmissor e ao ruído da alimentação. Entre as limitações, destacam-se a vazão útil de cerca de 20 bytes/s no melhor caso, consequência da prioridade dada ao alcance, e o número reduzido de repetições por cenário, suficiente para caracterizar o comportamento, mas não para estimar taxas com precisão estatística.
 
-Como trabalhos futuros, propõem-se a inserção de um intervalo de cerca de 300 ms após cada ACK antes da rajada seguinte, para mitigar a perda do primeiro quadro identificada na Seção 4.5, a alimentação do transmissor com tensão superior a 5 V, admitida pelo FS1000A, e a repetição dos ensaios com uma placa em cada computador e maior número de amostras.
+Como trabalhos futuros, propõem-se a inserção de um intervalo de cerca de 300 ms após cada ACK antes da rajada seguinte, para mitigar a perda do primeiro quadro identificada na Seção 4.5, a alimentação do transmissor com tensão superior a 5 V, admitida pelo FS1000A, e a repetição dos ensaios com maior número de amostras em cada distância.
 
 
 \postextual

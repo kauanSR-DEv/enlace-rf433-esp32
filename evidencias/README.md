@@ -14,7 +14,12 @@
 | `logs/NN_cenario_repK_RX.txt` | Monitor Serial do RX durante o teste |
 | `imagens/` | As 6 imagens reconstruídas no computador receptor |
 
-Observações sobre os arquivos brutos:
+## `2026-11-23_dois_computadores/` — validação com dois notebooks
+
+Uma placa em cada notebook: bateria de 21 testes de distância e janela (`bateria/`, gerada por `coletar_testes.py --modo tx/rx/juntar`), imagens de 490 e 2866 bytes a 1,8 m com SHA-256 idêntico, LCD, `/resumo` e `/bench`. Detalhes em [`2026-11-23_dois_computadores/README.md`](2026-11-23_dois_computadores/README.md).
+
+## Observações sobre os arquivos brutos de 21/11
+
 
 - Alguns logs do TX começam com caracteres ilegíveis (`����`). São bytes inválidos que a porta USB entregou ao abrir; o conteúdo do teste vem logo depois. O script foi corrigido para descartá-los nas próximas coletas.
 - Em `sessao.txt`, a linha de status inicial do RX veio corrompida da mesma forma e foi substituída por uma nota. Nenhum log de teste foi editado.

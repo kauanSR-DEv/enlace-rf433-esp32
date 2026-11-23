@@ -1,0 +1,4 @@
+Data: 23/11/2026 16:28
+Modo: rx
+Porta RX: COM15
+STATUS RX: [ 4247531 ms] STATUS: esperado=0 quadros_msg=0 bytes=0 | aceitos=263 guardados_fora_de_ordem=156 duplicados=5 fora_da_janela=0 erros_FCS=1 truncados=32 ACKs=168 ruido_descartado=47

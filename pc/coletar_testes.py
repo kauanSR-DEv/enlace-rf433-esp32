@@ -632,7 +632,15 @@ def modo_juntar(args):
     os.makedirs(pasta_logs, exist_ok=True)
     os.makedirs(pasta_img, exist_ok=True)
 
-    usadas, anterior, resultados = set(), {}, []
+    # Contadores do RX acumulam desde que a placa ligou: o primeiro teste usa como
+    # base o STATUS gravado no sessao.txt do RX quando o --modo rx comecou.
+    anterior = {}
+    try:
+        with open(os.path.join(args.pasta_rx, "sessao.txt"), encoding="utf-8", errors="replace") as f:
+            anterior = le_status_rx(f.readlines())
+    except OSError:
+        pass
+    usadas, resultados = set(), []
     for t in testes:
         ini_rx, fim_rx = t["inicio_epoch"] - deslocamento - 2, t["fim_epoch"] - deslocamento + 3
         cand = [m for m in msgs if m["n"] not in usadas and m.get("tamanho_bytes") == t.get("tamanho_bytes")

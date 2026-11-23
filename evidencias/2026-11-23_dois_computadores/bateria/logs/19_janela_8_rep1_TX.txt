@@ -1,0 +1,46 @@
+[  949749 ms] janela = 8
+[  950000 ms] erro simulado = 0%
+[  950250 ms] perda simulada = 0%
+[  950501 ms] === NOVA MENSAGEM (texto): 201 bytes -> 13 quadros DATA + 1 END | Selective Repeat janela=8 timeout=1117 ms ===
+[  950502 ms] TX DATA seq=0 len=16 FCS=0x42 crc_us=17 janela=[0..7] linha=49B/408ms
+[  950513 ms]    quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+[  950950 ms] TX DATA seq=1 len=16 FCS=0xD4 crc_us=8 janela=[0..7] linha=49B/408ms
+[  950950 ms]    quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+[  951387 ms] TX DATA seq=2 len=16 FCS=0xAD crc_us=8 janela=[0..7] linha=49B/408ms
+[  951387 ms]    quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+[  951824 ms] TX DATA seq=3 len=16 FCS=0xD9 crc_us=8 janela=[0..7] linha=49B/408ms
+[  951824 ms]    quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+[  952261 ms] TX DATA seq=4 len=16 FCS=0xF0 crc_us=9 janela=[0..7] linha=49B/408ms
+[  952261 ms]    quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+[  952698 ms] TX DATA seq=5 len=16 FCS=0xC9 crc_us=9 janela=[0..7] linha=49B/408ms
+[  952698 ms]    quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+[  953135 ms] TX DATA seq=6 len=16 FCS=0x07 crc_us=8 janela=[0..7] linha=49B/408ms
+[  953135 ms]    quadro=[01 06 10 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 07] dados="RSTUVWXYZABCDEFG"
+[  953572 ms] TX DATA seq=7 len=16 FCS=0xF7 crc_us=8 janela=[0..7] linha=49B/408ms
+[  953572 ms]    quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+[  954908 ms] RX ACK prox=8 mapa=0x00 guardados_no_RX=[] -> base=8 rtt_ms=899
+[  954908 ms] TX DATA seq=8 len=16 FCS=0x71 crc_us=8 janela=[8..15] linha=49B/408ms
+[  954919 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  955356 ms] TX DATA seq=9 len=16 FCS=0x51 crc_us=8 janela=[8..15] linha=49B/408ms
+[  955356 ms]    quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+[  955794 ms] TX DATA seq=10 len=16 FCS=0x9F crc_us=8 janela=[8..15] linha=49B/408ms
+[  955794 ms]    quadro=[01 0A 10 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 9F] dados="DEFGHIJKLMNOPQRS"
+[  956232 ms] TX DATA seq=11 len=16 FCS=0x27 crc_us=9 janela=[8..15] linha=49B/408ms
+[  956232 ms]    quadro=[01 0B 10 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 27] dados="TUVWXYZABCDEFGHI"
+[  956669 ms] TX DATA seq=12 len=9 FCS=0x99 crc_us=5 janela=[8..15] linha=35B/291ms
+[  956669 ms]    quadro=[01 0C 09 4A 4B 4C 4D 4E 4F 50 51 52 99] dados="JKLMNOPQR"
+[  957887 ms] RX ACK prox=8 mapa=0x1E guardados_no_RX=[9 10 11 12] -> base=8 rtt_ms=3878
+[  957887 ms]    quadro seq=8 nao confirmado neste ACK -> retransmissao seletiva
+[  957898 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x71 crc_us=9 janela=[8..15] linha=49B/408ms
+[  957909 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  959463 ms] TIMEOUT do quadro seq=8 -> retransmissao seletiva (so ele)
+[  959463 ms] TX DATA (retransmissao seletiva) seq=8 len=16 FCS=0x71 crc_us=8 janela=[8..15] linha=49B/408ms
+[  959474 ms]    quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+[  960809 ms] RX ACK prox=13 mapa=0x00 guardados_no_RX=[] -> base=13 rtt_ms=3820
+[  960809 ms] TX END seq=13 len=0 FCS=0x54 crc_us=2 janela=[13..20] linha=17B/141ms
+[  960820 ms]    quadro=[03 0D 00 54]
+[  962095 ms] TIMEOUT do quadro seq=13 -> retransmissao seletiva (so ele)
+[  962095 ms] TX END (retransmissao seletiva) seq=13 len=0 FCS=0x54 crc_us=2 janela=[13..20] linha=17B/141ms
+[  962106 ms]    quadro=[03 0D 00 54]
+[  963164 ms] RX ACK prox=14 mapa=0x00 guardados_no_RX=[] -> base=14 rtt_ms=899
+[  963164 ms] === MENSAGEM ENTREGUE em 12663 ms | envios=17 retransmissoes=3 (por ACK=1, por timeout=2) ACKs=4 (ignorados=0) erros_sim=0 perdas_sim=0 | 15.9 bytes/s ===

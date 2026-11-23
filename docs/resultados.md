@@ -107,3 +107,50 @@ Nos testes sem erro ou perda simulados, o primeiro quadro de cada rajada foi con
 | 34 | imagem_erro_30 | 1 | 1,00 | 4 | ENTREGUE | OK | 58,9 | 60 | 28 (13 / 15) | 19 | 10 | [TX](../evidencias/2026-11-21_1258/logs/34_imagem_erro_30_rep1_TX.txt) · [RX](../evidencias/2026-11-21_1258/logs/34_imagem_erro_30_rep1_RX.txt) |
 | 35 | imagem_erro_30 | 2 | 1,00 | 4 | ENTREGUE | OK | 57,8 | 62 | 30 (10 / 20) | 17 | 14 | [TX](../evidencias/2026-11-21_1258/logs/35_imagem_erro_30_rep2_TX.txt) · [RX](../evidencias/2026-11-21_1258/logs/35_imagem_erro_30_rep2_RX.txt) |
 | 36 | imagem_erro_30 | 3 | 1,00 | 4 | ENTREGUE | OK | 61,8 | 70 | 38 (19 / 19) | 22 | 16 | [TX](../evidencias/2026-11-21_1258/logs/36_imagem_erro_30_rep3_TX.txt) · [RX](../evidencias/2026-11-21_1258/logs/36_imagem_erro_30_rep3_RX.txt) |
+
+## Ensaios com dois computadores (23/11)
+
+Uma placa em cada notebook, como pede o enunciado. Evidências completas em [`evidencias/2026-11-23_dois_computadores/`](../evidencias/2026-11-23_dois_computadores/).
+
+| Disposição: placa A e notebook A na frente, placa B e notebook B ao fundo |
+|---|
+| <img src="fotos/dois-computadores.jpg" width="760"> |
+
+#### Bateria de distância e janela (21 testes)
+
+`coletar_testes.py --modo tx` no notebook A, `--modo rx` no notebook B e `--modo juntar` no fim (diferença entre os relógios estimada em 0,66 s). Mensagem `/teste 200` (201 bytes), 3 repetições. Arquivos: [`bateria/resultados.csv`](../evidencias/2026-11-23_dois_computadores/bateria/resultados.csv) · [`resumo.txt`](../evidencias/2026-11-23_dois_computadores/bateria/resumo.txt) · [`logs/`](../evidencias/2026-11-23_dois_computadores/bateria/logs/) (42 arquivos, TX e RX de cada teste).
+
+| Cenário | Entregues | Tempo médio | Retransmissões | ACKs perdidos no retorno |
+|---|---|---|---|---|
+| 0,5 m, janela 4 | 3 de 3 | 10,3 s | 0 | 0 |
+| 1,0 m, janela 4 | 3 de 3 | 19,5 s | 6,7 | 0 |
+| 1,5 m, janela 4 | 3 de 3 | 18,8 s | 6,0 | 0 |
+| 2,0 m, janela 4 | **1 de 3** | 33,7 s | 17 | 0 na entrega; nas 2 falhas o RX não recebeu nada |
+| 1 m, janela 1 (Stop-and-Wait) | 3 de 3 | 38,9 s | 13,3 | 1 |
+| 1 m, janela 4 | 3 de 3 | 19,8 s | 7,3 | 1 |
+| 1 m, janela 8 | 3 de 3 | 12,7 s | 3,0 | 0 |
+
+- **19 de 21 entregues, todas idênticas.** Estável até 1,5 m; o limite dessa disposição fica entre 1,5 m e 2 m.
+- **O ACK de volta deixou de ser o problema:** em 21/11 cerca de metade dos ACKs se perdia a 1–1,5 m; aqui só 2 se perderam na bateria inteira.
+- **Janela 8 foi 67% mais rápida que Stop-and-Wait.** No Stop-and-Wait todo quadro é o primeiro da sua rajada, e ~13 dos 14 precisaram de retransmissão por *timeout*: o tempo praticamente dobrou em relação aos 18,3 s previstos para canal limpo. É o mesmo efeito do [achado 5.1.5](../README.md#515-achado-o-primeiro-quadro-de-cada-rajada-sofre-mais).
+
+#### Imagens a 1,8 m
+
+| Medida | PNG 32×32 | PNG 1280×1280 |
+|---|---|---|
+| Tamanho | 490 bytes (31 quadros + END) | 2866 bytes (180 quadros + END) |
+| Tempo no receptor | 64,5 s | 263,1 s |
+| Vazão útil | 7,6 bytes/s | 10,9 bytes/s (87 bit/s, ~7% dos 1200 bit/s da linha) |
+| Quadros rejeitados pelo CRC | 0 | 1 (erro real do canal, sem `/erro`) |
+| SHA-256 enviado = recebido | ✅ `80e02540…f48204` | ✅ `c56983ef…68d476d3` |
+
+| SHA-256 no transmissor (a) e imagem reconstruída no receptor com o mesmo SHA-256 (b) |
+|---|
+| <img src="fotos/imagem-2866B-tx-rx.jpg" width="760"> |
+
+| LCD da placa B: texto recebido (a) e aviso da imagem de 2866 bytes (b) |
+|---|
+| <img src="fotos/lcd-texto-e-imagem.jpg" width="760"> |
+
+Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/resumo` do TX registrou 63 mensagens, 50 entregues e 13 abandonadas, com 566 retransmissões: **495 por *timeout*** e 71 por lacuna no mapa de bits. Na distância limite, o que se perde é o ACK de volta. Nessa montagem o enlace foi estável até ~1,5 m e intermitente a partir de ~1,7 m.
+

@@ -1,0 +1,10 @@
+Data: 23/11/2026 16:29
+Modo: tx (dois computadores)
+Porta TX: COM8
+Porta RX: -
+Versao: v4 Selective Repeat
+STATUS TX: (linha corrompida: bytes invalidos entregues pela porta USB ao abrir; removida, ver evidencias/README.md)
+STATUS RX: (no outro notebook)
+Repeticoes: 3
+Grupos: distancia, janela
+Imagem: -

@@ -3,7 +3,7 @@
 **CRC-8 + Selective Repeat ARQ sobre rádio OOK bruto, sem RadioHead.**
 
 Projeto final de **Transmissão e Comunicação de Dados** · Bacharelado em Engenharia da Computação · IFMT Campus Cuiabá – Cel. Octayde Jorge da Silva · 2026
-Professor: Ruy de Oliveira · Alunos: Kauan Santos Rondon, Luis Fernando e Vinícius Campos
+Professor: Ruy de Oliveira · Equipe: Kauan Santos Rondon, Luis Fernando Amorim da Silva e Vinícius Campos Andrade Silva ([quem fez o quê](#9-equipe))
 
 > **Documentação complementar:** [Relatório ABNT (PDF)](docs/relatorio/Relatorio_Enlace_RF433_ABNT.pdf) · [Arquitetura e protocolo](docs/arquitetura.md) · [Guia de reprodução](docs/reproducao.md) · [Montagem](docs/montagem.md) · [Resultados](docs/resultados.md)
 >
@@ -18,10 +18,11 @@ Professor: Ruy de Oliveira · Alunos: Kauan Santos Rondon, Luis Fernando e Viní
    - [3.1 Montagem](#31-montagem) · [3.2 Quadro e tempos](#32-quadro-e-tempos) · [3.3 Cálculo do FCS (CRC-8)](#33-cálculo-do-fcs-crc-8) · [3.4 Camada física](#34-camada-física) · [3.5 Selective Repeat](#35-selective-repeat) · [3.6 Firmware e comandos](#36-firmware-e-comandos)
 4. [Como reproduzir](#4-como-reproduzir)
 5. [Testes e validação](#5-testes-e-validação)
-   - [5.1 Resultados da bancada](#51-resultados-da-bancada) · [5.2 Logs do Monitor Serial](#52-logs-do-monitor-serial) · [5.3 Imagem reconstruída](#53-imagem-reconstruída) · [5.4 Simulador](#54-simulador)
+   - [5.1 Resultados da bancada](#51-resultados-da-bancada) · [5.2 Logs do Monitor Serial](#52-logs-do-monitor-serial) · [5.3 Imagem reconstruída](#53-imagem-reconstruída) · [5.4 Simulador](#54-simulador) · [5.5 Dois computadores](#55-ensaios-com-dois-computadores-2311)
 6. [Problemas encontrados e decisões de projeto](#6-problemas-encontrados-e-decisões-de-projeto)
 7. [Estrutura do repositório](#7-estrutura-do-repositório)
 8. [Referências](#8-referências)
+9. [Equipe](#9-equipe)
 
 ---
 
@@ -50,19 +51,19 @@ flowchart LR
 
 ## 2. Resultados e métricas
 
-Bateria de 36 testes em 21/11/2026, 3 repetições por cenário. Detalhes na [Seção 5.1](#51-resultados-da-bancada).
+Bateria de 36 testes em 21/11/2026 e bateria de 21 testes com uma placa em cada computador em 23/11/2026, 3 repetições por cenário. Detalhes nas Seções [5.1](#51-resultados-da-bancada) e [5.5](#55-ensaios-com-dois-computadores-2311).
 
 | Indicador | Resultado |
 |---|---|
-| Mensagens entregues | **33 de 36** (91,7%) |
+| Mensagens entregues | **33 de 36** em 21/11 · **19 de 21** com dois computadores em 23/11 |
 | Mensagens entregues com erro | **0** |
-| Imagens com SHA-256 igual ao original | **6 de 6** |
+| Imagens com SHA-256 igual ao original | **8 de 8** (6 em 21/11 + 2 com dois computadores a 1,8 m, até 2866 bytes) |
 | Maior distância testada | **2 m**, 3 de 3 entregues |
 | Quadros com erro descartados | 57 pelo CRC-8 · 186 pela decodificação Manchester |
-| Tempo do CRC-8 na ESP32 | **8 µs** por quadro (mediana de 1252 medições) |
-| Selective Repeat (janela 8) × Stop-and-Wait | **56% mais rápido** (18,1 s × 41,5 s) |
+| Tempo do CRC-8 na ESP32 | **8 µs** por quadro (mediana de 1252 medições; `/bench`: 7,79 µs em 10 000 repetições) |
+| Selective Repeat (janela 8) × Stop-and-Wait | **56% mais rápido** em 21/11 (18,1 s × 41,5 s) · **67%** com dois computadores (12,7 s × 38,9 s) |
 
-As 3 falhas foram abandonadas pelo transmissor depois de 20 s sem confirmação. O protocolo nunca entregou dado errado.
+Todas as falhas (3 em 21/11, 2 a 2 m em 23/11) foram abandonadas pelo transmissor depois de 20 s sem confirmação. O protocolo nunca entregou dado errado: **54 de 54** entregas chegaram idênticas ao enviado.
 
 ### Requisitos do enunciado
 
@@ -74,17 +75,17 @@ As 3 falhas foram abandonadas pelo transmissor depois de 20 s sem confirmação.
 | Somente quadros DATA, ACK e END | ✅ | [Seção 3.2](#32-quadro-e-tempos) |
 | Detecção de erros: **CRC** (3 pts) | ✅ CRC-8 | [Seção 3.3](#33-cálculo-do-fcs-crc-8) |
 | Controle de erros: **Selective Repeat** (3 pts) | ✅ ACK com mapa de bits | [Seção 3.5](#35-selective-repeat) |
-| LCD no receptor mostrando o texto | ✅ | [Seção 3.1](#31-montagem) |
-| Troca de texto e imagens entre os laptops | ✅ | [Seções 4](#4-como-reproduzir) e [13](#53-imagem-reconstruída) |
-| Comunicação a mais de 1 m | ✅ até 2 m | [Seção 5.1.1](#511-distância) |
+| LCD no receptor mostrando o texto | ✅ | [Seção 5.5](#55-ensaios-com-dois-computadores-2311) |
+| Troca de texto e imagens entre os laptops | ✅ uma placa em cada notebook | [Seções 5.3](#53-imagem-reconstruída) e [5.5](#55-ensaios-com-dois-computadores-2311) |
+| Comunicação a mais de 1 m | ✅ até 2 m; estável até 1,5 m com dois computadores | [Seções 5.1.1](#511-distância) e [5.5](#55-ensaios-com-dois-computadores-2311) |
 | Funciona com ruído | ✅ celular encostado no receptor | [Seção 5.1.3](#513-erros-perdas-e-ruído) |
 | Comunicação apenas via RF | ✅ nenhum fio de dados entre as placas | [Seção 1](#1-visão-geral) |
-| Dado chega em perfeito estado | ✅ 0 entregas com erro | [Seção 5.1](#51-resultados-da-bancada) |
+| Dado chega em perfeito estado | ✅ 54 de 54 entregas sem erro | [Seções 5.1](#51-resultados-da-bancada) e [5.5](#55-ensaios-com-dois-computadores-2311) |
 | Código no GitHub | ✅ | [`firmware/`](firmware/) |
 | Documento completo | ✅ | esta página + [relatório em PDF](docs/relatorio/Relatorio_Enlace_RF433_ABNT.pdf) |
 | Descrição do cálculo do FCS | ✅ | [Seção 3.3](#33-cálculo-do-fcs-crc-8) |
 | Logs do Monitor Serial | ✅ 72 arquivos | [Seção 5.2](#52-logs-do-monitor-serial) |
-| Imagem reconstruída no laptop receptor | ✅ | [Seção 5.3](#53-imagem-reconstruída) |
+| Imagem reconstruída no laptop receptor | ✅ SHA-256 idêntico | [Seções 5.3](#53-imagem-reconstruída) e [5.5](#55-ensaios-com-dois-computadores-2311) |
 
 ---
 
@@ -434,7 +435,7 @@ Passo a passo detalhado: [`docs/reproducao.md`](docs/reproducao.md).
 
 ### 5.1 Resultados da bancada
 
-**Condições:** 21/11/2026, 12h58 às 13h47, firmware v4.1, ambiente interno. As duas placas no mesmo notebook (na bateria), sem nenhum fio de dados entre elas; antenas retas e verticais; distância de antena a antena. Mensagem de teste `/teste 200` = 201 bytes = 13 quadros DATA + END (ruído: 500 caracteres; imagem: PNG 32×32 de 490 bytes). Tempo e retransmissões = média dos testes **entregues**.
+**Condições:** 21/11/2026, 12h58 às 13h47, firmware v4.1, ambiente interno. As duas placas no mesmo notebook (na bateria), para o script gravar os logs do TX e do RX no mesmo relógio; o USB só alimenta e registra, sem nenhum fio de dados entre as placas. Os grupos de distância e janela foram repetidos com uma placa em cada computador em 23/11 ([Seção 5.5](#55-ensaios-com-dois-computadores-2311)). Demais condições: antenas retas e verticais; distância de antena a antena. Mensagem de teste `/teste 200` = 201 bytes = 13 quadros DATA + END (ruído: 500 caracteres; imagem: PNG 32×32 de 490 bytes). Tempo e retransmissões = média dos testes **entregues**.
 
 Arquivos originais: [`evidencias/2026-11-21_1258/`](evidencias/2026-11-21_1258/) ([`resultados.csv`](evidencias/2026-11-21_1258/resultados.csv) · [`resumo_por_cenario.csv`](evidencias/2026-11-21_1258/resumo_por_cenario.csv) · [`resumo.txt`](evidencias/2026-11-21_1258/resumo.txt)).
 
@@ -618,6 +619,52 @@ Go-Back-N (versão anterior, em [`historico/`](historico/)) × Selective Repeat 
 | Perda de 40% | 40,9 s (desistiu em 4 de 5) | 32,9 s (entregou 5 de 5) | 20% |
 | Perda 20% + erro, janela 8 | 38,1 s (desistiu em 3 de 5) | 20,5 s (entregou 5 de 5) | 46% |
 
+### 5.5 Ensaios com dois computadores (23/11)
+
+Uma placa em cada notebook, como pede o enunciado. Evidências completas em [`evidencias/2026-11-23_dois_computadores/`](evidencias/2026-11-23_dois_computadores/).
+
+| Disposição: placa A e notebook A na frente, placa B e notebook B ao fundo |
+|---|
+| <img src="docs/fotos/dois-computadores.jpg" width="760"> |
+
+#### Bateria de distância e janela (21 testes)
+
+`coletar_testes.py --modo tx` no notebook A, `--modo rx` no notebook B e `--modo juntar` no fim (diferença entre os relógios estimada em 0,66 s). Mensagem `/teste 200` (201 bytes), 3 repetições. Arquivos: [`bateria/resultados.csv`](evidencias/2026-11-23_dois_computadores/bateria/resultados.csv) · [`resumo.txt`](evidencias/2026-11-23_dois_computadores/bateria/resumo.txt) · [`logs/`](evidencias/2026-11-23_dois_computadores/bateria/logs/) (42 arquivos, TX e RX de cada teste).
+
+| Cenário | Entregues | Tempo médio | Retransmissões | ACKs perdidos no retorno |
+|---|---|---|---|---|
+| 0,5 m, janela 4 | 3 de 3 | 10,3 s | 0 | 0 |
+| 1,0 m, janela 4 | 3 de 3 | 19,5 s | 6,7 | 0 |
+| 1,5 m, janela 4 | 3 de 3 | 18,8 s | 6,0 | 0 |
+| 2,0 m, janela 4 | **1 de 3** | 33,7 s | 17 | 0 na entrega; nas 2 falhas o RX não recebeu nada |
+| 1 m, janela 1 (Stop-and-Wait) | 3 de 3 | 38,9 s | 13,3 | 1 |
+| 1 m, janela 4 | 3 de 3 | 19,8 s | 7,3 | 1 |
+| 1 m, janela 8 | 3 de 3 | 12,7 s | 3,0 | 0 |
+
+- **19 de 21 entregues, todas idênticas.** Estável até 1,5 m; o limite dessa disposição fica entre 1,5 m e 2 m.
+- **O ACK de volta deixou de ser o problema:** em 21/11 cerca de metade dos ACKs se perdia a 1–1,5 m; aqui só 2 se perderam na bateria inteira.
+- **Janela 8 foi 67% mais rápida que Stop-and-Wait.** No Stop-and-Wait todo quadro é o primeiro da sua rajada, e ~13 dos 14 precisaram de retransmissão por *timeout*: o tempo praticamente dobrou em relação aos 18,3 s previstos para canal limpo. É o mesmo efeito do [achado 5.1.5](#515-achado-o-primeiro-quadro-de-cada-rajada-sofre-mais).
+
+#### Imagens a 1,8 m
+
+| Medida | PNG 32×32 | PNG 1280×1280 |
+|---|---|---|
+| Tamanho | 490 bytes (31 quadros + END) | 2866 bytes (180 quadros + END) |
+| Tempo no receptor | 64,5 s | 263,1 s |
+| Vazão útil | 7,6 bytes/s | 10,9 bytes/s (87 bit/s, ~7% dos 1200 bit/s da linha) |
+| Quadros rejeitados pelo CRC | 0 | 1 (erro real do canal, sem `/erro`) |
+| SHA-256 enviado = recebido | ✅ `80e02540…f48204` | ✅ `c56983ef…68d476d3` |
+
+| SHA-256 no transmissor (a) e imagem reconstruída no receptor com o mesmo SHA-256 (b) |
+|---|
+| <img src="docs/fotos/imagem-2866B-tx-rx.jpg" width="760"> |
+
+| LCD da placa B: texto recebido (a) e aviso da imagem de 2866 bytes (b) |
+|---|
+| <img src="docs/fotos/lcd-texto-e-imagem.jpg" width="760"> |
+
+Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/resumo` do TX registrou 63 mensagens, 50 entregues e 13 abandonadas, com 566 retransmissões: **495 por *timeout*** e 71 por lacuna no mapa de bits. Na distância limite, o que se perde é o ACK de volta. Nessa montagem o enlace foi estável até ~1,5 m e intermitente a partir de ~1,7 m.
+
 ---
 
 ## 6. Problemas encontrados e decisões de projeto
@@ -655,6 +702,7 @@ Histórico completo: [CHANGELOG.md](CHANGELOG.md).
 | [`firmware/rx/`](firmware/rx/) | `rx.ino` + `protocolo_rf.h` (placa B) |
 | [`pc/`](pc/) | `coletar_testes.py`, `enviar_imagem.py`, `receber_imagem.py`, `teste_32x32.png`, `requirements.txt` |
 | [`evidencias/2026-11-21_1258/`](evidencias/2026-11-21_1258/) | `resultados.csv`, `resumo_por_cenario.csv`, `resumo.txt`, `sessao.txt`, `logs/` (72), `imagens/` (6) |
+| [`evidencias/2026-11-23_dois_computadores/`](evidencias/2026-11-23_dois_computadores/) | Uma placa em cada notebook: bateria de 21 testes (`bateria/`), fotos, prints, `/resumo`, `/bench`, imagem de 2866 bytes |
 | [`docs/`](docs/) | Os mesmos conteúdos desta página separados por tema: [arquitetura e protocolo](docs/arquitetura.md), [montagem](docs/montagem.md), [reprodução](docs/reproducao.md), [resultados](docs/resultados.md); [relatório ABNT em PDF, Word e LaTeX](docs/relatorio/) |
 | [`tests/`](tests/) | Simulador em C++ |
 | [`historico/`](historico/) | Versão anterior com Go-Back-N |
@@ -670,6 +718,16 @@ Histórico completo: [CHANGELOG.md](CHANGELOG.md).
 - OLIVEIRA, R. de. Slides da disciplina Transmissão e Comunicação de Dados. IFMT, 2026.
 - [Arduino-ESP32: Serial (UART)](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/serial.html)
 - [CRC Catalogue: CRC-8/SMBUS](https://reveng.sourceforge.io/crc-catalogue/1-15.htm)
+
+## 9. Equipe
+
+| Integrante | Matrícula | Responsável por |
+|---|---|---|
+| Kauan Santos Rondon | 2025178440015 | Enlace RF 433 MHz entre as placas: camada física, quadro, CRC-8 e Selective Repeat |
+| Luis Fernando Amorim da Silva | 2025178440031 | Montagem da placa B (receptor de dados, transmissor de ACK e LCD) |
+| Vinícius Campos Andrade Silva | 2025178440018 | Montagem da placa A (transmissor de dados e receptor de ACK) |
+
+A tabela indica quem respondeu por cada parte; os três participaram de todas as etapas, da montagem aos testes e à documentação.
 
 ## Licença
 
