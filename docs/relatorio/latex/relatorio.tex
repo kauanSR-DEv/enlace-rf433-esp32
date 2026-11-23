@@ -12,6 +12,7 @@
 \usepackage{amsmath, amssymb}
 \usepackage{array}
 \usepackage{float}
+\usepackage{rotating}
 \usepackage{fvextra}
 \usepackage{enumitem}
 \usepackage{url}
@@ -263,7 +264,7 @@ As antenas são fios retos de um quarto do comprimento de onda, soldados no term
   \frac{\lambda}{4} = \frac{c}{4f} = \frac{3 \times 10^{8}}{4 \times 433{,}92 \times 10^{6}} \approx 17{,}3\ \text{cm}
 \end{equation}
 
-A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 5. As Figuras 2 a 5 mostram a montagem final.
+A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 5. A Figura 2 reúne essas ligações no esquema elétrico completo de uma placa; no esquema, R2 aparece como os dois resistores de 10 kΩ em série (R2a e R2b). As Figuras 3 a 6 mostram a montagem final.
 
 \begin{table}[H]
   \centering
@@ -281,6 +282,13 @@ A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca Li
   \end{tabular}
   \fonte{Elaborado pelos autores (2026).}
 \end{table}
+
+\begin{sidewaysfigure}
+  \centering
+  \caption{Esquema elétrico das placas (circuito de rádio idêntico em A e B; LCD e potenciômetro somente em B)}
+  \includegraphics[width=24.0cm]{fig/esquema_eletrico.png}
+  \fonte{Elaborado pelos autores (2026).}
+\end{sidewaysfigure}
 
 \begin{figure}[H]
   \centering
@@ -337,7 +345,7 @@ O quadro DATA transporta até 16 bytes da mensagem, cujo primeiro byte identific
 
 O FCS é um CRC-8 com polinômio 0x07, valor inicial 0x00, sem reflexão de bits e sem XOR final, parâmetros que correspondem ao CRC-8/SMBUS catalogado por Cook (2026), cujo valor de verificação para a sequência ASCII 123456789 é 0xF4; a implementação reproduz esse valor. O cálculo abrange TYPE, SEQ, LEN e DATA, excluindo FLAG e o próprio FCS, conforme o enunciado. A implementação processa um byte por vez: o byte entra no registrador por XOR e, em seguida, executam-se oito deslocamentos à esquerda; sempre que o bit descartado é 1, aplica-se XOR com 0x07, o que corresponde à divisão polinomial da Equação 2 realizada bit a bit.
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 uint8_t crc8(const uint8_t *p, size_t n) {
   uint8_t crc = 0x00;                     // valor inicial
   for (size_t i = 0; i < n; ++i) {
@@ -508,7 +516,7 @@ Para estimar o tempo em canal sem perdas, adotou-se um modelo simples: cada quad
   T \approx \sum_{\text{rajadas}} \left( k \cdot 437\ \text{ms} + 900\ \text{ms} \right) + T_{\text{END}}
 \end{equation}
 
-Para janela 4, o modelo prevê 10,2 s, valor próximo dos 10,26 s medidos a 0,5 m, o que valida o modelo. A Tabela 13 e a Figura 6 comparam as previsões com as medições realizadas a 1 m.
+Para janela 4, o modelo prevê 10,2 s, valor próximo dos 10,26 s medidos a 0,5 m, o que valida o modelo. A Tabela 13 e a Figura 7 comparam as previsões com as medições realizadas a 1 m.
 
 \begin{table}[H]
   \centering
@@ -571,7 +579,7 @@ Nenhum quadro com erro foi aceito ao longo da bateria. O receptor descartou quad
 
 Os comandos /erro inverteram bits em 83 quadros, dos quais 57 chegaram completos ao receptor e foram rejeitados pelo CRC; os demais foram perdidos ou truncados no próprio canal. Todos foram retransmitidos e entregues corretamente. Um exemplo extraído do \textit{log} do receptor mostra o byte 0x59 recebido como 0xD9, com o bit 7 invertido:
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 RX quadro DATA seq=6: FCS recebido=0x07 calculado=0x33
    quadro=[01 06 10 52 53 54 55 56 57 58 D9 5A 41 42 43 44 45 46 47 07]
    -> ERRO DETECTADO, descartado
@@ -595,7 +603,7 @@ O tempo de cálculo do CRC-8 foi medido na ESP32 a cada quadro, com os resultado
 
 \section{Funcionamento do Selective Repeat}
 
-A Figura 7 reproduz um episódio registrado no ensaio com janela 8. Na primeira rajada, o receptor perdeu os quadros 0, 1, 2 e 6 e armazenou os quadros 3, 4, 5 e 7 fora de ordem. O ACK com SEQ igual a 0 e mapa 0xB8, isto é, 1011 1000 em binário, informou exatamente essa situação, e o transmissor retransmitiu apenas os quatro quadros ausentes. Após mais três rajadas, o quadro 0 foi recebido e o receptor entregou os quadros 0 a 7 em ordem. Foram necessárias 9 retransmissões; com \textit{Go-Back-N}, sob o mesmo padrão de perdas, cada rodada reenviaria os oito quadros, num total de 32.
+A Figura 8 reproduz um episódio registrado no ensaio com janela 8. Na primeira rajada, o receptor perdeu os quadros 0, 1, 2 e 6 e armazenou os quadros 3, 4, 5 e 7 fora de ordem. O ACK com SEQ igual a 0 e mapa 0xB8, isto é, 1011 1000 em binário, informou exatamente essa situação, e o transmissor retransmitiu apenas os quatro quadros ausentes. Após mais três rajadas, o quadro 0 foi recebido e o receptor entregou os quadros 0 a 7 em ordem. Foram necessárias 9 retransmissões; com \textit{Go-Back-N}, sob o mesmo padrão de perdas, cada rodada reenviaria os oito quadros, num total de 32.
 
 \begin{figure}[H]
   \centering
@@ -621,7 +629,7 @@ A análise dos \textit{logs} revelou ainda que o primeiro quadro de cada rajada 
   \fonte{Elaborado pelos autores a partir dos \textit{logs} de 21/11/2026.}
 \end{table}
 
-As seis imagens recebidas apresentaram o mesmo resumo SHA-256 do arquivo original. Em um arquivo binário, a inversão de um único bit já alteraria a imagem ou o resumo; a coincidência, portanto, comprova a integridade da transferência. A Figura 8 compara a imagem original com uma das recebidas.
+As seis imagens recebidas apresentaram o mesmo resumo SHA-256 do arquivo original. Em um arquivo binário, a inversão de um único bit já alteraria a imagem ou o resumo; a coincidência, portanto, comprova a integridade da transferência. A Figura 9 compara a imagem original com uma das recebidas.
 
 \begin{figure}[H]
   \centering
@@ -632,7 +640,7 @@ As seis imagens recebidas apresentaram o mesmo resumo SHA-256 do arquivo origina
 
 \section{Ensaios com dois computadores}
 
-Em 23/11/2026, o enlace foi ensaiado na configuração prevista no enunciado, com cada placa ligada a um notebook diferente, conforme a Figura 9. A Tabela 18 apresenta os 21 ensaios de distância e de janela, realizados com o mesmo procedimento da campanha de 21/11.
+Em 23/11/2026, o enlace foi ensaiado na configuração prevista no enunciado, com cada placa ligada a um notebook diferente, conforme a Figura 10. A Tabela 18 apresenta os 21 ensaios de distância e de janela, realizados com o mesmo procedimento da campanha de 21/11.
 
 \begin{figure}[H]
   \centering
@@ -685,7 +693,7 @@ Foram transmitidas duas imagens a 1,8 m: o mesmo PNG de 490 bytes da campanha de
   \fonte{Elaborado pelos autores a partir dos \textit{logs} de 23/11/2026.}
 \end{table}
 
-Nos dois casos, o resumo SHA-256 calculado pelo enviar\_imagem.py antes da transmissão coincidiu com o calculado pelo receber\_imagem.py após a reconstrução, como mostra a Figura 10. Na transferência maior, o CRC rejeitou um quadro corrompido pelo próprio canal, sem erro simulado, e o quadro foi recuperado por retransmissão seletiva. O elevado número de quadros guardados fora de ordem decorre da perda do primeiro quadro de cada rajada, descrita na Seção 4.5: o receptor armazena os demais e aguarda apenas a retransmissão do ausente.
+Nos dois casos, o resumo SHA-256 calculado pelo enviar\_imagem.py antes da transmissão coincidiu com o calculado pelo receber\_imagem.py após a reconstrução, como mostra a Figura 11. Na transferência maior, o CRC rejeitou um quadro corrompido pelo próprio canal, sem erro simulado, e o quadro foi recuperado por retransmissão seletiva. O elevado número de quadros guardados fora de ordem decorre da perda do primeiro quadro de cada rajada, descrita na Seção 4.5: o receptor armazena os demais e aguarda apenas a retransmissão do ausente.
 
 \begin{figure}[H]
   \centering
@@ -694,7 +702,7 @@ Nos dois casos, o resumo SHA-256 calculado pelo enviar\_imagem.py antes da trans
   \fonte{Elaborado pelos autores (2026).}
 \end{figure}
 
-A vazão útil de 10,9 bytes/s equivale a 87 bit/s, cerca de 7\% da taxa de 1200 bit/s da UART. A diferença corresponde à codificação Manchester, que dobra o número de bits, ao preâmbulo e ao cabeçalho de cada quadro, às esperas pelos ACKs e às retransmissões provocadas pela distância próxima do limite. O LCD da placa B exibiu tanto os textos recebidos quanto o aviso de chegada de cada imagem, conforme a Figura 11.
+A vazão útil de 10,9 bytes/s equivale a 87 bit/s, cerca de 7\% da taxa de 1200 bit/s da UART. A diferença corresponde à codificação Manchester, que dobra o número de bits, ao preâmbulo e ao cabeçalho de cada quadro, às esperas pelos ACKs e às retransmissões provocadas pela distância próxima do limite. O LCD da placa B exibiu tanto os textos recebidos quanto o aviso de chegada de cada imagem, conforme a Figura 12.
 
 \begin{figure}[H]
   \centering
@@ -774,12 +782,210 @@ Como trabalhos futuros, propõem-se a inserção de um intervalo de cerca de 300
 \end{thebibliography}
 
 \begin{apendicesenv}
+\chapter{Trechos do código-fonte}
+Os trechos a seguir foram extraídos do \textit{firmware} final (versão 4.1), com a remoção dos comandos de registro no Monitor Serial, de contadores estatísticos e de tratamentos secundários, como a temporização entre bytes e a confirmação do quadro END. Os arquivos completos estão nos diretórios firmware/tx e firmware/rx do repositório; o arquivo protocolo\_rf.h é idêntico nas duas placas.
+
+\section{Cálculo e verificação do CRC-8}
+
+A função crc8 executa a divisão polinomial bit a bit pelo gerador 0x07, conforme a Seção 3.4. O FCS abrange os campos TYPE, SEQ, LEN e DATA; o receptor recalcula o valor sobre os campos recebidos e descarta o quadro quando o resultado difere do FCS transmitido.
+
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+// protocolo_rf.h -- CRC-8: polinomio x^8 + x^2 + x + 1 (0x07), valor inicial 0x00,
+// sem reflexao e sem XOR final (CRC-8/SMBUS).
+inline uint8_t crc8(const uint8_t *p, size_t n) {
+  uint8_t crc = 0x00;
+  for (size_t i = 0; i < n; ++i) {
+    crc ^= p[i];                         // soma o proximo byte ao registrador
+    for (uint8_t b = 0; b < 8; ++b)      // divisao polinomial bit a bit
+      crc = (crc & 0x80) ? uint8_t((crc << 1) ^ 0x07) : uint8_t(crc << 1);
+  }
+  return crc;
+}
+
+// FCS calculado sobre TYPE, SEQ, LEN e DATA (exclui FLAG e o proprio FCS).
+inline uint8_t calculaFcs(const Quadro &q) {
+  uint8_t buf[3 + MAX_DADOS];
+  buf[0] = q.tipo; buf[1] = q.seq; buf[2] = q.len;
+  for (uint8_t i = 0; i < q.len; ++i) buf[3 + i] = q.dados[i];
+  return crc8(buf, 3 + q.len);
+}
+
+// Verificacao no receptor (dentro de Receptor::recebe, com o quadro completo):
+fcsCalculado = calculaFcs(quadro);
+if (fcsCalculado != quadro.fcs) return ERRO_FCS;      // quadro descartado
+return QUADRO_OK;
+\end{Verbatim}
+
+\section{Montagem e desmontagem do quadro}
+
+A função montaLinha produz a sequência enviada à UART2: preâmbulo, FLAG e os campos do quadro, com cada nibble convertido em um byte Manchester. No receptor, o método recebe processa um byte por vez, reconstrói os campos após a FLAG, rejeita bytes fora do código Manchester e valores de LEN acima de 16, e confere o FCS ao completar o quadro.
+
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+// protocolo_rf.h -- campos do quadro e montagem dos bytes enviados pela UART2
+constexpr uint8_t FLAG = 0x7E, PREAMBULO_BYTE = 0xF0, MAX_DADOS = 16;
+enum Tipo : uint8_t { DATA = 0x01, ACK = 0x02, END = 0x03 };
+
+struct Quadro {
+  uint8_t tipo, seq, len;          // TYPE, SEQ, LEN
+  uint8_t dados[MAX_DADOS];        // DATA (0 a 16 bytes)
+  uint8_t fcs;                     // FCS = CRC-8
+};
+
+// Manchester por nibble: cada bit vira um par (1 -> "10", 0 -> "01").
+inline uint8_t codificaNibble(uint8_t n) {
+  uint8_t saida = 0;
+  for (uint8_t i = 0; i < 4; ++i)
+    saida |= uint8_t((((n >> i) & 1) ? 0b01 : 0b10) << (2 * i));
+  return saida;
+}
+
+// Linha = preambulo + FLAG + (TYPE SEQ LEN DATA FCS) em Manchester.
+inline size_t montaLinha(const Quadro &q, uint8_t *saida) {
+  size_t n = 0;
+  const uint8_t pre = (q.tipo == ACK) ? PREAMBULO_ACK_QTD : PREAMBULO_QTD;  // 48 ou 8
+  for (uint8_t i = 0; i < pre; ++i) saida[n++] = PREAMBULO_BYTE;
+  saida[n++] = FLAG;
+  uint8_t campos[3 + MAX_DADOS + 1], total = 0;
+  campos[total++] = q.tipo; campos[total++] = q.seq; campos[total++] = q.len;
+  for (uint8_t i = 0; i < q.len; ++i) campos[total++] = q.dados[i];
+  campos[total++] = q.fcs;
+  for (uint8_t i = 0; i < total; ++i) {
+    saida[n++] = codificaNibble(campos[i] >> 4);     // nibble alto primeiro
+    saida[n++] = codificaNibble(campos[i] & 0x0F);
+  }
+  return n;
+}
+
+// Desmontagem (resumida): Receptor::recebe(byte) e chamado a cada byte da UART2.
+Resultado recebe(uint8_t b, uint32_t agoraMs) {
+  if (buscando_) { if (b == FLAG) comecaQuadro(agoraMs); return NADA; }
+  const int8_t nib = decodificaNibble(b);          // -1 se o byte nao e Manchester
+  if (nib < 0) return abandona();                  // quadro truncado ou ruido
+  if (nibbleAlto_ < 0) { nibbleAlto_ = nib; return NADA; }
+  bruto_[n_++] = uint8_t((nibbleAlto_ << 4) | nib);
+  nibbleAlto_ = -1;
+  if (n_ == 3 && bruto_[2] > MAX_DADOS) return abandona();   // LEN impossivel
+  if (n_ < 3u + bruto_[2] + 1u) return NADA;                 // faltam bytes
+  buscando_ = true;                                          // quadro completo
+  quadro.tipo = bruto_[0]; quadro.seq = bruto_[1]; quadro.len = bruto_[2];
+  memcpy(quadro.dados, bruto_ + 3, quadro.len);
+  quadro.fcs = bruto_[3 + quadro.len];
+  fcsCalculado = calculaFcs(quadro);
+  return fcsCalculado == quadro.fcs ? QUADRO_OK : ERRO_FCS;
+}
+\end{Verbatim}
+
+\section{Janela deslizante do Selective Repeat}
+
+No transmissor, executaSelectiveRepeat prioriza a retransmissão de quadros pendentes, envia quadros novos enquanto houver espaço na janela e arma um temporizador por quadro ao final da rajada. O método trataAck confirma de forma cumulativa os quadros anteriores a SEQ, confirma individualmente os indicados no mapa de bits e marca para reenvio apenas os quadros ausentes.
+
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+// tx.ino -- Selective Repeat no transmissor (chamado a cada volta do loop)
+void executaSelectiveRepeat() {
+  if (!ativo) return;
+  if (base == totalQuadros) { finalizaMensagem(true); return; }
+  const uint32_t agora = millis();
+
+  // 1) Retransmissao seletiva: quadro apontado pelo ACK ou com timeout.
+  for (uint32_t i = base; i < proximo; ++i) {
+    if (confirmado[i] || prazo[i] == 0) continue;
+    if (prazo[i] == REENVIAR_JA || int32_t(agora - prazo[i]) >= 0) {
+      enviaQuadro(i);
+      return;
+    }
+  }
+  // 2) Quadro novo, se couber na janela; o END so sai com todos os DATA confirmados.
+  const bool ehEnd = (proximo == quadrosDados);
+  const bool cabe = proximo < base + janela;
+  if (proximo < totalQuadros && cabe && (!ehEnd || base == quadrosDados)) {
+    enviaQuadro(proximo++);
+    return;
+  }
+  // 3) Fim da rajada: arma um temporizador por quadro pendente e aguarda o ACK.
+  for (uint32_t i = base; i < proximo; ++i)
+    if (!confirmado[i] && prazo[i] == 0) prazo[i] = agora + TIMEOUT_ACK_MS; // 1117 ms
+  if (agora - ultimoProgressoMs > DESISTENCIA_TX_MS) finalizaMensagem(false);  // 20 s
+}
+
+// ACK seletivo: SEQ = proximo quadro esperado em ordem;
+// bit b do mapa = quadro SEQ + b ja guardado pelo receptor.
+void trataAck(uint8_t seq, uint8_t mapa) {
+  int32_t k = -1;                        // indice absoluto correspondente a SEQ
+  for (uint32_t i = base; i <= proximo && i <= base + JANELA_MAX; ++i)
+    if (uint8_t(i & 0xFF) == seq) { k = int32_t(i); break; }
+  if (k < 0) return;                                // ACK fora da janela: ignorado
+
+  for (uint32_t i = base; i < uint32_t(k); ++i) confirmado[i] = true;  // cumulativo
+  for (uint8_t b = 0; b < 8; ++b) {                           // mapa de bits
+    const uint32_t i = uint32_t(k) + b;
+    if (((mapa >> b) & 1) && i < proximo) confirmado[i] = true;
+  }
+  while (base < totalQuadros && confirmado[base]) ++base;     // desliza a janela
+
+  // Quadro enviado antes deste ACK e nao confirmado foi perdido: reenvia so ele.
+  for (uint32_t i = base; i < proximo; ++i)
+    if (!confirmado[i] && jaEnviado[i] &&
+        enviadoMs[i] + ESPERA_ANTES_ACK_MS + DURACAO_ACK_MS <= millis() + 10)
+      prazo[i] = REENVIAR_JA;
+}
+\end{Verbatim}
+
+No receptor, cada quadro DATA válido é armazenado na posição correspondente da janela, mesmo fora de ordem, e entregaEmOrdem repassa à mensagem a sequência contínua a partir do quadro esperado. Após o silêncio do canal, o receptor envia um único ACK com o próximo SEQ esperado e o mapa de bits dos quadros já guardados.
+
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+// rx.ino -- trataQuadro(), ramo do DATA com FCS correto (janela de 8 quadros)
+if (q.tipo == rf::DATA && q.len > 0) {
+  ackPendente = true;
+  const uint8_t d = uint8_t(q.seq - esperado);   // posicao na janela (mod 256)
+  if (d < JANELA_RX) {
+    if (guardado[d]) return;                     // duplicado: descarta
+    guardado[d] = true;                          // guarda, mesmo fora de ordem
+    lenGuardado[d] = q.len;
+    memcpy(dadosGuardados[d], q.dados, q.len);
+    temAck = true;
+    entregaEmOrdem();
+  }                                  // d >= 128: ja entregue; o ACK repete
+}
+
+// Entrega a mensagem enquanto houver sequencia continua a partir de 'esperado'.
+void entregaEmOrdem() {
+  while (guardado[0]) {
+    memcpy(mensagem + tamanhoMensagem, dadosGuardados[0], lenGuardado[0]);
+    tamanhoMensagem += lenGuardado[0];
+    for (uint8_t i = 0; i + 1 < JANELA_RX; ++i) {   // desliza a janela
+      guardado[i] = guardado[i + 1];
+      lenGuardado[i] = lenGuardado[i + 1];
+      memcpy(dadosGuardados[i], dadosGuardados[i + 1], MAX_DADOS);
+    }
+    guardado[JANELA_RX - 1] = false;
+    ++esperado;                                     // uint8_t: 255 -> 0
+  }
+}
+
+// Um ACK por rajada, apos 425 ms de silencio (ramo que confirma o END omitido).
+void enviaAckSeNecessario() {
+  if (!ackPendente || receptor.recebendo()) return;
+  if (millis() - ultimaAtividadeMs < ESPERA_ANTES_ACK_MS) return;
+  ackPendente = false;
+  if (!temAck) return;                 // nada novo para confirmar
+  rf::Quadro ack;
+  ack.tipo = rf::ACK; ack.len = 1;
+  ack.seq = esperado;                    // proximo esperado em ordem
+  uint8_t mapa = 0;                      // bit i = quadro (esperado + i) guardado
+  for (uint8_t i = 0; i < JANELA_RX; ++i) if (guardado[i]) mapa |= uint8_t(1 << i);
+  ack.dados[0] = mapa;
+  ack.fcs = rf::calculaFcs(ack);
+  uint8_t linha[rf::MAX_LINHA];
+  transmiteLinha(linha, rf::montaLinha(ack, linha));
+}
+\end{Verbatim}
+
 \chapter{Trechos dos logs do Monitor Serial}
 Os trechos a seguir foram extraídos dos \textit{logs} do Monitor Serial gravados durante a bateria de ensaios. Os arquivos completos dos 36 ensaios, um por placa e por ensaio, estão no diretório evidencias/2026-11-21\_1258/logs do repositório.
 
-\section*{Mensagem a 0,5 m sem retransmissões (transmissor)}
+\section{Mensagem a 0,5 m sem retransmissões (transmissor)}
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 === NOVA MENSAGEM (texto): 201 bytes -> 13 quadros DATA + 1 END | Selective Repeat
     janela=4 timeout=1117 ms ===
 TX DATA seq=0 len=16 FCS=0x42 crc_us=16 janela=[0..3] linha=49B/408ms
@@ -793,9 +999,9 @@ RX ACK prox=12 mapa=0x00 guardados_no_RX=[] -> base=12 rtt_ms=899
     por timeout=0) ACKs=5 (ignorados=0) erros_sim=0 perdas_sim=0 | 19.6 bytes/s ===
 \end{Verbatim}
 
-\section*{Retransmissão seletiva com janela 8 (transmissor)}
+\section{Retransmissão seletiva com janela 8 (transmissor)}
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 RX ACK prox=0 mapa=0xB8 guardados_no_RX=[3 4 5 7] -> base=0 rtt_ms=0
    quadro seq=0 nao confirmado neste ACK -> retransmissao seletiva
    quadro seq=1 nao confirmado neste ACK -> retransmissao seletiva
@@ -804,9 +1010,9 @@ RX ACK prox=0 mapa=0xB8 guardados_no_RX=[3 4 5 7] -> base=0 rtt_ms=0
 TX DATA (retransmissao seletiva) seq=0 len=16 FCS=0x42 crc_us=9 janela=[0..7]
 \end{Verbatim}
 
-\section*{Detecção pelo CRC com /erro 30 (receptor)}
+\section{Detecção pelo CRC com /erro 30 (receptor)}
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 RX DATA seq=5 len=16 FCS ok -> GUARDADO fora de ordem (esperado=4)
 RX quadro DATA seq=6: FCS recebido=0x07 calculado=0x33 -> ERRO DETECTADO, descartado
 RX DATA seq=7 len=16 FCS ok -> GUARDADO fora de ordem (esperado=4)
@@ -814,9 +1020,9 @@ RX DATA seq=7 len=16 FCS ok -> GUARDADO fora de ordem (esperado=4)
 RX quadro DATA seq=4: FCS recebido=0xF0 calculado=0xBF -> ERRO DETECTADO, descartado
 \end{Verbatim}
 
-\section*{Mensagem abandonada a 1 m (transmissor)}
+\section{Mensagem abandonada a 1 m (transmissor)}
 
-\begin{Verbatim}[fontsize=\footnotesize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
+\begin{Verbatim}[fontsize=\scriptsize,frame=single,framesep=2mm,rulecolor=\color{gray!60},breaklines,breakanywhere]
 === FALHA: MENSAGEM ABANDONADA em 25317 ms | envios=36 retransmissoes=24 (por ACK=0,
     por timeout=24) ACKs=2 (ignorados=0) erros_sim=0 perdas_sim=0 | 7.9 bytes/s ===
 \end{Verbatim}

@@ -69,7 +69,7 @@ Todas as falhas (3 em 21/11, 2 a 2 m em 23/11) foram abandonadas pelo transmisso
 
 | Requisito | Situação | Onde ver |
 |---|---|---|
-| Duas ESP32 com módulos RF 433 MHz (2 TX e 2 RX) | ✅ | [Seção 3.1](#31-montagem) |
+| Duas ESP32 com módulos RF 433 MHz (2 TX e 2 RX) | ✅ | [Seção 3.1](#31-montagem) (esquema elétrico e fotos) |
 | Transmissão RF bruta, sem RadioHead | ✅ | [Seção 3.4](#34-camada-física) |
 | Quadro FLAG, TYPE, SEQ, LEN, DATA (0–16), FCS; máx. 21 bytes | ✅ | [Seção 3.2](#32-quadro-e-tempos) |
 | Somente quadros DATA, ACK e END | ✅ | [Seção 3.2](#32-quadro-e-tempos) |
@@ -92,6 +92,12 @@ Todas as falhas (3 em 21/11, 2 a 2 m em 23/11) foram abandonadas pelo transmisso
 ## 3. Arquitetura e funcionamento
 
 ### 3.1 Montagem
+
+#### Esquema elétrico
+
+Circuito completo de uma placa, fio a fio. O rádio é igual nas placas A e B; o LCD e o potenciômetro (área tracejada) ficam só na placa B. Arquivo vetorial: [`docs/esquema_eletrico.svg`](docs/esquema_eletrico.svg).
+
+![Esquema Elétrico](docs/esquema_eletrico.svg)
 
 #### Fotos
 

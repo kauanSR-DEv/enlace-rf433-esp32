@@ -1,0 +1,183 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1400' height='960' viewBox='0 0 1400 960'>
+<rect width='1400' height='960' fill='white'/>
+<text x='700.0' y='38' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='22' text-anchor='middle' font-weight='bold' fill='#222'>Esquema elétrico — enlace RF 433 MHz entre duas ESP32</text>
+<text x='700.0' y='64' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='14' text-anchor='middle' font-weight='normal' fill='#555'>Circuito de rádio idêntico nas placas A e B · LCD 16x2 e potenciômetro somente na placa B</text>
+<rect x='590' y='150' width='290' height='620' rx='6' fill='#eef3fa' stroke='#333333' stroke-width='2'/>
+<text x='735.0' y='180' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='17' text-anchor='middle' font-weight='bold' fill='#222'>ESP32 DevKit V1</text>
+<text x='735.0' y='200' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='normal' fill='#555'>(WROOM-32, 30 pinos)</text>
+<text x='735.0' y='728' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>USB-C do computador:</text>
+<text x='735.0' y='746' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>5 V → VIN, dados de depuração</text>
+<polyline points='590,220 565,220' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='600' y='225' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>VIN</text>
+<polyline points='590,275 565,275' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='600' y='280' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>GND</text>
+<polyline points='590,400 565,400' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='600' y='405' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>D25 (GPIO25) · TX2</text>
+<polyline points='590,600 565,600' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='600' y='605' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>D34 (GPIO34) · RX2</text>
+<polyline points='880,350 905,350' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='355' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D13 (GPIO13)</text>
+<polyline points='880,400 905,400' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='405' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D14 (GPIO14)</text>
+<polyline points='880,560 905,560' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='565' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D27 (GPIO27)</text>
+<polyline points='880,590 905,590' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='595' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D26 (GPIO26)</text>
+<polyline points='880,620 905,620' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='625' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D33 (GPIO33)</text>
+<polyline points='880,650 905,650' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='655' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>D32 (GPIO32)</text>
+<polyline points='880,690 905,690' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='870' y='695' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#222'>3V3</text>
+<text x='870' y='707' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='end' font-weight='normal' fill='#777' font-style='italic'>(não utilizado)</text>
+<polyline points='565,220 545,220' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='545,220 545,194' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='533,194 557,194' fill='none' stroke='#c62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='545' y='186' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='565,275 545,275' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='545,275 545,295' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='532,295 558,295' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='537,300 553,300' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='542,305 548,305' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<rect x='200' y='340' width='210' height='120' rx='6' fill='#f7f7f7' stroke='#333333' stroke-width='2'/>
+<text x='288' y='390' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#222'>FS1000A</text>
+<text x='288' y='410' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>transmissor 433 MHz</text>
+<text x='228' y='358' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='middle' font-weight='normal' fill='#555'>VCC</text>
+<text x='382' y='452' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='middle' font-weight='normal' fill='#555'>GND</text>
+<text x='402' y='404' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='end' font-weight='normal' fill='#555'>DATA</text>
+<polyline points='410,400 565,400' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='487.5' y='390' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#1f4e8c'>dados (A) / ACK (B)</text>
+<polyline points='228,340 228,314' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='216,314 240,314' fill='none' stroke='#c62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='228' y='306' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='382,460 382,470' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='382,470 382,490' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='369,490 395,490' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='374,495 390,495' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='379,500 385,500' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='200,380 150,380' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='150,380 150,290' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='140,302 150,290 160,302' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='138' y='330' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='normal' fill='#555'>antena</text>
+<text x='138' y='346' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#555'>17,3 cm</text>
+<rect x='130' y='560' width='210' height='120' rx='6' fill='#f7f7f7' stroke='#333333' stroke-width='2'/>
+<text x='218' y='610' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#222'>MX-RM-5V</text>
+<text x='218' y='630' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>receptor 433 MHz</text>
+<text x='158' y='578' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='middle' font-weight='normal' fill='#555'>VCC</text>
+<text x='312' y='672' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='middle' font-weight='normal' fill='#555'>GND</text>
+<text x='332' y='604' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='end' font-weight='normal' fill='#555'>DATA</text>
+<polyline points='158,560 158,534' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='146,534 170,534' fill='none' stroke='#c62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='158' y='526' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='312,680 312,690' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='312,690 312,710' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='299,710 325,710' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='304,715 320,715' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='309,720 315,720' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='130,620 80,620' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='80,620 80,530' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='70,542 80,530 90,542' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='68' y='570' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='normal' fill='#555'>antena</text>
+<text x='68' y='586' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#555'>17,3 cm</text>
+<polyline points='340,600 405,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='405,600 410.0,592 420.0,608 430.0,592 440.0,608 450.0,592 460.0,608 465,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='465,600 565,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<circle cx='525' cy='600' r='4.5' fill='#1f4e8c'/>
+<text x='372' y='588' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#c62828'>5 V</text>
+<text x='435' y='630' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#222'>R1</text>
+<text x='435' y='646' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#222'>10 kΩ</text>
+<text x='562' y='588' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#2e7d32'>3,33 V</text>
+<polyline points='525,600 525,625' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='525,625 517,630.0 533,640.0 517,650.0 533,660.0 517,670.0 533,680.0 525,685' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='525,685 525,705' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='525,705 517,710.0 533,720.0 517,730.0 533,740.0 517,750.0 533,760.0 525,765' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='525,765 525,775' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='525,775 525,795' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='512,795 538,795' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='517,800 533,800' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='522,805 528,805' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='541' y='650' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>R2a</text>
+<text x='541' y='666' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='normal' fill='#222'>10 kΩ</text>
+<text x='541' y='730' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='bold' fill='#222'>R2b</text>
+<text x='541' y='746' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='normal' fill='#222'>10 kΩ</text>
+<rect x='965' y='205' width='415' height='555' rx='10' fill='none' stroke='#8e24aa' stroke-width='2' stroke-dasharray='8,6'/>
+<text x='1372' y='228' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='end' font-weight='bold' fill='#8e24aa'>somente na placa B</text>
+<rect x='1000' y='250' width='180' height='460' rx='6' fill='#f3eef8' stroke='#333333' stroke-width='2'/>
+<text x='1118' y='585' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='16' text-anchor='middle' font-weight='bold' fill='#222'>LCD 16x2</text>
+<text x='1118' y='605' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>HD44780</text>
+<text x='1118' y='623' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='normal' fill='#555'>modo 4 bits</text>
+<polyline points='1000,350 975,350' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='355' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>4 RS</text>
+<polyline points='905,350 975,350' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1000,400 975,400' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='405' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>6 E</text>
+<polyline points='905,400 975,400' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1000,560 975,560' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='565' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>11 D4</text>
+<polyline points='905,560 975,560' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1000,590 975,590' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='595' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>12 D5</text>
+<polyline points='905,590 975,590' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1000,620 975,620' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='625' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>13 D6</text>
+<polyline points='905,620 975,620' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1000,650 975,650' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='655' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='start' font-weight='bold' fill='#222'>14 D7</text>
+<polyline points='905,650 975,650' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1008' y='470' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='start' font-weight='normal' fill='#777'>7–10 D0–D3:</text>
+<text x='1008' y='486' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='start' font-weight='normal' fill='#777' font-style='italic'>sem ligação</text>
+<polyline points='1180,300 1205,300' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='305' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>1 VSS</text>
+<polyline points='1205,300 1220,300' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1220,300 1230,289 1269,289 1269,311 1230,311' fill='white' stroke='#222222' stroke-width='2'/>
+<text x='1249.5' y='305' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222222'>GND</text>
+<polyline points='1180,340 1205,340' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='345' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>2 VDD</text>
+<polyline points='1205,340 1220,340' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1220,340 1230,329 1278,329 1278,351 1230,351' fill='white' stroke='#c62828' stroke-width='2'/>
+<text x='1254.0' y='345' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='1180,420 1205,420' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='425' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>5 RW</text>
+<polyline points='1205,420 1220,420' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1220,420 1230,409 1269,409 1269,431 1230,431' fill='white' stroke='#222222' stroke-width='2'/>
+<text x='1249.5' y='425' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222222'>GND</text>
+<polyline points='1180,460 1205,460' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='465' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>15 A</text>
+<polyline points='1205,460 1220,460' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1220,460 1230,449 1278,449 1278,471 1230,471' fill='white' stroke='#c62828' stroke-width='2'/>
+<text x='1254.0' y='465' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='1180,500 1205,500' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='505' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>16 K</text>
+<polyline points='1205,500 1220,500' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1220,500 1230,489 1269,489 1269,511 1230,511' fill='white' stroke='#222222' stroke-width='2'/>
+<text x='1249.5' y='505' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222222'>GND</text>
+<polyline points='1180,380 1205,380' fill='none' stroke='#333333' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1172' y='385' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#222'>3 V0</text>
+<polyline points='1205,380 1316,380' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polygon points='1316,380 1306,374 1306,386' fill='#1f4e8c'/>
+<polyline points='1330,330 1330,345' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1330,345 1322,350.8333333333333 1338,362.5 1322,374.1666666666667 1338,385.8333333333333 1322,397.5 1338,409.16666666666663 1330,415' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1330,415 1330,430' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1330,330 1330,304' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1318,304 1342,304' fill='none' stroke='#c62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1330' y='296' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<polyline points='1330,430 1330,450' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1317,450 1343,450' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1322,455 1338,455' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='1327,460 1333,460' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='1334' y='548' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='middle' font-weight='bold' fill='#222'>Pot. 10 kΩ</text>
+<text x='1334' y='564' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='11' text-anchor='middle' font-weight='normal' fill='#555'>(contraste)</text>
+<polyline points='1330,470 1330,532' fill='none' stroke='#999' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='40,802 1360,802' fill='none' stroke='#ccc' stroke-width='1' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='70,854 70,828' fill='none' stroke='#c62828' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='58,828 82,828' fill='none' stroke='#c62828' stroke-width='3' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='70' y='820' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='middle' font-weight='bold' fill='#c62828'>+5 V</text>
+<text x='95' y='834' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>+5 V: VIN da ESP32, alimentada pelo USB do computador. Alimenta FS1000A, MX-RM-5V, LCD (VDD e A) e o potenciômetro.</text>
+<polyline points='70,868 70,888' fill='none' stroke='#222222' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='57,888 83,888' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='62,893 78,893' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<polyline points='67,898 73,898' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
+<text x='95' y='876' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>GND comum a todos os componentes da placa. 3,3 V: nível lógico da ESP32 (regulador interno); não há linha externa de 3,3 V.</text>
+<text x='95' y='904' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>Divisor na entrada D34: V = 5 V × R2 / (R1 + R2), com R2 = R2a + R2b = 20 kΩ: 5 V × 20 kΩ / 30 kΩ ≈ 3,33 V.</text>
+<text x='95' y='926' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>UART2 a 1200 bit/s com sinal invertido: D25 transmite (TX2), D34 recebe (RX2). Antenas: fio reto de λ/4 ≈ 17,3 cm.</text>
+</svg>

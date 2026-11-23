@@ -2,6 +2,10 @@
 
 As duas placas têm a mesma montagem de rádio. Só a placa B (receptor) tem o LCD.
 
+## Esquema elétrico
+
+![Esquema Elétrico](esquema_eletrico.svg)
+
 ## Materiais
 
 | Item | Qtd. | Observação |
