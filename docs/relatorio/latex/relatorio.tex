@@ -224,7 +224,8 @@ A Tabela 3 relaciona os componentes utilizados nas duas placas.
   LCD 16x2 paralelo (controlador HD44780) & 1 & Somente na placa B \\ \hline
   Potenciômetro de 10 kΩ & 1 & Ajuste de contraste do LCD \\ \hline
   Resistor de 10 kΩ & 6 & Três por placa, no divisor de tensão \\ \hline
-  Fio rígido de 17,3 cm & 4 & Antena de cada módulo \\ \hline
+  Fio rígido de 17,3 cm & 3 & Antenas dos dois FS1000A e do MX-RM-5V da placa A \\ \hline
+  Antena helicoidal do módulo & 1 & Fornecida com o MX-RM-5V; usada no receptor da placa B \\ \hline
   \textit{Protoboard} de 830 furos & 2 & Uma por placa \\ \hline
   \textit{Jumpers} macho-macho & cerca de 30 & Ligações \\ \hline
   \textit{Jumpers} macho-fêmea & 3 & Ligação do potenciômetro, cujos terminais não encaixam diretamente na \textit{protoboard} \\ \hline
@@ -258,11 +259,13 @@ O receptor MX-RM-5V exige alimentação de 5 V e sua saída acompanha esse níve
   V_{\text{GPIO}} = 5\ \text{V} \cdot \frac{R_{2}}{R_{1} + R_{2}} = 5 \cdot \frac{20}{30} = 3{,}33\ \text{V}
 \end{equation}
 
-As antenas são fios retos de um quarto do comprimento de onda, soldados no terminal ANT de cada módulo, com o comprimento dado pela Equação 5.
+Três das antenas são fios retos de um quarto do comprimento de onda, soldados no terminal ANT do módulo, com o comprimento dado pela Equação 5.
 
 \begin{equation}
   \frac{\lambda}{4} = \frac{c}{4f} = \frac{3 \times 10^{8}}{4 \times 433{,}92 \times 10^{6}} \approx 17{,}3\ \text{cm}
 \end{equation}
+
+No receptor da placa B, foi usada durante todo o projeto a antena helicoidal fornecida com o módulo: um trecho reto junto ao terminal ANT seguido de uma mola, dimensionada pelo fabricante para 433 MHz. O enrolamento reduz o tamanho da antena, ao custo de menor eficiência que a de um fio reto de um quarto de onda; por isso, a mola foi mantida sem alterações, na vertical e afastada dos demais componentes.
 
 A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 5. A Figura 2 reúne essas ligações no esquema elétrico completo de uma placa; no esquema, R2 aparece como os dois resistores de 10 kΩ em série (R2a e R2b). As Figuras 3 a 6 mostram a montagem final.
 
@@ -462,7 +465,7 @@ No computador, três \textit{scripts} em Python completam o sistema: enviar\_ima
 
 \section{Procedimento de ensaio}
 
-Os ensaios foram realizados em 21/11/2026, entre 12h58 e 13h47, em ambiente interno, com o \textit{firmware} na versão 4.1. As duas placas foram ligadas ao mesmo notebook, operando com bateria, para que o script de coleta registrasse os \textit{logs} do transmissor e do receptor com a mesma referência de tempo e associasse cada ensaio aos dois lados do enlace. A ligação USB serviu apenas para alimentação e registro; não houve nenhum condutor de dados entre as placas, e toda a comunicação ocorreu pelo rádio. A configuração final do enunciado, com uma placa em cada computador, foi verificada em 23/11/2026, conforme a Seção 4.7. Durante a campanha, as antenas permaneceram retas, verticais e paralelas, e a distância foi medida entre as antenas. A mensagem padrão foi gerada pelo comando /teste 200, que produz 201 bytes, isto é, 13 quadros DATA e um END. O ensaio de ruído utilizou 500 caracteres e o de imagem utilizou um arquivo PNG de 32 × 32 pixels com 490 bytes. Cada cenário da Tabela 11 foi repetido três vezes, totalizando 36 ensaios.
+Os ensaios foram realizados em 21/11/2026, entre 12h58 e 13h47, em ambiente interno, com o \textit{firmware} na versão 4.1. As duas placas foram ligadas ao mesmo notebook, operando com bateria, para que o script de coleta registrasse os \textit{logs} do transmissor e do receptor com a mesma referência de tempo e associasse cada ensaio aos dois lados do enlace. A ligação USB serviu apenas para alimentação e registro; não houve nenhum condutor de dados entre as placas, e toda a comunicação ocorreu pelo rádio. A configuração final do enunciado, com uma placa em cada computador, foi verificada em 23/11/2026, conforme a Seção 4.7. Durante a campanha, as antenas permaneceram verticais e paralelas, e a distância foi medida entre as antenas. A mensagem padrão foi gerada pelo comando /teste 200, que produz 201 bytes, isto é, 13 quadros DATA e um END. O ensaio de ruído utilizou 500 caracteres e o de imagem utilizou um arquivo PNG de 32 × 32 pixels com 490 bytes. Cada cenário da Tabela 11 foi repetido três vezes, totalizando 36 ensaios.
 
 \begin{table}[H]
   \centering

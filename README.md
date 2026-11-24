@@ -119,7 +119,8 @@ Circuito completo de uma placa, fio a fio. O rádio é igual nas placas A e B; o
 | LCD 16x2 paralelo (HD44780) | 1 | Só na placa B |
 | Potenciômetro 10 kΩ (B10K) | 1 | Contraste do LCD |
 | Resistor 10 kΩ | 6 | 3 por placa (divisor de tensão) |
-| Fio rígido de 17,3 cm | 4 | Antena de cada módulo |
+| Fio rígido de 17,3 cm | 3 | Antenas dos dois FS1000A e do MX-RM-5V da placa A |
+| Antena helicoidal (mola) do módulo | 1 | Fornecida com o MX-RM-5V; usada no receptor da placa B |
 | Protoboard de 830 furos | 2 | |
 | Jumpers macho-macho | ~30 | |
 | Jumpers macho-fêmea | 3 | Ligação do potenciômetro, cujos terminais não encaixam na protoboard |
@@ -157,7 +158,7 @@ DATA do receptor ── 10 kΩ ──┬── D34          V(D34) = 5 V × 20 k
                            GND
 ```
 
-Antena: fio reto de ¼ de onda soldado no furo ANT de cada módulo: λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**. Nos testes, as antenas ficaram retas, na vertical e paralelas.
+Antenas: fio reto de ¼ de onda soldado no furo ANT do módulo, λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**, em três dos quatro módulos. O receptor da placa B usou, durante todo o projeto, a antena helicoidal (mola) que veio com o módulo: um trecho reto junto ao ANT seguido da mola, dimensionada pelo fabricante para 433 MHz. Ela é mais compacta e um pouco menos eficiente que o fio reto, e foi mantida sem esticar. Nos testes, as antenas ficaram na vertical e paralelas.
 
 #### Cuidados que fizeram diferença na bancada
 

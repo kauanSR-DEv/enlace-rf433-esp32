@@ -16,7 +16,8 @@ As duas placas têm a mesma montagem de rádio. Só a placa B (receptor) tem o L
 | LCD 16x2 paralelo (HD44780) | 1 | Só na placa B |
 | Potenciômetro 10 kΩ (B10K) | 1 | Contraste do LCD; sem ele, V0 direto no GND também funciona |
 | Resistor 10 kΩ | 6 | 3 por placa (divisor de tensão) |
-| Fio rígido de 17,3 cm | 4 | Antena de cada módulo |
+| Fio rígido de 17,3 cm | 3 | Antenas dos dois FS1000A e do MX-RM-5V da placa A |
+| Antena helicoidal (mola) do módulo | 1 | Fornecida com o MX-RM-5V; usada no receptor da placa B |
 | Protoboard de 830 furos | 2 | |
 | Jumpers macho-macho | ~30 | |
 | Jumpers macho-fêmea | 3 | Ligação do potenciômetro, cujos terminais não encaixam na protoboard |
