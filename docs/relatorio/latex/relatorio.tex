@@ -803,6 +803,8 @@ A principal dificuldade residiu na camada física: módulos de baixo custo, cana
 
 A perda do primeiro quadro de cada rajada, identificada na Seção 4.5, levou à versão 4.2 do transmissor, que nas entregas a 3,4 m não exigiu retransmissões. O diagnóstico da Seção 4.8 mostrou ainda que a sintonia do receptor super-regenerativo pode se deslocar com o manuseio e reduzir o alcance a poucos centímetros. Como trabalhos futuros, propõem-se repetir com a versão 4.2 a bateria completa de distância e janela, alimentar o transmissor com tensão superior a 5 V, admitida pelo FS1000A, fixar o componente de sintonia após o ajuste e ampliar o número de amostras em cada distância.
 
+O \textit{firmware}, os \textit{scripts}, os \textit{logs} de todos os ensaios e este relatório estão disponíveis em \url{https://github.com/kauanSR-DEv/enlace-rf433-esp32}.
+
 
 \postextual
 
@@ -817,7 +819,7 @@ A perda do primeiro quadro de cada rajada, identificada na Seção 4.5, levou à
 
 \begin{apendicesenv}
 \chapter{Trechos do código-fonte}
-Os trechos a seguir foram extraídos do \textit{firmware} final (versão 4.2), com a remoção dos comandos de registro no Monitor Serial, de contadores estatísticos e de tratamentos secundários, como a temporização entre bytes e a confirmação do quadro END. Os arquivos completos estão nos diretórios firmware/tx e firmware/rx do repositório; o arquivo protocolo\_rf.h é idêntico nas duas placas. Na versão 4.2, apenas o transmissor foi alterado: o ACK recebido define liberadoAposMs como o instante atual mais 300 ms, e enviaQuadro informa a montaLinha se o quadro inicia uma rajada, isto é, se a placa ficou mais de 150 ms sem transmitir.
+Os trechos a seguir foram extraídos do \textit{firmware} final (versão 4.2), com a remoção dos comandos de registro no Monitor Serial, de contadores estatísticos e de tratamentos secundários, como a temporização entre bytes e a confirmação do quadro END. Os arquivos completos estão nos diretórios firmware/tx e firmware/rx do repositório \url{https://github.com/kauanSR-DEv/enlace-rf433-esp32}; o arquivo protocolo\_rf.h é idêntico nas duas placas. Na versão 4.2, apenas o transmissor foi alterado: o ACK recebido define liberadoAposMs como o instante atual mais 300 ms, e enviaQuadro informa a montaLinha se o quadro inicia uma rajada, isto é, se a placa ficou mais de 150 ms sem transmitir.
 
 \section{Cálculo e verificação do CRC-8}
 
