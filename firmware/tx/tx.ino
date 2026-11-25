@@ -1,5 +1,9 @@
 /*
- * TX - Transmissor (ESP32 A)   v4 - Selective Repeat
+ * TX - Transmissor (ESP32 A)   v4.2 - Selective Repeat
+ *
+ * v4.2 (so no TX): espera ESPERA_APOS_ACK_MS depois de cada ACK antes da proxima
+ * rajada e usa preambulo de PREAMBULO_RAJADA_QTD bytes no primeiro quadro da rajada.
+ * O RX continua com o rx.ino da v4.1.
  * Projeto final de TCD (IFMT): enlace RF 433 MHz confiavel entre duas ESP32.
  *
  * Deteccao de erro : CRC-8 (polinomio 0x07) no campo FCS.
@@ -55,6 +59,11 @@ uint32_t proximo = 0;           // proximo quadro NOVO a transmitir
 bool     ativo = false;
 uint8_t  janela = 4;
 uint32_t ultimoProgressoMs = 0; // ultima confirmacao nova
+// v4.2: tempos do inicio de rajada
+constexpr uint32_t ESPERA_APOS_ACK_MS = 300;   // receptor da placa B se recupera do proprio ACK
+constexpr uint32_t SILENCIO_RAJADA_MS = 150;   // sem transmitir ha mais que isso = inicio de rajada
+uint32_t liberadoAposMs = 0;                   // nao transmite antes deste instante
+uint32_t fimUltimaTxMs = 0;                    // quando o ultimo quadro terminou de sair
 uint32_t bloqueadoAteMs = 0;    // apos uma desistencia, espera o RX descartar
 uint32_t fimUltimaMensagemMs = 0;
 
@@ -137,7 +146,8 @@ void enviaQuadro(uint32_t indice) {
   char hex[3 * (4 + rf::MAX_DADOS) + 1], txt[rf::MAX_DADOS + 1];
   rf::quadroHex(q, hex, sizeof(hex));
   rf::dadosTexto(q, txt, sizeof(txt));
-  const size_t naLinha = rf::bytesNaLinha(q);
+  const bool inicioRajada = (millis() - fimUltimaTxMs) > SILENCIO_RAJADA_MS;
+  const size_t naLinha = rf::bytesNaLinha(q, inicioRajada);
   registra("TX %s%s seq=%u len=%u FCS=0x%02X crc_us=%lu janela=[%lu..%lu] linha=%uB/%lums",
       rf::nomeTipo(q.tipo), retransmissao ? " (retransmissao seletiva)" : "", q.seq, q.len, q.fcs,
       (unsigned long)crcUs, (unsigned long)base, (unsigned long)(base + janela - 1),
@@ -170,8 +180,9 @@ void enviaQuadro(uint32_t indice) {
   }
 
   uint8_t linha[rf::MAX_LINHA];
-  const size_t n = rf::montaLinha(q, linha);
+  const size_t n = rf::montaLinha(q, linha, inicioRajada);
   transmiteLinha(linha, n);
+  fimUltimaTxMs = millis();
   enviadoMs[indice] = millis();
 }
 
@@ -281,9 +292,10 @@ void processaRadio() {
     const uint8_t b = uint8_t(Serial2.read());
     switch (receptor.recebe(b, millis())) {
       case rf::Receptor::QUADRO_OK:
-        if (receptor.quadro.tipo == rf::ACK)
+        if (receptor.quadro.tipo == rf::ACK) {
+          liberadoAposMs = millis() + ESPERA_APOS_ACK_MS;   // v4.2
           trataAck(receptor.quadro.seq, receptor.quadro.len ? receptor.quadro.dados[0] : 0);
-        else registra("RX %s seq=%u inesperado no TX, ignorado", rf::nomeTipo(receptor.quadro.tipo), receptor.quadro.seq);
+        } else registra("RX %s seq=%u inesperado no TX, ignorado", rf::nomeTipo(receptor.quadro.tipo), receptor.quadro.seq);
         break;
       case rf::Receptor::ERRO_FCS:
       {
@@ -307,6 +319,7 @@ void executaSelectiveRepeat() {
   if (!ativo) return;
   if (base == totalQuadros) { finalizaMensagem(true); return; }
   const uint32_t agora = millis();
+  if (int32_t(liberadoAposMs - agora) > 0) return;   // v4.2: espera apos o ACK
 
   // 1) Retransmissao seletiva: quadro marcado pelo ACK ou com temporizador estourado.
   for (uint32_t i = base; i < proximo; ++i) {
@@ -479,7 +492,7 @@ void setup() {
   Serial2.setRxTimeout(1);
   // random() usa o gerador de numeros aleatorios por hardware da ESP32 (sem randomSeed).
   delay(200);
-  registra("TX pronto (v4.1) | RF %lu bit/s | CRC-8 (0x07) | Selective Repeat janela=%u | timeout=%lu ms",
+  registra("TX pronto (v4.2) | RF %lu bit/s | CRC-8 (0x07) | Selective Repeat janela=%u | timeout=%lu ms",
       (unsigned long)rf::BAUD, janela, (unsigned long)rf::TIMEOUT_ACK_MS);
   ajuda();
 }

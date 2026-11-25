@@ -18,6 +18,10 @@
 
 Uma placa em cada notebook: bateria de 21 testes de distância e janela (`bateria/`, gerada por `coletar_testes.py --modo tx/rx/juntar`), imagens de 490 e 2866 bytes a 1,8 m com SHA-256 idêntico, LCD, `/resumo` e `/bench`. Detalhes em [`2026-11-23_dois_computadores/README.md`](2026-11-23_dois_computadores/README.md).
 
+## `2026-11-25_alcance_3.4m/` — 3,4 m com o TX v4.2
+
+Depois do reajuste de sintonia do receptor da placa B: 2 de 3 mensagens entregues a 3,4 m, em 12,1 s e sem nenhuma retransmissão; a falha foi de ACKs perdidos na volta. Detalhes em [`2026-11-25_alcance_3.4m/README.md`](2026-11-25_alcance_3.4m/README.md).
+
 ## Observações sobre os arquivos brutos de 21/11
 
 

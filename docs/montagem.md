@@ -16,8 +16,7 @@ As duas placas têm a mesma montagem de rádio. Só a placa B (receptor) tem o L
 | LCD 16x2 paralelo (HD44780) | 1 | Só na placa B |
 | Potenciômetro 10 kΩ (B10K) | 1 | Contraste do LCD; sem ele, V0 direto no GND também funciona |
 | Resistor 10 kΩ | 6 | 3 por placa (divisor de tensão) |
-| Fio rígido de 17,3 cm | 3 | Antenas dos dois FS1000A e do MX-RM-5V da placa A |
-| Antena helicoidal (mola) do módulo | 1 | Fornecida com o MX-RM-5V; usada no receptor da placa B |
+| Fio rígido de 17,3 cm | 4 | Antenas dos quatro módulos |
 | Protoboard de 830 furos | 2 | |
 | Jumpers macho-macho | ~30 | |
 | Jumpers macho-fêmea | 3 | Ligação do potenciômetro, cujos terminais não encaixam na protoboard |
@@ -70,7 +69,11 @@ Fio reto de um quarto de onda, soldado no furo ANT de cada módulo:
 
 λ/4 = c / (4·f) = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**
 
-Nos testes, as antenas ficaram retas, na vertical e paralelas.
+Nos testes, as antenas ficaram retas, na vertical e paralelas. Até 24/11 um dos receptores usou a antena de mola que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico descrito em [resultados.md](resultados.md#diagnóstico-do-receptor-e-ajuste-de-sintonia-2411-e-2511).
+
+## Sintonia do receptor
+
+O MX-RM-5V é super-regenerativo e tem um componente de sintonia ajustável. Se o alcance cair para poucos centímetros sem outra causa (alimentação, troca de transmissores), marque a posição original e gire o ajuste em passos de ~1/8 de volta com chave não metálica, com as placas a ~1 m e o TX mandando `/teste 200`; fique na posição em que o log do RX mostra mais quadros aceitos e menos truncados. Não encoste o dedo nem metal no ajuste durante a medição.
 
 ## Cuidados que fizeram diferença na bancada
 

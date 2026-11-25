@@ -78,7 +78,7 @@
 
 \begin{resumo}
  \SingleSpacing
- Este relatório descreve o projeto, a implementação e a avaliação experimental de um enlace de dados unidirecional e confiável entre duas placas ESP32, com comunicação exclusivamente por módulos de rádio de 433 MHz (FS1000A e MX-RM-5V) e sem bibliotecas de rádio. A camada física foi construída sobre a UART da ESP32 a 1200 bit/s, com sinal invertido, preâmbulo de sincronização, delimitador 0x7E e codificação Manchester. Os dados trafegam em quadros com os campos FLAG, TYPE, SEQ, LEN, DATA e FCS, limitados a 21 bytes. A detecção de erros utiliza CRC-8 com polinômio gerador x⁸ + x² + x + 1, e o controle de erros utiliza \textit{Selective Repeat ARQ} com janela de até 8 quadros e confirmações com mapa de bits. O receptor exibe os textos recebidos em um LCD 16x2 e repassa as imagens ao computador. Em uma bateria de 36 ensaios, 33 mensagens foram entregues sem nenhum erro, incluindo seis imagens cujo resumo SHA-256 coincidiu com o do arquivo original, com distâncias de até 2 m e sob interferência real. Em validação posterior, com uma placa em cada computador, 19 de 21 mensagens foram entregues sem erro, com falhas apenas a 2 m, e uma imagem de 2866 bytes foi transferida íntegra a 1,8 m. O cálculo do CRC consumiu cerca de 8 µs por quadro, e a janela de 8 quadros reduziu em 56\% o tempo de entrega em relação ao \textit{Stop-and-Wait}. As três mensagens não entregues foram abandonadas pelo transmissor após 20 s sem confirmação, sem entrega de dado corrompido.
+ Este relatório descreve o projeto, a implementação e a avaliação experimental de um enlace de dados unidirecional e confiável entre duas placas ESP32, com comunicação exclusivamente por módulos de rádio de 433 MHz (FS1000A e MX-RM-5V) e sem bibliotecas de rádio. A camada física foi construída sobre a UART da ESP32 a 1200 bit/s, com sinal invertido, preâmbulo de sincronização, delimitador 0x7E e codificação Manchester. Os dados trafegam em quadros com os campos FLAG, TYPE, SEQ, LEN, DATA e FCS, limitados a 21 bytes. A detecção de erros utiliza CRC-8 com polinômio gerador x⁸ + x² + x + 1, e o controle de erros utiliza \textit{Selective Repeat ARQ} com janela de até 8 quadros e confirmações com mapa de bits. O receptor exibe os textos recebidos em um LCD 16x2 e repassa as imagens ao computador. Em uma bateria de 36 ensaios, 33 mensagens foram entregues sem nenhum erro, incluindo seis imagens cujo resumo SHA-256 coincidiu com o do arquivo original, com distâncias de até 2 m e sob interferência real. Em validação posterior, com uma placa em cada computador, 19 de 21 mensagens foram entregues sem erro, com falhas apenas a 2 m, e uma imagem de 2866 bytes foi transferida íntegra a 1,8 m. Após o diagnóstico de perda de sensibilidade em um dos receptores, corrigida pelo reajuste da sua sintonia, e a adoção da versão 4.2 do transmissor, o enlace entregou duas de três mensagens a 3,4 m, sem nenhuma retransmissão. O cálculo do CRC consumiu cerca de 8 µs por quadro, e a janela de 8 quadros reduziu em 56\% o tempo de entrega em relação ao \textit{Stop-and-Wait}. As três mensagens não entregues foram abandonadas pelo transmissor após 20 s sem confirmação, sem entrega de dado corrompido.
 
  \vspace{\onelineskip}
  \noindent\textbf{Palavras-chave}: RF 433 MHz; ESP32; CRC-8; Selective Repeat; controle de erros; enlace de dados.
@@ -224,8 +224,8 @@ A Tabela 3 relaciona os componentes utilizados nas duas placas.
   LCD 16x2 paralelo (controlador HD44780) & 1 & Somente na placa B \\ \hline
   Potenciômetro de 10 kΩ & 1 & Ajuste de contraste do LCD \\ \hline
   Resistor de 10 kΩ & 6 & Três por placa, no divisor de tensão \\ \hline
-  Fio rígido de 17,3 cm & 3 & Antenas dos dois FS1000A e do MX-RM-5V da placa A \\ \hline
-  Antena helicoidal do módulo & 1 & Fornecida com o MX-RM-5V; usada no receptor da placa B \\ \hline
+  Fio rígido de 17,3 cm & 4 & Antenas dos módulos; a quarta substituiu a antena helicoidal em 25/11 \\ \hline
+  Antena helicoidal do módulo & 1 & Fornecida com um dos MX-RM-5V; usada até 24/11 (Seção 4.8) \\ \hline
   \textit{Protoboard} de 830 furos & 2 & Uma por placa \\ \hline
   \textit{Jumpers} macho-macho & cerca de 30 & Ligações \\ \hline
   \textit{Jumpers} macho-fêmea & 3 & Ligação do potenciômetro, cujos terminais não encaixam diretamente na \textit{protoboard} \\ \hline
@@ -265,7 +265,7 @@ Três das antenas são fios retos de um quarto do comprimento de onda, soldados 
   \frac{\lambda}{4} = \frac{c}{4f} = \frac{3 \times 10^{8}}{4 \times 433{,}92 \times 10^{6}} \approx 17{,}3\ \text{cm}
 \end{equation}
 
-No receptor da placa B, foi usada durante todo o projeto a antena helicoidal fornecida com o módulo: um trecho reto junto ao terminal ANT seguido de uma mola, dimensionada pelo fabricante para 433 MHz. O enrolamento reduz o tamanho da antena, ao custo de menor eficiência que a de um fio reto de um quarto de onda; por isso, a mola foi mantida sem alterações, na vertical e afastada dos demais componentes.
+Até 24/11, um dos receptores, instalado na placa A durante as campanhas de 21 e 23/11, usou a antena helicoidal fornecida com o módulo: um trecho reto junto ao terminal ANT seguido de uma mola, dimensionada pelo fabricante para 433 MHz. O enrolamento reduz o tamanho da antena, ao custo de menor eficiência que a de um fio reto de um quarto de onda. Em 25/11, a mola foi substituída por um fio reto de 17,3 cm, durante o diagnóstico descrito na Seção 4.8.
 
 A placa B recebeu ainda o LCD 16x2, operado no modo de 4 bits pela biblioteca LiquidCrystal, com as ligações da Tabela 5. A Figura 2 reúne essas ligações no esquema elétrico completo de uma placa; no esquema, R2 aparece como os dois resistores de 10 kΩ em série (R2a e R2b). As Figuras 3 a 6 mostram a montagem final.
 
@@ -430,6 +430,8 @@ A Tabela 9 reúne os tempos do protocolo, todos calculados no \textit{firmware} 
   Intervalo entre mensagens & temporizador + 300 & 1417 ms \\ \hline
   Desistência do transmissor & sem confirmação nova & 20 s \\ \hline
   Descarte de mensagem incompleta no receptor & sem quadro válido & 26 s \\ \hline
+  Espera após cada ACK (v4.2) & antes da rajada seguinte & 300 ms \\ \hline
+  Preâmbulo do 1º quadro da rajada (v4.2) & 24 × 8,33 & 200 ms \\ \hline
   \end{tabular}
   \fonte{Elaborado pelos autores (2026).}
 \end{table}
@@ -718,9 +720,35 @@ A vazão útil de 10,9 bytes/s equivale a 87 bit/s, cerca de 7\% da taxa de 1200
 
 O comando /resumo, executado no transmissor ao final da sessão de cerca de 78 minutos, que incluiu as tentativas de alcance acima de 1,7 m, registrou 63 mensagens, 50 entregues e 13 abandonadas, com 896 quadros enviados e 566 retransmissões. Dessas, 495 ocorreram por estouro do temporizador e 71 por lacuna no mapa de bits do ACK. A predominância do \textit{timeout} confirma que, na distância limite, a perda concentra-se nas confirmações que retornam à placa A.
 
+\section{Diagnóstico do receptor, ajuste de sintonia e versão 4.2}
+
+Em 24/11, o enlace passou a funcionar apenas com as placas a menos de 50 cm. O receptor da placa B recebia os quadros e respondia com ACK, mas o ACK não chegava à placa A, que abandonava a mensagem após 20 s. A tensão entre VIN e GND, medida com multímetro nos dois notebooks utilizados, ficou entre 4,75 e 5,05 V, o que descartou a alimentação como causa.
+
+O defeito foi isolado por troca de módulos entre as placas, alterando um componente por vez. Com a troca dos transmissores FS1000A, o comportamento não mudou. Com a troca dos receptores MX-RM-5V, a falha acompanhou o receptor equipado com a antena helicoidal: na placa A, os ACKs deixavam de chegar; na placa B, os quadros de dados passavam a chegar truncados. Movimentar a base da mola alterava o comportamento, e a mola foi substituída por um fio reto de 17,3 cm, sem melhora de alcance. Um módulo do mesmo modelo, emprestado por outro grupo e instalado na mesma posição, funcionou mesmo sem antena. Com o próprio transmissor da placa ativo, a tensão média no pino DATA do receptor suspeito variou entre 1,6 e 2,9 V, indicando que o módulo operava, mas com sensibilidade reduzida para sinais fracos.
+
+O MX-RM-5V possui um componente de sintonia ajustável. Marcada a posição original, o ajuste foi girado em passos de cerca de 1/8 de volta com ferramenta não metálica, com as placas a 1 m e o transmissor enviando o comando /teste 200; em cada posição, observou-se no log do receptor a proporção de quadros aceitos e truncados. O reajuste restabeleceu o alcance de 2 m e, em seguida, permitiu comunicação a cerca de 3,4 m. Na configuração final, esse receptor ficou na placa B.
+
+Na mesma data, o transmissor passou à versão 4.2, com duas alterações apenas de temporização, sem mudança na estrutura do quadro nem nos tipos de quadro: a placa A aguarda 300 ms após cada ACK antes da rajada seguinte, e o primeiro quadro de cada rajada é precedido por 24 bytes de preâmbulo, em vez de 8. As duas medidas atacam a perda do primeiro quadro de cada rajada descrita na Seção 4.5. O receptor permaneceu com o \textit{firmware} da versão 4.1. A Tabela 20 apresenta o ensaio a 3,4 m, feito com uma placa em cada computador e o script coletar\_testes.py.
+
+\begin{table}[H]
+  \centering
+  \caption{Ensaio a 3,4 m com o transmissor na versão 4.2 (mensagem de 201 bytes, janela 4)}
+  \small\renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|>{\raggedright\arraybackslash}m{1.78cm}|>{\centering\arraybackslash}m{2.17cm}|>{\centering\arraybackslash}m{1.16cm}|>{\centering\arraybackslash}m{1.47cm}|>{\centering\arraybackslash}m{2.94cm}|>{\centering\arraybackslash}m{1.32cm}|>{\centering\arraybackslash}m{2.01cm}|}
+  \hline
+  \rowcolor{gray!22}\textbf{Repetição} & \textbf{Resultado} & \textbf{Tempo} & \textbf{Quadros enviados} & \textbf{Retransmissões} & \textbf{ACKs recebidos} & \textbf{Quadros aceitos no receptor} \\ \hline
+  1 & Entregue, íntegra & 12,1 s & 14 & 0 & 5 & 14 \\ \hline
+  2 & Entregue, íntegra & 12,1 s & 14 & 0 & 5 & 14 \\ \hline
+  3 & Abandonada & 20,2 s & 28 & 24 (por \textit{timeout}) & 0 & 4, mais 24 repetidos \\ \hline
+  \end{tabular}
+  \fonte{Elaborado pelos autores a partir dos \textit{logs} de 25/11/2026.}
+\end{table}
+
+As duas mensagens entregues não exigiram nenhuma retransmissão, enquanto na versão 4.1, a 1 m e 1,5 m, cada mensagem exigiu em média de 6 a 7 retransmissões, quase todas do primeiro quadro de cada rajada. O tempo medido coincide com o previsto: aos 10,2 s calculados pelo modelo da Seção 4.2 para a versão 4.1 somam-se quatro esperas de 300 ms e cinco preâmbulos estendidos de 133 ms, cerca de 1,9 s, o que resulta em 12,1 s. Na terceira repetição, o receptor aceitou os quatro primeiros quadros, recebeu sem erro as 24 retransmissões e respondeu com sete ACKs, nenhum dos quais chegou à placa A. A falha ocorreu, portanto, no sentido de retorno, cujo receptor, instalado na placa A, não passou pelo reajuste de sintonia, o que repete o padrão observado em 21/11 e em 24/11. Por terem sido feitas apenas duas entregas a essa distância, e com o receptor recém-ajustado, o ganho não pode ser atribuído separadamente à versão 4.2 e ao reajuste de sintonia.
+
 \section{Problemas encontrados durante o desenvolvimento}
 
-A Tabela 20 registra os principais problemas encontrados ao longo do desenvolvimento, suas causas e as soluções adotadas. Os problemas concentraram-se na camada física, e não na lógica do protocolo.
+A Tabela 21 registra os principais problemas encontrados ao longo do desenvolvimento, suas causas e as soluções adotadas. Os problemas concentraram-se na camada física, e não na lógica do protocolo.
 
 \begin{table}[H]
   \centering
@@ -735,13 +763,14 @@ A Tabela 20 registra os principais problemas encontrados ao longo do desenvolvim
   Falhas intermitentes com uma placa no desktop & Ruído da fonte e das portas USB próximo ao receptor & Alimentação por notebook com bateria e placas afastadas \\ \hline
   Ruído interpretado como início de quadro & Saída aleatória do receptor ocioso & Manchester e limite LEN ≤ 16 \\ \hline
   Saída do receptor em 5 V & Alimentação de 5 V exigida pelo MX-RM-5V & Divisor de tensão para 3,3 V \\ \hline
+  Alcance reduzido a menos de 50 cm em 24/11 & Receptor com sintonia deslocada e antena helicoidal com mau contato & Fio reto no lugar da mola e reajuste da sintonia \\ \hline
   \end{tabular}
   \fonte{Elaborado pelos autores (2026).}
 \end{table}
 
 \section{Atendimento aos critérios do enunciado}
 
-A Tabela 21 relaciona os requisitos e critérios de aceitação do enunciado às seções deste relatório que demonstram o seu atendimento.
+A Tabela 22 relaciona os requisitos e critérios de aceitação do enunciado às seções deste relatório que demonstram o seu atendimento.
 
 \begin{table}[H]
   \centering
@@ -756,23 +785,23 @@ A Tabela 21 relaciona os requisitos e critérios de aceitação do enunciado às
   Controle de erros por Selective Repeat & Janela de até 8 e ACK com mapa de bits & 3.6 e 4.5 \\ \hline
   Texto no LCD do receptor & LCD 16x2 com paginação & 3.7 e 4.7 \\ \hline
   Imagem reconstruída no laptop receptor & 8 de 8 imagens íntegras, 2 com dois computadores & 4.6 e 4.7 \\ \hline
-  Distância superior a 1 m & Entregas até 2 m; estável até 1,5 m com dois computadores & 4.1 e 4.7 \\ \hline
+  Distância superior a 1 m & Entregas até 3,4 m (2 de 3, após o ajuste de sintonia) & 4.1, 4.7 e 4.8 \\ \hline
   Funcionamento com ruído & 2 de 3 entregas íntegras com interferência & 4.3 \\ \hline
   Comunicação apenas por rádio & Sem condutor de dados entre as placas & 3.8 e 4.7 \\ \hline
-  Dado em perfeito estado & 54 de 54 entregas sem erro & 4.1 a 4.7 \\ \hline
+  Dado em perfeito estado & 56 de 56 entregas sem erro & 4.1 a 4.8 \\ \hline
   \end{tabular}
   \fonte{Elaborado pelos autores (2026).}
 \end{table}
 
 
 \chapter{CONSIDERAÇÕES FINAIS}
-O enlace implementado atendeu aos critérios de aceitação do enunciado. A comunicação ocorreu exclusivamente por rádio, alcançou 2 m, manteve-se operante sob interferência real e entregou 33 mensagens sem nenhum erro, incluindo seis imagens idênticas à original. Com uma placa em cada computador, uma imagem de 2866 bytes foi transferida a 1,8 m com resumo SHA-256 idêntico ao do arquivo enviado, e a repetição dos ensaios nessa configuração entregou 19 de 21 mensagens sem erro. Nos três casos em que o canal se degradou além do recuperável, o protocolo abandonou a mensagem em vez de entregar dado corrompido.
+O enlace implementado atendeu aos critérios de aceitação do enunciado. A comunicação ocorreu exclusivamente por rádio, alcançou 2 m, manteve-se operante sob interferência real e entregou 33 mensagens sem nenhum erro, incluindo seis imagens idênticas à original. Com uma placa em cada computador, uma imagem de 2866 bytes foi transferida a 1,8 m com resumo SHA-256 idêntico ao do arquivo enviado, e a repetição dos ensaios nessa configuração entregou 19 de 21 mensagens sem erro. Após o reajuste da sintonia de um receptor e a adoção da versão 4.2 do transmissor, duas mensagens foram entregues a 3,4 m sem retransmissões. Nos casos em que o canal se degradou além do recuperável, o protocolo abandonou a mensagem em vez de entregar dado corrompido.
 
 O CRC-8 rejeitou todos os quadros corrompidos que chegaram ao receptor, a um custo de cerca de 8 µs por quadro, e a codificação Manchester eliminou a maior parte dos erros reais do canal antes da verificação. O \textit{Selective Repeat} com janela 8 reduziu o tempo de entrega em 56\% em relação ao \textit{Stop-and-Wait}, ao distribuir a espera pela confirmação entre vários quadros e retransmitir somente os quadros perdidos.
 
 A principal dificuldade residiu na camada física: módulos de baixo custo, canal \textit{half-duplex} e receptores sensíveis ao próprio transmissor e ao ruído da alimentação. Entre as limitações, destacam-se a vazão útil de cerca de 20 bytes/s no melhor caso, consequência da prioridade dada ao alcance, e o número reduzido de repetições por cenário, suficiente para caracterizar o comportamento, mas não para estimar taxas com precisão estatística.
 
-Como trabalhos futuros, propõem-se a inserção de um intervalo de cerca de 300 ms após cada ACK antes da rajada seguinte, para mitigar a perda do primeiro quadro identificada na Seção 4.5, a alimentação do transmissor com tensão superior a 5 V, admitida pelo FS1000A, e a repetição dos ensaios com maior número de amostras em cada distância.
+A perda do primeiro quadro de cada rajada, identificada na Seção 4.5, levou à versão 4.2 do transmissor, que nas entregas a 3,4 m não exigiu retransmissões. O diagnóstico da Seção 4.8 mostrou ainda que a sintonia do receptor super-regenerativo pode se deslocar com o manuseio e reduzir o alcance a poucos centímetros. Como trabalhos futuros, propõem-se repetir com a versão 4.2 a bateria completa de distância e janela, alimentar o transmissor com tensão superior a 5 V, admitida pelo FS1000A, fixar o componente de sintonia após o ajuste e ampliar o número de amostras em cada distância.
 
 
 \postextual
@@ -788,7 +817,7 @@ Como trabalhos futuros, propõem-se a inserção de um intervalo de cerca de 300
 
 \begin{apendicesenv}
 \chapter{Trechos do código-fonte}
-Os trechos a seguir foram extraídos do \textit{firmware} final (versão 4.1), com a remoção dos comandos de registro no Monitor Serial, de contadores estatísticos e de tratamentos secundários, como a temporização entre bytes e a confirmação do quadro END. Os arquivos completos estão nos diretórios firmware/tx e firmware/rx do repositório; o arquivo protocolo\_rf.h é idêntico nas duas placas.
+Os trechos a seguir foram extraídos do \textit{firmware} final (versão 4.2), com a remoção dos comandos de registro no Monitor Serial, de contadores estatísticos e de tratamentos secundários, como a temporização entre bytes e a confirmação do quadro END. Os arquivos completos estão nos diretórios firmware/tx e firmware/rx do repositório; o arquivo protocolo\_rf.h é idêntico nas duas placas. Na versão 4.2, apenas o transmissor foi alterado: o ACK recebido define liberadoAposMs como o instante atual mais 300 ms, e enviaQuadro informa a montaLinha se o quadro inicia uma rajada, isto é, se a placa ficou mais de 150 ms sem transmitir.
 
 \section{Cálculo e verificação do CRC-8}
 
@@ -844,10 +873,16 @@ inline uint8_t codificaNibble(uint8_t n) {
   return saida;
 }
 
+// v4.2: o primeiro quadro de cada rajada recebe preambulo maior.
+inline uint8_t preambuloDe(const Quadro &q, bool inicioRajada) {
+  if (q.tipo == ACK) return PREAMBULO_ACK_QTD;                       // 48
+  return inicioRajada ? PREAMBULO_RAJADA_QTD : PREAMBULO_QTD;       // 24 ou 8
+}
+
 // Linha = preambulo + FLAG + (TYPE SEQ LEN DATA FCS) em Manchester.
-inline size_t montaLinha(const Quadro &q, uint8_t *saida) {
+inline size_t montaLinha(const Quadro &q, uint8_t *saida, bool inicioRajada = false) {
   size_t n = 0;
-  const uint8_t pre = (q.tipo == ACK) ? PREAMBULO_ACK_QTD : PREAMBULO_QTD;  // 48 ou 8
+  const uint8_t pre = preambuloDe(q, inicioRajada);
   for (uint8_t i = 0; i < pre; ++i) saida[n++] = PREAMBULO_BYTE;
   saida[n++] = FLAG;
   uint8_t campos[3 + MAX_DADOS + 1], total = 0;
@@ -890,6 +925,7 @@ void executaSelectiveRepeat() {
   if (!ativo) return;
   if (base == totalQuadros) { finalizaMensagem(true); return; }
   const uint32_t agora = millis();
+  if (int32_t(liberadoAposMs - agora) > 0) return;   // v4.2: 300 ms apos cada ACK
 
   // 1) Retransmissao seletiva: quadro apontado pelo ACK ou com timeout.
   for (uint32_t i = base; i < proximo; ++i) {

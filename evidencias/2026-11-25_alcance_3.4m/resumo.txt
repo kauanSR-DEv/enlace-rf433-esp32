@@ -1,0 +1,13 @@
+Bateria de testes - 25/11/2026 15:58 - v4 Selective Repeat
+
+RESUMO POR CENARIO (media dos testes entregues e integros)
+cenario         distancia_m  janela  erro_sim_pct  perda_sim_pct  repeticoes  sucessos  tempo_medio_s  bytes_por_s_medio  retransmissoes_media  rx_erros_FCS_media
+--------------  -----------  ------  ------------  -------------  ----------  --------  -------------  -----------------  --------------------  ------------------
+distancia_3.4m  3,40         4       0             0              3           2         12,10          16,60              0,00                  0,00              
+
+TODOS OS TESTES
+id  cenario         repeticao  resultado  integridade_rx  tempo_ms  bytes_por_s  retransmissoes  rx_erros_FCS  observacao
+--  --------------  ---------  ---------  --------------  --------  -----------  --------------  ------------  ----------
+1   distancia_3.4m  1          ENTREGUE   OK              12095     16,60        0               0                       
+2   distancia_3.4m  2          ENTREGUE   OK              12096     16,60        0               0                       
+3   distancia_3.4m  3          FALHA      NAO_RECEBIDO    20171     10,00        24                                      

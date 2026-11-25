@@ -28,6 +28,7 @@ Grupos de teste:
     erro       /erro 30 e /perda 30 a 1 m
     ruido      /teste 500 a 1 m com ruido real (mao na antena / controle remoto)
     imagem     imagem de teste sem erro e com /erro 30
+    alcance    /teste 200 a 3,4 m (janela 4); so roda se pedido em --grupos
 
 Saida final (modo unico ou juntar):
     resultados.csv            uma linha por teste (abre direto no Excel)
@@ -59,6 +60,12 @@ GRUPOS = {
             {"nome": "distancia_1.0m", "distancia": 1.0, "janela": 4, "acao": "/teste 200"},
             {"nome": "distancia_1.5m", "distancia": 1.5, "janela": 4, "acao": "/teste 200"},
             {"nome": "distancia_2.0m", "distancia": 2.0, "janela": 4, "acao": "/teste 200"},
+        ],
+    },
+    "alcance": {
+        "titulo": "Alcance maximo (apos o ajuste de sintonia do receptor)",
+        "cenarios": [
+            {"nome": "distancia_3.4m", "distancia": 3.4, "janela": 4, "acao": "/teste 200"},
         ],
     },
     "janela": {
@@ -708,7 +715,7 @@ def main():
     ap.add_argument("--pasta-rx", help="(juntar) pasta RX_... gerada no notebook B")
     ap.add_argument("--rapido", action="store_true", help="1 repeticao por cenario (padrao: 3)")
     ap.add_argument("--repeticoes", type=int, default=None)
-    ap.add_argument("--grupos", default=",".join(GRUPOS), help="ex.: distancia,erro,imagem")
+    ap.add_argument("--grupos", default=",".join(g for g in GRUPOS if g != "alcance"), help="ex.: distancia,erro,imagem")
     ap.add_argument("--imagem", default=os.path.join(os.path.dirname(os.path.abspath(__file__)), "teste_32x32.png"))
     ap.add_argument("--saida", default="evidencias")
     args = ap.parse_args()

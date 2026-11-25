@@ -109,8 +109,10 @@ Calculados em `protocolo_rf.h` a partir da taxa (mudar `BAUD` ajusta tudo):
 | Intervalo entre mensagens | timeout + 300 | 1417 ms |
 | TX desiste | sem confirmação nova | 20 s |
 | RX descarta mensagem incompleta | sem quadro válido | 26 s |
+| Espera do TX após cada ACK (v4.2) | antes da rajada seguinte | 300 ms |
+| Preâmbulo do 1º quadro da rajada (v4.2) | 24 × 8,33 ms | 200 ms |
 
-O silêncio antes do ACK precisa ser maior que o intervalo entre dois quadros da mesma rajada; senão o RX responderia no meio dela. Os 300 ms extras e o preâmbulo de 48 bytes no ACK existem porque o receptor da placa A, a centímetros do próprio transmissor, fica "ofuscado" logo depois de transmitir e demora para voltar a ouvir um sinal fraco.
+O silêncio antes do ACK precisa ser maior que o intervalo entre dois quadros da mesma rajada; senão o RX responderia no meio dela. Os 300 ms extras e o preâmbulo de 48 bytes no ACK existem porque o receptor da placa A, a centímetros do próprio transmissor, fica "ofuscado" logo depois de transmitir e demora para voltar a ouvir um sinal fraco. A v4.2 aplica a mesma ideia no outro sentido: depois de receber um ACK, o TX espera 300 ms e manda o primeiro quadro da rajada com 24 bytes de preâmbulo, porque agora é o receptor da placa B que acabou de transmitir.
 
 ## 5. Selective Repeat
 

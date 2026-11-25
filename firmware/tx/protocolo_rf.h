@@ -1,5 +1,5 @@
 /*
- * protocolo_rf.h  (v4.1 - Selective Repeat) - Partes do protocolo que sao IGUAIS no TX e no RX.
+ * protocolo_rf.h  (v4.2 - Selective Repeat) - Partes do protocolo que sao IGUAIS no TX e no RX.
  *
  * Projeto final de Transmissao e Comunicacao de Dados (IFMT)
  * Enlace RF 433 MHz entre duas ESP32, sem biblioteca de radio.
@@ -39,6 +39,9 @@ constexpr uint8_t  PREAMBULO_QTD  = 8;   // 8 bytes antes de cada DATA/END para 
 // "ofuscado" pelo proprio transmissor (a poucos cm) e precisa de tempo para voltar
 // a ouvir um sinal fraco vindo de longe.
 constexpr uint8_t  PREAMBULO_ACK_QTD = 48;   // v4.1: era 24
+// v4.2: preambulo maior no primeiro quadro de cada rajada, que chega quando o receptor
+// ainda esta com o ganho ajustado para o silencio ou para o proprio ACK.
+constexpr uint8_t  PREAMBULO_RAJADA_QTD = 24;
 // Tempo extra de silencio antes do ACK, para esse receptor se recuperar.
 constexpr uint32_t RECUPERACAO_RX_MS = 300;   // v4.1: era 100
 constexpr uint8_t  MAX_DADOS = 16;       // campo DATA: 0 a 16 bytes
@@ -149,8 +152,12 @@ inline void dadosTexto(const Quadro &q, char *saida, size_t cap) {
   saida[n] = 0;
 }
 // Bytes que o quadro ocupa na linha (preambulo + FLAG + Manchester) e o tempo no ar.
-inline size_t bytesNaLinha(const Quadro &q) {
-  return (q.tipo == ACK ? PREAMBULO_ACK_QTD : PREAMBULO_QTD) + 1 + 2 * (4 + q.len);
+inline uint8_t preambuloDe(const Quadro &q, bool inicioRajada) {
+  if (q.tipo == ACK) return PREAMBULO_ACK_QTD;
+  return inicioRajada ? PREAMBULO_RAJADA_QTD : PREAMBULO_QTD;
+}
+inline size_t bytesNaLinha(const Quadro &q, bool inicioRajada = false) {
+  return preambuloDe(q, inicioRajada) + 1 + 2 * (4 + q.len);
 }
 
 // Tamanho maximo de um quadro na linha (preambulo + FLAG + 2 bytes por byte do quadro).
@@ -158,9 +165,9 @@ constexpr size_t MAX_PREAMBULO = PREAMBULO_ACK_QTD > PREAMBULO_QTD ? PREAMBULO_A
 constexpr size_t MAX_LINHA = MAX_PREAMBULO + 1 + 2 * (3 + MAX_DADOS + 1);
 
 // Monta os bytes que vao para a UART. Retorna quantos bytes foram escritos.
-inline size_t montaLinha(const Quadro &q, uint8_t *saida) {
+inline size_t montaLinha(const Quadro &q, uint8_t *saida, bool inicioRajada = false) {
   size_t n = 0;
-  const uint8_t preambulo = (q.tipo == ACK) ? PREAMBULO_ACK_QTD : PREAMBULO_QTD;
+  const uint8_t preambulo = preambuloDe(q, inicioRajada);
   for (uint8_t i = 0; i < preambulo; ++i) saida[n++] = PREAMBULO_BYTE;
   saida[n++] = FLAG;
   uint8_t campos[3 + MAX_DADOS + 1];

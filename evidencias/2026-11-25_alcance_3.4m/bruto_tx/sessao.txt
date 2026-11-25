@@ -1,0 +1,10 @@
+Data: 25/11/2026 15:49
+Modo: tx (dois computadores)
+Porta TX: COM5
+Porta RX: -
+Versao: v4 Selective Repeat
+STATUS TX: STATUS: ativo=0 base=0 proximo=4 total=14 | Selective Repeat janela=4 erro=0% perda=0% | baud=1200 timeout=1117 ms | ruido_descartado=25
+STATUS RX: (no outro notebook)
+Repeticoes: 3
+Grupos: alcance
+Imagem: -

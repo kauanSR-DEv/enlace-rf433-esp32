@@ -78,7 +78,7 @@
 <polyline points='80,620 80,530' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
 <polyline points='70,542 80,530 90,542' fill='none' stroke='#555' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
 <text x='68' y='570' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='normal' fill='#555'>antena</text>
-<text x='68' y='586' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#555'>17,3 cm*</text>
+<text x='68' y='586' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='12' text-anchor='end' font-weight='bold' fill='#555'>17,3 cm</text>
 <polyline points='340,600 405,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
 <polyline points='405,600 410.0,592 420.0,608 430.0,592 440.0,608 450.0,592 460.0,608 465,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
 <polyline points='465,600 565,600' fill='none' stroke='#1f4e8c' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'/>
@@ -179,5 +179,5 @@
 <polyline points='67,898 73,898' fill='none' stroke='#222222' stroke-width='2.5' stroke-linejoin='round' stroke-linecap='round'/>
 <text x='95' y='876' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>GND comum a todos os componentes da placa. 3,3 V: nível lógico da ESP32 (regulador interno); não há linha externa de 3,3 V.</text>
 <text x='95' y='904' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>Divisor na entrada D34: V = 5 V × R2 / (R1 + R2), com R2 = R2a + R2b = 20 kΩ: 5 V × 20 kΩ / 30 kΩ ≈ 3,33 V.</text>
-<text x='95' y='926' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>UART2 a 1200 bit/s com sinal invertido: D25 transmite (TX2), D34 recebe (RX2). Antenas: fio reto de λ/4 ≈ 17,3 cm. *Placa B: antena helicoidal do módulo.</text>
+<text x='95' y='926' font-family='Liberation Sans, Arial, Helvetica, sans-serif' font-size='13' text-anchor='start' font-weight='normal' fill='#222'>UART2 a 1200 bit/s com sinal invertido: D25 transmite (TX2), D34 recebe (RX2). Antenas: fio reto de λ/4 ≈ 17,3 cm.</text>
 </svg>

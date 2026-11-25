@@ -1,0 +1,2 @@
+﻿cenario;distancia_m;janela;erro_sim_pct;perda_sim_pct;repeticoes;sucessos;tempo_medio_s;bytes_por_s_medio;retransmissoes_media;rx_erros_FCS_media
+distancia_3.4m;3,40;4;0;0;3;2;12,10;16,60;0,00;0,00

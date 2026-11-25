@@ -18,7 +18,7 @@ Professor: Ruy de Oliveira · Equipe: Kauan Santos Rondon, Luis Fernando Amorim 
    - [3.1 Montagem](#31-montagem) · [3.2 Quadro e tempos](#32-quadro-e-tempos) · [3.3 Cálculo do FCS (CRC-8)](#33-cálculo-do-fcs-crc-8) · [3.4 Camada física](#34-camada-física) · [3.5 Selective Repeat](#35-selective-repeat) · [3.6 Firmware e comandos](#36-firmware-e-comandos)
 4. [Como reproduzir](#4-como-reproduzir)
 5. [Testes e validação](#5-testes-e-validação)
-   - [5.1 Resultados da bancada](#51-resultados-da-bancada) · [5.2 Logs do Monitor Serial](#52-logs-do-monitor-serial) · [5.3 Imagem reconstruída](#53-imagem-reconstruída) · [5.4 Simulador](#54-simulador) · [5.5 Dois computadores](#55-ensaios-com-dois-computadores-2311)
+   - [5.1 Resultados da bancada](#51-resultados-da-bancada) · [5.2 Logs do Monitor Serial](#52-logs-do-monitor-serial) · [5.3 Imagem reconstruída](#53-imagem-reconstruída) · [5.4 Simulador](#54-simulador) · [5.5 Dois computadores](#55-ensaios-com-dois-computadores-2311) · [5.6 Sintonia, v4.2 e 3,4 m](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511)
 6. [Problemas encontrados e decisões de projeto](#6-problemas-encontrados-e-decisões-de-projeto)
 7. [Estrutura do repositório](#7-estrutura-do-repositório)
 8. [Referências](#8-referências)
@@ -51,19 +51,19 @@ flowchart LR
 
 ## 2. Resultados e métricas
 
-Bateria de 36 testes em 21/11/2026 e bateria de 21 testes com uma placa em cada computador em 23/11/2026, 3 repetições por cenário. Detalhes nas Seções [5.1](#51-resultados-da-bancada) e [5.5](#55-ensaios-com-dois-computadores-2311).
+Bateria de 36 testes em 21/11/2026, bateria de 21 testes com uma placa em cada computador em 23/11/2026 e ensaio de alcance a 3,4 m em 25/11/2026, 3 repetições por cenário. Detalhes nas Seções [5.1](#51-resultados-da-bancada), [5.5](#55-ensaios-com-dois-computadores-2311) e [5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511).
 
 | Indicador | Resultado |
 |---|---|
-| Mensagens entregues | **33 de 36** em 21/11 · **19 de 21** com dois computadores em 23/11 |
+| Mensagens entregues | **33 de 36** em 21/11 · **19 de 21** com dois computadores em 23/11 · **2 de 3** a 3,4 m em 25/11 |
 | Mensagens entregues com erro | **0** |
 | Imagens com SHA-256 igual ao original | **8 de 8** (6 em 21/11 + 2 com dois computadores a 1,8 m, até 2866 bytes) |
-| Maior distância testada | **2 m**, 3 de 3 entregues |
+| Maior distância com entrega | **3,4 m**, 2 de 3, em 12,1 s e **sem retransmissões** (TX v4.2, após ajuste de sintonia do receptor) |
 | Quadros com erro descartados | 57 pelo CRC-8 · 186 pela decodificação Manchester |
 | Tempo do CRC-8 na ESP32 | **8 µs** por quadro (mediana de 1252 medições; `/bench`: 7,79 µs em 10 000 repetições) |
 | Selective Repeat (janela 8) × Stop-and-Wait | **56% mais rápido** em 21/11 (18,1 s × 41,5 s) · **67%** com dois computadores (12,7 s × 38,9 s) |
 
-Todas as falhas (3 em 21/11, 2 a 2 m em 23/11) foram abandonadas pelo transmissor depois de 20 s sem confirmação. O protocolo nunca entregou dado errado: **54 de 54** entregas chegaram idênticas ao enviado.
+Todas as falhas (3 em 21/11, 2 a 2 m em 23/11, 1 a 3,4 m em 25/11) foram abandonadas pelo transmissor depois de 20 s sem confirmação. O protocolo nunca entregou dado errado: **56 de 56** entregas chegaram idênticas ao enviado.
 
 ### Requisitos do enunciado
 
@@ -77,10 +77,10 @@ Todas as falhas (3 em 21/11, 2 a 2 m em 23/11) foram abandonadas pelo transmisso
 | Controle de erros: **Selective Repeat** (3 pts) | ✅ ACK com mapa de bits | [Seção 3.5](#35-selective-repeat) |
 | LCD no receptor mostrando o texto | ✅ | [Seção 5.5](#55-ensaios-com-dois-computadores-2311) |
 | Troca de texto e imagens entre os laptops | ✅ uma placa em cada notebook | [Seções 5.3](#53-imagem-reconstruída) e [5.5](#55-ensaios-com-dois-computadores-2311) |
-| Comunicação a mais de 1 m | ✅ até 2 m; estável até 1,5 m com dois computadores | [Seções 5.1.1](#511-distância) e [5.5](#55-ensaios-com-dois-computadores-2311) |
+| Comunicação a mais de 1 m | ✅ até 3,4 m (2 de 3, após o ajuste de sintonia); estável até 1,5 m antes do ajuste | [Seções 5.1.1](#511-distância), [5.5](#55-ensaios-com-dois-computadores-2311) e [5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511) |
 | Funciona com ruído | ✅ celular encostado no receptor | [Seção 5.1.3](#513-erros-perdas-e-ruído) |
 | Comunicação apenas via RF | ✅ nenhum fio de dados entre as placas | [Seção 1](#1-visão-geral) |
-| Dado chega em perfeito estado | ✅ 54 de 54 entregas sem erro | [Seções 5.1](#51-resultados-da-bancada) e [5.5](#55-ensaios-com-dois-computadores-2311) |
+| Dado chega em perfeito estado | ✅ 56 de 56 entregas sem erro | [Seções 5.1](#51-resultados-da-bancada), [5.5](#55-ensaios-com-dois-computadores-2311) e [5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511) |
 | Código no GitHub | ✅ | [`firmware/`](firmware/) |
 | Documento completo | ✅ | esta página + [relatório em PDF](docs/relatorio/Relatorio_Enlace_RF433_ABNT.pdf) |
 | Descrição do cálculo do FCS | ✅ | [Seção 3.3](#33-cálculo-do-fcs-crc-8) |
@@ -119,8 +119,7 @@ Circuito completo de uma placa, fio a fio. O rádio é igual nas placas A e B; o
 | LCD 16x2 paralelo (HD44780) | 1 | Só na placa B |
 | Potenciômetro 10 kΩ (B10K) | 1 | Contraste do LCD |
 | Resistor 10 kΩ | 6 | 3 por placa (divisor de tensão) |
-| Fio rígido de 17,3 cm | 3 | Antenas dos dois FS1000A e do MX-RM-5V da placa A |
-| Antena helicoidal (mola) do módulo | 1 | Fornecida com o MX-RM-5V; usada no receptor da placa B |
+| Fio rígido de 17,3 cm | 4 | Antenas dos quatro módulos |
 | Protoboard de 830 furos | 2 | |
 | Jumpers macho-macho | ~30 | |
 | Jumpers macho-fêmea | 3 | Ligação do potenciômetro, cujos terminais não encaixam na protoboard |
@@ -158,13 +157,14 @@ DATA do receptor ── 10 kΩ ──┬── D34          V(D34) = 5 V × 20 k
                            GND
 ```
 
-Antenas: fio reto de ¼ de onda soldado no furo ANT do módulo, λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**, em três dos quatro módulos. O receptor da placa B usou, durante todo o projeto, a antena helicoidal (mola) que veio com o módulo: um trecho reto junto ao ANT seguido da mola, dimensionada pelo fabricante para 433 MHz. Ela é mais compacta e um pouco menos eficiente que o fio reto, e foi mantida sem esticar. Nos testes, as antenas ficaram na vertical e paralelas.
+Antenas: fio reto de ¼ de onda soldado no furo ANT do módulo, λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**, nos quatro módulos. Até 24/11, um dos receptores (na placa A durante as baterias de 21 e 23/11) usou a antena helicoidal (mola) que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico da [Seção 5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511). Nos testes, as antenas ficaram na vertical e paralelas.
 
 #### Cuidados que fizeram diferença na bancada
 
 - Alimente as placas por notebook (de preferência na bateria) ou carregador de tomada. Um desktop ao lado da placa derrubou o alcance para 60–70 cm.
 - Deixe as placas a pelo menos 30 cm do computador e o celular longe do receptor.
 - Aperte bem os módulos na protoboard: os pinos são curtos e um mau contato causa falhas intermitentes.
+- Se o alcance cair para poucos centímetros sem outra causa, o receptor pode estar dessintonizado: veja [Sintonia do receptor](docs/montagem.md#sintonia-do-receptor).
 
 Detalhes: [`docs/montagem.md`](docs/montagem.md).
 
@@ -212,6 +212,8 @@ Calculados no código a partir da taxa (arquivo `protocolo_rf.h`):
 | Intervalo entre mensagens | timeout + 300 | 1417 ms |
 | TX desiste | sem confirmação nova | 20 s |
 | RX descarta mensagem incompleta | sem quadro válido | 26 s |
+| Espera do TX após cada ACK (v4.2) | antes da rajada seguinte | 300 ms |
+| Preâmbulo do 1º quadro da rajada (v4.2) | 24 × 8,33 ms | 200 ms |
 
 ### 3.3 Cálculo do FCS (CRC-8)
 
@@ -387,10 +389,10 @@ cd enlace-rf433-esp32
 
 1. Monte as duas placas ([Seção 3.1](#31-montagem)).
 2. Grave `firmware/tx/tx.ino` na placa A e `firmware/rx/rx.ino` na placa B. Cada pasta tem seu `.ino` e o `protocolo_rf.h`. Se a gravação falhar com *"Unable to verify flash chip connection"*, use Upload Speed = 115200.
-3. Abra o Monitor Serial (115200 baud, *Nova linha*) e aperte **EN**. As duas placas devem mostrar:
+3. Abra o Monitor Serial (115200 baud, *Nova linha*) e aperte **EN**. As duas placas devem mostrar (a v4.2 só mudou o TX):
 
 ```
-TX pronto (v4.1) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=4 | timeout=1117 ms
+TX pronto (v4.2) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=4 | timeout=1117 ms
 RX pronto (v4.1) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=8 | ACK apos 425 ms de silencio
 ```
 
@@ -417,14 +419,23 @@ py pc/coletar_testes.py --modo tx --tx COM5        # computador A
 py pc/coletar_testes.py --modo juntar --pasta-tx evidencias/TX_... --pasta-rx evidencias/RX_...
 ```
 
-O script pede para posicionar as placas antes de cada distância e grava `resultados.csv`, `resumo_por_cenario.csv`, `resumo.txt`, os logs e as imagens em `evidencias/<data_hora>/`. Opções: `--rapido` (1 repetição) e `--grupos distancia,janela,erro,ruido,imagem`.
+O script pede para posicionar as placas antes de cada distância e grava `resultados.csv`, `resumo_por_cenario.csv`, `resumo.txt`, os logs e as imagens em `evidencias/<data_hora>/`. Opções: `--rapido` (1 repetição) e `--grupos distancia,janela,erro,ruido,imagem,alcance`.
+
+7. **Só o teste de 3,4 m** (grupo `alcance`, 3 repetições, janela 4):
+
+```bash
+py pc/teste_3_4m.py rx COM11          # computador B, primeiro
+py pc/teste_3_4m.py tx COM5           # computador A
+py pc/teste_3_4m.py unico COM5 COM11  # ou as duas placas no mesmo computador
+```
 
 <details>
 <summary><b>Problemas comuns</b></summary>
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| Nada chega, nem de perto | Versões ou taxas diferentes | Conferir a linha `pronto (v4.1) \| RF 1200 bit/s` nas duas |
+| Nada chega, nem de perto | Taxas diferentes | Conferir `RF 1200 bit/s` na linha `pronto` das duas |
+| Alcance de poucos centímetros, com alimentação boa | Receptor dessintonizado | Trocar os receptores entre as placas para achar o defeituoso e [reajustar a sintonia](docs/montagem.md#sintonia-do-receptor) |
 | RX recebe, mas o TX repete o mesmo quadro | ACK não volta: mau contato no receptor da placa A ou no transmissor da placa B, ou ruído perto deles | Apertar os módulos; afastar placas de computadores e celulares |
 | Falhas intermitentes sem mudar nada | Ruído da alimentação (desktop, carregador ruim) | Notebook na bateria ou carregador de tomada de boa qualidade |
 | `ruido_descartado` do TX parado em `/status` | Receptor não entrega nada ao GPIO34 | Conferir 5 V, divisor e o pino DATA |
@@ -672,6 +683,34 @@ Uma placa em cada notebook, como pede o enunciado. Evidências completas em [`ev
 
 Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/resumo` do TX registrou 63 mensagens, 50 entregues e 13 abandonadas, com 566 retransmissões: **495 por *timeout*** e 71 por lacuna no mapa de bits. Na distância limite, o que se perde é o ACK de volta. Nessa montagem o enlace foi estável até ~1,5 m e intermitente a partir de ~1,7 m.
 
+### 5.6 Ajuste de sintonia, versão 4.2 e 3,4 m (24/11 e 25/11)
+
+**Diagnóstico.** Em 24/11 o enlace só funcionava a menos de 50 cm: o RX recebia e respondia, mas o ACK não chegava à placa A. Alimentação medida nos dois notebooks (VIN 4,75–5,05 V) e troca dos FS1000A não mudaram nada. Trocando os MX-RM-5V entre as placas, a falha mudou de lado junto com o receptor da antena de mola. Trocar a mola por fio reto de 17,3 cm não resolveu; um módulo emprestado funcionou na mesma posição até sem antena. Com o TX da própria placa ligado, o DATA desse receptor ficava entre 1,6 e 2,9 V: vivo, mas pouco sensível.
+
+**Ajuste.** O componente de sintonia do MX-RM-5V foi girado em passos de ~1/8 de volta (posição original marcada, chave não metálica, placas a 1 m, `/teste 200`, olhando quadros aceitos × truncados no log do RX). O alcance voltou a 2 m e chegou a **~3,4 m**. Esse receptor ficou na placa B. Passo a passo em [`docs/montagem.md`](docs/montagem.md#sintonia-do-receptor).
+
+**Versão 4.2 (só TX).** Espera de **300 ms após cada ACK** e **preâmbulo de 24 bytes** no primeiro quadro de cada rajada, contra a [perda do primeiro quadro](#515-achado-o-primeiro-quadro-de-cada-rajada-sofre-mais). O quadro não mudou e o RX continua na v4.1. O simulador passa em todos os cenários com a v4.2.
+
+**Ensaio a 3,4 m**, uma placa em cada notebook, `/teste 200` (201 bytes), janela 4 ([evidências](evidencias/2026-11-25_alcance_3.4m/)):
+
+| Rep. | Resultado | Tempo | Envios | Retransmissões | ACKs recebidos | Quadros aceitos no RX |
+|---|---|---|---|---|---|---|
+| 1 | ✅ entregue, íntegra | 12,1 s | 14 | 0 | 5 | 14 |
+| 2 | ✅ entregue, íntegra | 12,1 s | 14 | 0 | 5 | 14 |
+| 3 | ❌ abandonada | 20,2 s | 28 | 24 (timeout) | 0 | 4 + 24 duplicados |
+
+- **Nenhuma retransmissão nas entregas.** Com a v4.1, a 1–1,5 m em 23/11, foram 6 a 7 por mensagem.
+- **Tempo bate com o modelo:** 10,2 s (janela 4, v4.1) + 4 × 300 ms + 5 × 133 ms ≈ 12,1 s; medido 12,10 s.
+- **A falha foi no retorno:** na repetição 3 o RX recebeu tudo sem erro e mandou 7 ACKs; nenhum chegou à placa A, cujo receptor não foi reajustado.
+- Com três repetições e o receptor recém-ajustado, não dá para separar o ganho da v4.2 do ganho da sintonia.
+
+```
+TX> TX pronto (v4.2) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=4 | timeout=1117 ms
+TX> === MENSAGEM ENTREGUE em 12095 ms | envios=14 retransmissoes=0 (por ACK=0, por timeout=0) ACKs=5 ...
+```
+
+Para repetir: `py teste_3_4m.py rx COM11` no computador B e `py teste_3_4m.py tx COM5` no A ([Seção 4](#4-como-reproduzir)).
+
 ---
 
 ## 6. Problemas encontrados e decisões de projeto
@@ -684,8 +723,10 @@ Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/
 | Falhas intermitentes com uma placa no desktop | Ruído da fonte e das portas USB do desktop, perto do receptor | Notebook na bateria e placas afastadas do computador |
 | Ruído confundido com início de quadro | O receptor ocioso entrega bits aleatórios | Manchester (só 16 de 256 valores válidos) e LEN ≤ 16 |
 | Saída do receptor em 5 V | O MX-RM-5V precisa de 5 V e a saída acompanha | Divisor 10 kΩ / 20 kΩ para 3,3 V |
+| Alcance caiu para menos de 50 cm (24/11) | Receptor com sintonia deslocada; antena de mola com mau contato | Fio reto no lugar da mola e reajuste da sintonia: 3,4 m |
+| Primeiro quadro de cada rajada confirmado em 72% das vezes | RX ainda com ganho baixo logo após transmitir o ACK | v4.2: 300 ms após o ACK e preâmbulo maior no início da rajada |
 
-**Limitações:** os testes foram feitos com as duas placas no mesmo notebook (sem fio de dados entre elas); a vazão útil é baixa (~20 bytes/s no melhor caso) porque o projeto priorizou alcance; 3 repetições por cenário mostram o comportamento, mas não dão uma taxa estatística precisa.
+**Limitações:** a bateria completa de distância e janela foi feita com a v4.1; a v4.2 só foi ensaiada a 3,4 m; a vazão útil é baixa (~20 bytes/s no melhor caso) porque o projeto priorizou alcance; 3 repetições por cenário mostram o comportamento, mas não dão uma taxa estatística precisa.
 
 ### Evolução das versões
 
@@ -695,7 +736,8 @@ Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/
 | v3 | 1200 bit/s, preâmbulo de 24 bytes no ACK, 100 ms de silêncio antes do ACK, envio de imagem | Alcance passou de 70–80 cm para ~2 m |
 | v4 | **Selective Repeat**: janela no RX, ACK com mapa de bits, temporizador por quadro | Vale 3 pontos e retransmite menos |
 | v4 + log | Bytes do quadro em hex, FCS recebido × calculado, tempo do CRC, RTT, `/resumo`, `/bench` | Evidências pedidas no enunciado |
-| **v4.1** | ACK com preâmbulo de 48 bytes e 300 ms de silêncio; desistência em 20 s | O ACK de volta era o ponto fraco do enlace |
+| v4.1 | ACK com preâmbulo de 48 bytes e 300 ms de silêncio; desistência em 20 s | O ACK de volta era o ponto fraco do enlace |
+| **v4.2** (só TX) | 300 ms de espera após cada ACK; preâmbulo de 24 bytes no 1º quadro da rajada | Primeiro quadro da rajada se perdia mais; a 3,4 m, 0 retransmissões nas entregas |
 
 Histórico completo: [CHANGELOG.md](CHANGELOG.md).
 
@@ -705,14 +747,15 @@ Histórico completo: [CHANGELOG.md](CHANGELOG.md).
 
 | Pasta | Conteúdo |
 |---|---|
-| [`firmware/tx/`](firmware/tx/) | `tx.ino` + `protocolo_rf.h` (placa A) |
-| [`firmware/rx/`](firmware/rx/) | `rx.ino` + `protocolo_rf.h` (placa B) |
-| [`pc/`](pc/) | `coletar_testes.py`, `enviar_imagem.py`, `receber_imagem.py`, `teste_32x32.png`, `requirements.txt` |
+| [`firmware/tx/`](firmware/tx/) | `tx.ino` + `protocolo_rf.h` (placa A, v4.2) |
+| [`firmware/rx/`](firmware/rx/) | `rx.ino` (v4.1) + `protocolo_rf.h` (placa B) |
+| [`pc/`](pc/) | `coletar_testes.py`, `teste_3_4m.py`, `enviar_imagem.py`, `receber_imagem.py`, `teste_32x32.png`, `requirements.txt` |
 | [`evidencias/2026-11-21_1258/`](evidencias/2026-11-21_1258/) | `resultados.csv`, `resumo_por_cenario.csv`, `resumo.txt`, `sessao.txt`, `logs/` (72), `imagens/` (6) |
 | [`evidencias/2026-11-23_dois_computadores/`](evidencias/2026-11-23_dois_computadores/) | Uma placa em cada notebook: bateria de 21 testes (`bateria/`), fotos, prints, `/resumo`, `/bench`, imagem de 2866 bytes |
+| [`evidencias/2026-11-25_alcance_3.4m/`](evidencias/2026-11-25_alcance_3.4m/) | Ensaio a 3,4 m com TX v4.2: resultado unido, logs e saída bruta de cada notebook |
 | [`docs/`](docs/) | Os mesmos conteúdos desta página separados por tema: [arquitetura e protocolo](docs/arquitetura.md), [montagem](docs/montagem.md), [reprodução](docs/reproducao.md), [resultados](docs/resultados.md); [relatório ABNT em PDF, Word e LaTeX](docs/relatorio/) |
 | [`tests/`](tests/) | Simulador em C++ |
-| [`historico/`](historico/) | Versão anterior com Go-Back-N |
+| [`historico/`](historico/) | Versão anterior com Go-Back-N e o TX v4.1 |
 | [`CHANGELOG.md`](CHANGELOG.md) | Evolução das versões do firmware |
 | [`LICENSE`](LICENSE) | Licença MIT |
 

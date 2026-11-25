@@ -23,10 +23,10 @@ Se a gravação falhar com *"Unable to verify flash chip connection"*, use **Fer
 ## 3. Primeiro teste
 
 1. Abra o Monitor Serial de cada placa: **115200 baud**, final de linha **Nova linha**.
-2. Aperte **EN** em cada placa. As duas devem mostrar a mesma versão e a mesma taxa:
+2. Aperte **EN** em cada placa. As duas devem mostrar a mesma taxa (o RX continua v4.1; a v4.2 só alterou o TX):
 
 ```
-TX pronto (v4.1) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=4 | timeout=1117 ms
+TX pronto (v4.2) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=4 | timeout=1117 ms
 RX pronto (v4.1) | RF 1200 bit/s | CRC-8 (0x07) | Selective Repeat janela=8 | ACK apos 425 ms de silencio
 ```
 
@@ -80,7 +80,18 @@ py coletar_testes.py --modo tx --tx COM5
 py coletar_testes.py --modo juntar --pasta-tx evidencias/TX_... --pasta-rx evidencias/RX_...
 ```
 
-Opções: `--rapido` (1 repetição em vez de 3) e `--grupos distancia,janela,erro,ruido,imagem`.
+Opções: `--rapido` (1 repetição em vez de 3) e `--grupos distancia,janela,erro,ruido,imagem,alcance`. O grupo `alcance` (3,4 m, janela 4) fica fora do padrão.
+
+**Só o teste de 3,4 m** (`teste_3_4m.py` chama o `coletar_testes.py` com o grupo `alcance`):
+
+```bash
+# computador B, primeiro
+py teste_3_4m.py rx COM11
+# computador A
+py teste_3_4m.py tx COM5
+# ou as duas placas no mesmo computador (porta da A, depois da B)
+py teste_3_4m.py unico COM5 COM11
+```
 
 O script pede para posicionar as placas antes de cada distância e para preparar a interferência no teste de ruído. Saída em `evidencias/<data_hora>/`:
 
@@ -96,10 +107,11 @@ O script pede para posicionar as placas antes de cada distância e para preparar
 
 | Sintoma | Causa provável | O que fazer |
 |---|---|---|
-| Nada chega, nem de perto | Placas com versões ou taxas diferentes | Conferir a linha `pronto (v4.1) \| RF 1200 bit/s` nas duas |
+| Nada chega, nem de perto | Placas com versões ou taxas diferentes | Conferir `RF 1200 bit/s` na linha `pronto` das duas |
 | RX recebe, mas o TX repete o mesmo quadro (ACK não volta) | Receptor da placa A ou transmissor da placa B com mau contato, ou ruído perto deles | Apertar os módulos; afastar placas de computadores e celulares |
 | Falhas intermitentes sem mudar nada | Ruído da alimentação (desktop, carregador ruim) | Usar notebook na bateria ou carregador de tomada de boa qualidade |
 | `/status` do TX com `ruido_descartado` parado | Receptor não entrega nada ao GPIO34 | Conferir VCC 5 V, divisor e o pino DATA |
+| Alcance caiu para poucos centímetros, mesmo com alimentação boa e após trocar os FS1000A | Receptor MX-RM-5V dessintonizado | Trocar os receptores entre as placas para achar o defeituoso e reajustar a sintonia ([montagem](montagem.md#sintonia-do-receptor)) |
 | LCD só com quadrados | Contraste | Girar o potenciômetro |
 | Monitor Serial vazio | Porta ocupada pelo script | Fechar o script ou o outro Monitor |
 | Erro de compilação | `protocolo_rf.h` antigo na pasta do sketch | Copiar o `protocolo_rf.h` do repositório para as duas pastas |

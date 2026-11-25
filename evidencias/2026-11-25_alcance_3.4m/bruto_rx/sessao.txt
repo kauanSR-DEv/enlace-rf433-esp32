@@ -1,0 +1,4 @@
+Data: 25/11/2026 15:48
+Modo: rx
+Porta RX: COM11
+STATUS RX: STATUS: esperado=0 quadros_msg=0 bytes=0 | aceitos=22 guardados_fora_de_ordem=0 duplicados=64 fora_da_janela=0 erros_FCS=0 truncados=0 ACKs=24 ruido_descartado=1

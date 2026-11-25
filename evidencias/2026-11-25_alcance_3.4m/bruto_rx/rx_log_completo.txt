@@ -1,0 +1,167 @@
+1795636119.492	[  565695 ms] STATUS: esperado=0 quadros_msg=0 bytes=0 | aceitos=22 guardados_fora_de_ordem=0 duplicados=64 fora_da_janela=0 erros_FCS=0 truncados=0 ACKs=24 ruido_descartado=1
+1795636171.169	[  617555 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636171.169	[  617566 ms] RX DATA seq=0 len=16 FCS ok -> ACEITO (em ordem)
+1795636171.369	[  617566 ms]    entregue em ordem: seq=0 (16 bytes)
+1795636171.607	[  617992 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636171.607	[  618003 ms] RX DATA seq=1 len=16 FCS ok -> ACEITO (em ordem)
+1795636171.807	[  618003 ms]    entregue em ordem: seq=1 (16 bytes)
+1795636172.044	[  618430 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636172.044	[  618441 ms] RX DATA seq=2 len=16 FCS ok -> ACEITO (em ordem)
+1795636172.245	[  618441 ms]    entregue em ordem: seq=2 (16 bytes)
+1795636172.481	[  618867 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636172.481	[  618878 ms] RX DATA seq=3 len=16 FCS ok -> ACEITO (em ordem)
+1795636172.681	[  618878 ms]    entregue em ordem: seq=3 (16 bytes)
+1795636173.083	[  619292 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636174.250	[  620635 ms] RX DATA seq=4 len=16 FCS recebido=0xF0 calculado=0xF0 verif_us=8 quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+1795636174.250	[  620646 ms] RX DATA seq=4 len=16 FCS ok -> ACEITO (em ordem)
+1795636174.449	[  620646 ms]    entregue em ordem: seq=4 (16 bytes)
+1795636174.688	[  621073 ms] RX DATA seq=5 len=16 FCS recebido=0xC9 calculado=0xC9 verif_us=8 quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+1795636174.688	[  621084 ms] RX DATA seq=5 len=16 FCS ok -> ACEITO (em ordem)
+1795636174.888	[  621084 ms]    entregue em ordem: seq=5 (16 bytes)
+1795636175.125	[  621511 ms] RX DATA seq=6 len=16 FCS recebido=0x07 calculado=0x07 verif_us=8 quadro=[01 06 10 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 07] dados="RSTUVWXYZABCDEFG"
+1795636175.125	[  621522 ms] RX DATA seq=6 len=16 FCS ok -> ACEITO (em ordem)
+1795636175.325	[  621522 ms]    entregue em ordem: seq=6 (16 bytes)
+1795636175.562	[  621948 ms] RX DATA seq=7 len=16 FCS recebido=0xF7 calculado=0xF7 verif_us=8 quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+1795636175.562	[  621959 ms] RX DATA seq=7 len=16 FCS ok -> ACEITO (em ordem)
+1795636175.763	[  621959 ms]    entregue em ordem: seq=7 (16 bytes)
+1795636176.164	[  622373 ms] TX ACK prox=8 mapa=0x00 FCS=0x68 quadro=[02 08 01 00 68] linha=59B/491ms
+1795636177.331	[  623716 ms] RX DATA seq=8 len=16 FCS recebido=0x71 calculado=0x71 verif_us=8 quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+1795636177.331	[  623727 ms] RX DATA seq=8 len=16 FCS ok -> ACEITO (em ordem)
+1795636177.531	[  623727 ms]    entregue em ordem: seq=8 (16 bytes)
+1795636177.769	[  624154 ms] RX DATA seq=9 len=16 FCS recebido=0x51 calculado=0x51 verif_us=8 quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+1795636177.769	[  624165 ms] RX DATA seq=9 len=16 FCS ok -> ACEITO (em ordem)
+1795636177.969	[  624165 ms]    entregue em ordem: seq=9 (16 bytes)
+1795636178.206	[  624592 ms] RX DATA seq=10 len=16 FCS recebido=0x9F calculado=0x9F verif_us=8 quadro=[01 0A 10 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 9F] dados="DEFGHIJKLMNOPQRS"
+1795636178.206	[  624603 ms] RX DATA seq=10 len=16 FCS ok -> ACEITO (em ordem)
+1795636178.407	[  624603 ms]    entregue em ordem: seq=10 (16 bytes)
+1795636178.643	[  625029 ms] RX DATA seq=11 len=16 FCS recebido=0x27 calculado=0x27 verif_us=8 quadro=[01 0B 10 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 27] dados="TUVWXYZABCDEFGHI"
+1795636178.643	[  625040 ms] RX DATA seq=11 len=16 FCS ok -> ACEITO (em ordem)
+1795636178.843	[  625040 ms]    entregue em ordem: seq=11 (16 bytes)
+1795636179.245	[  625454 ms] TX ACK prox=12 mapa=0x00 FCS=0xC3 quadro=[02 0C 01 00 C3] linha=59B/491ms
+1795636180.295	[  626680 ms] RX DATA seq=12 len=9 FCS recebido=0x99 calculado=0x99 verif_us=6 quadro=[01 0C 09 4A 4B 4C 4D 4E 4F 50 51 52 99] dados="JKLMNOPQR"
+1795636180.295	[  626691 ms] RX DATA seq=12 len=9 FCS ok -> ACEITO (em ordem)
+1795636180.495	[  626692 ms]    entregue em ordem: seq=12 (9 bytes)
+1795636180.896	[  627105 ms] TX ACK prox=13 mapa=0x00 FCS=0xA8 quadro=[02 0D 01 00 A8] linha=59B/491ms
+1795636181.785	[  628170 ms] RX END seq=13 len=0 FCS recebido=0x54 calculado=0x54 verif_us=2 quadro=[03 0D 00 54]
+1795636181.785	[  628170 ms] RX END seq=13 FCS ok -> fim da mensagem
+1795636181.785	[  628181 ms] === MENSAGEM #2 COMPLETA: 200 caracteres em 10615 ms ===
+1795636181.814	TEXTO: ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQR
+1795636182.014	[  628213 ms] estatisticas: aceitos=36 guardados_fora_de_ordem=0 duplicados=64 erros_FCS=0 truncados=0 ACKs=28
+1795636182.215	[  628595 ms] TX ACK prox=14 mapa=0x00 FCS=0x15 quadro=[02 0E 01 00 15] linha=59B/491ms
+1795636194.985	[  641370 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636194.985	[  641381 ms] RX DATA seq=0 len=16 FCS ok -> ACEITO (em ordem)
+1795636195.185	[  641381 ms]    entregue em ordem: seq=0 (16 bytes)
+1795636195.423	[  641808 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636195.423	[  641819 ms] RX DATA seq=1 len=16 FCS ok -> ACEITO (em ordem)
+1795636195.624	[  641819 ms]    entregue em ordem: seq=1 (16 bytes)
+1795636195.861	[  642246 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636195.861	[  642257 ms] RX DATA seq=2 len=16 FCS ok -> ACEITO (em ordem)
+1795636196.061	[  642257 ms]    entregue em ordem: seq=2 (16 bytes)
+1795636196.297	[  642683 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636196.297	[  642694 ms] RX DATA seq=3 len=16 FCS ok -> ACEITO (em ordem)
+1795636196.497	[  642694 ms]    entregue em ordem: seq=3 (16 bytes)
+1795636196.899	[  643108 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636198.066	[  644451 ms] RX DATA seq=4 len=16 FCS recebido=0xF0 calculado=0xF0 verif_us=8 quadro=[01 04 10 4C 4D 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 F0] dados="LMNOPQRSTUVWXYZA"
+1795636198.066	[  644462 ms] RX DATA seq=4 len=16 FCS ok -> ACEITO (em ordem)
+1795636198.267	[  644462 ms]    entregue em ordem: seq=4 (16 bytes)
+1795636198.504	[  644889 ms] RX DATA seq=5 len=16 FCS recebido=0xC9 calculado=0xC9 verif_us=8 quadro=[01 05 10 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 C9] dados="BCDEFGHIJKLMNOPQ"
+1795636198.504	[  644900 ms] RX DATA seq=5 len=16 FCS ok -> ACEITO (em ordem)
+1795636198.704	[  644900 ms]    entregue em ordem: seq=5 (16 bytes)
+1795636198.942	[  645327 ms] RX DATA seq=6 len=16 FCS recebido=0x07 calculado=0x07 verif_us=8 quadro=[01 06 10 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 07] dados="RSTUVWXYZABCDEFG"
+1795636198.942	[  645338 ms] RX DATA seq=6 len=16 FCS ok -> ACEITO (em ordem)
+1795636199.142	[  645338 ms]    entregue em ordem: seq=6 (16 bytes)
+1795636199.379	[  645764 ms] RX DATA seq=7 len=16 FCS recebido=0xF7 calculado=0xF7 verif_us=8 quadro=[01 07 10 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 56 57 F7] dados="HIJKLMNOPQRSTUVW"
+1795636199.379	[  645775 ms] RX DATA seq=7 len=16 FCS ok -> ACEITO (em ordem)
+1795636199.580	[  645775 ms]    entregue em ordem: seq=7 (16 bytes)
+1795636199.981	[  646189 ms] TX ACK prox=8 mapa=0x00 FCS=0x68 quadro=[02 08 01 00 68] linha=59B/491ms
+1795636201.147	[  647532 ms] RX DATA seq=8 len=16 FCS recebido=0x71 calculado=0x71 verif_us=8 quadro=[01 08 10 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 71] dados="XYZABCDEFGHIJKLM"
+1795636201.147	[  647543 ms] RX DATA seq=8 len=16 FCS ok -> ACEITO (em ordem)
+1795636201.347	[  647543 ms]    entregue em ordem: seq=8 (16 bytes)
+1795636201.585	[  647970 ms] RX DATA seq=9 len=16 FCS recebido=0x51 calculado=0x51 verif_us=8 quadro=[01 09 10 4E 4F 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 51] dados="NOPQRSTUVWXYZABC"
+1795636201.585	[  647981 ms] RX DATA seq=9 len=16 FCS ok -> ACEITO (em ordem)
+1795636201.785	[  647981 ms]    entregue em ordem: seq=9 (16 bytes)
+1795636202.023	[  648408 ms] RX DATA seq=10 len=16 FCS recebido=0x9F calculado=0x9F verif_us=8 quadro=[01 0A 10 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 9F] dados="DEFGHIJKLMNOPQRS"
+1795636202.023	[  648419 ms] RX DATA seq=10 len=16 FCS ok -> ACEITO (em ordem)
+1795636202.223	[  648419 ms]    entregue em ordem: seq=10 (16 bytes)
+1795636202.460	[  648845 ms] RX DATA seq=11 len=16 FCS recebido=0x27 calculado=0x27 verif_us=8 quadro=[01 0B 10 54 55 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 27] dados="TUVWXYZABCDEFGHI"
+1795636202.460	[  648856 ms] RX DATA seq=11 len=16 FCS ok -> ACEITO (em ordem)
+1795636202.660	[  648856 ms]    entregue em ordem: seq=11 (16 bytes)
+1795636203.061	[  649270 ms] TX ACK prox=12 mapa=0x00 FCS=0xC3 quadro=[02 0C 01 00 C3] linha=59B/491ms
+1795636204.111	[  650497 ms] RX DATA seq=12 len=9 FCS recebido=0x99 calculado=0x99 verif_us=5 quadro=[01 0C 09 4A 4B 4C 4D 4E 4F 50 51 52 99] dados="JKLMNOPQR"
+1795636204.111	[  650508 ms] RX DATA seq=12 len=9 FCS ok -> ACEITO (em ordem)
+1795636204.311	[  650508 ms]    entregue em ordem: seq=12 (9 bytes)
+1795636204.712	[  650921 ms] TX ACK prox=13 mapa=0x00 FCS=0xA8 quadro=[02 0D 01 00 A8] linha=59B/491ms
+1795636205.601	[  651986 ms] RX END seq=13 len=0 FCS recebido=0x54 calculado=0x54 verif_us=2 quadro=[03 0D 00 54]
+1795636205.601	[  651986 ms] RX END seq=13 FCS ok -> fim da mensagem
+1795636205.601	[  651998 ms] === MENSAGEM #3 COMPLETA: 200 caracteres em 10617 ms ===
+1795636205.630	TEXTO: ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQR
+1795636205.830	[  652029 ms] estatisticas: aceitos=50 guardados_fora_de_ordem=0 duplicados=64 erros_FCS=0 truncados=0 ACKs=33
+1795636206.030	[  652411 ms] TX ACK prox=14 mapa=0x00 FCS=0x15 quadro=[02 0E 01 00 15] linha=59B/491ms
+1795636215.433	[  661818 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636215.433	[  661830 ms] RX DATA seq=0 len=16 FCS ok -> ACEITO (em ordem)
+1795636215.633	[  661830 ms]    entregue em ordem: seq=0 (16 bytes)
+1795636215.871	[  662256 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636215.871	[  662267 ms] RX DATA seq=1 len=16 FCS ok -> ACEITO (em ordem)
+1795636216.072	[  662267 ms]    entregue em ordem: seq=1 (16 bytes)
+1795636216.309	[  662694 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636216.309	[  662705 ms] RX DATA seq=2 len=16 FCS ok -> ACEITO (em ordem)
+1795636216.510	[  662705 ms]    entregue em ordem: seq=2 (16 bytes)
+1795636216.746	[  663131 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636216.746	[  663142 ms] RX DATA seq=3 len=16 FCS ok -> ACEITO (em ordem)
+1795636216.946	[  663142 ms]    entregue em ordem: seq=3 (16 bytes)
+1795636217.348	[  663556 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636218.444	[  664829 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636218.645	[  664840 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636218.893	[  665278 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636219.094	[  665290 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636219.342	[  665727 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636219.543	[  665738 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636219.791	[  666176 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636219.992	[  666187 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636220.393	[  666601 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636221.490	[  667875 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636221.691	[  667886 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636221.939	[  668324 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636222.140	[  668336 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636222.388	[  668773 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636222.588	[  668784 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636222.837	[  669222 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636223.037	[  669233 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636223.438	[  669647 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636224.536	[  670921 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636224.737	[  670932 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636224.985	[  671370 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636225.186	[  671382 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636225.434	[  671819 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636225.635	[  671830 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636225.883	[  672268 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636226.084	[  672279 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636226.485	[  672693 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636227.582	[  673967 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636227.782	[  673978 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636228.031	[  674416 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636228.232	[  674428 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636228.480	[  674865 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636228.680	[  674876 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636228.929	[  675314 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636229.130	[  675325 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636229.531	[  675739 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636230.628	[  677013 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636230.829	[  677024 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636231.077	[  677462 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636231.278	[  677474 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636231.526	[  677911 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636231.727	[  677922 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636231.975	[  678360 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636232.175	[  678371 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636232.576	[  678785 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636233.675	[  680059 ms] RX DATA seq=0 len=16 FCS recebido=0x42 calculado=0x42 verif_us=8 quadro=[01 00 10 54 41 42 43 44 45 46 47 48 49 4A 4B 4C 4D 4E 4F 42] dados="TABCDEFGHIJKLMNO"
+1795636233.875	[  680070 ms] RX DATA seq=0 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636234.124	[  680509 ms] RX DATA seq=1 len=16 FCS recebido=0xD4 calculado=0xD4 verif_us=8 quadro=[01 01 10 50 51 52 53 54 55 56 57 58 59 5A 41 42 43 44 45 D4] dados="PQRSTUVWXYZABCDE"
+1795636234.324	[  680520 ms] RX DATA seq=1 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636234.572	[  680957 ms] RX DATA seq=2 len=16 FCS recebido=0xAD calculado=0xAD verif_us=8 quadro=[01 02 10 46 47 48 49 4A 4B 4C 4D 4E 4F 50 51 52 53 54 55 AD] dados="FGHIJKLMNOPQRSTU"
+1795636234.773	[  680968 ms] RX DATA seq=2 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636235.021	[  681406 ms] RX DATA seq=3 len=16 FCS recebido=0xD9 calculado=0xD9 verif_us=8 quadro=[01 03 10 56 57 58 59 5A 41 42 43 44 45 46 47 48 49 4A 4B D9] dados="VWXYZABCDEFGHIJK"
+1795636235.222	[  681417 ms] RX DATA seq=3 ja entregue antes (esperado=4) -> descartado, ACK sera repetido
+1795636235.623	[  681831 ms] TX ACK prox=4 mapa=0x00 FCS=0x92 quadro=[02 04 01 00 92] linha=59B/491ms
+1795636261.088	[  707406 ms] 26 s sem quadros: mensagem incompleta (64 bytes) DESCARTADA, esperando SEQ 0

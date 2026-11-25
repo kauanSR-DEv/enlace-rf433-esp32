@@ -65,7 +65,7 @@ SHA-256 da original e das 6 recebidas: `80e0254066353f1ba5c001529b17b0036d484332
 
 ## Achado: o primeiro quadro de cada rajada sofre mais
 
-Nos testes sem erro ou perda simulados, o primeiro quadro de cada rajada foi confirmado em **72%** das vezes (165 de 229), contra **93%** dos demais (482 de 516). O TX começa a rajada ~10 ms depois de receber o ACK, quando o receptor da placa B acabou de transmitir esse ACK e ainda está com o ganho baixo. Melhoria possível: esperar ~300 ms após cada ACK antes da próxima rajada.
+Nos testes sem erro ou perda simulados, o primeiro quadro de cada rajada foi confirmado em **72%** das vezes (165 de 229), contra **93%** dos demais (482 de 516). O TX começa a rajada ~10 ms depois de receber o ACK, quando o receptor da placa B acabou de transmitir esse ACK e ainda está com o ganho baixo. Isso levou à [versão 4.2](#versão-42-e-ensaio-a-34-m-2511): espera de 300 ms após cada ACK e preâmbulo maior no primeiro quadro da rajada.
 
 ## Todos os testes
 
@@ -154,3 +154,36 @@ Uma placa em cada notebook, como pede o enunciado. Evidências completas em [`ev
 
 Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/resumo` do TX registrou 63 mensagens, 50 entregues e 13 abandonadas, com 566 retransmissões: **495 por *timeout*** e 71 por lacuna no mapa de bits. Na distância limite, o que se perde é o ACK de volta. Nessa montagem o enlace foi estável até ~1,5 m e intermitente a partir de ~1,7 m.
 
+
+## Diagnóstico do receptor e ajuste de sintonia (24/11 e 25/11)
+
+Em 24/11 o enlace só funcionava com as placas a menos de 50 cm: a placa B recebia os dados e respondia, mas o ACK não chegava à placa A.
+
+| Teste | Resultado | Conclusão |
+|---|---|---|
+| VIN–GND com multímetro, nos dois notebooks | 4,75–5,05 V | Alimentação descartada |
+| Trocar os FS1000A entre as placas | Nada mudou | Transmissores descartados |
+| Trocar os MX-RM-5V entre as placas | A falha mudou de lado junto com o receptor que tinha a antena de mola (na placa A, ACKs perdidos; na placa B, dados truncados) | Defeito nesse receptor |
+| Mexer na base da mola | Comportamento mudava | Mau contato ou dessintonia |
+| Trocar a mola por fio reto de 17,3 cm | Sem melhora de alcance | Não era só a antena |
+| Módulo emprestado na mesma posição | Funcionou mesmo sem antena | Confirma o receptor |
+| Tensão média no DATA com o TX da própria placa ligado | 1,6–2,9 V | Receptor vivo, mas pouco sensível |
+
+**Ajuste:** o MX-RM-5V tem um componente de sintonia ajustável. Com a posição original marcada, ele foi girado em passos de ~1/8 de volta com chave não metálica, placas a 1 m e o TX enviando `/teste 200`, olhando no log do RX a proporção de quadros aceitos × truncados. O alcance voltou a 2 m e depois chegou a **~3,4 m**. Na configuração final esse receptor está na **placa B**.
+
+## Versão 4.2 e ensaio a 3,4 m (25/11)
+
+A v4.2 muda só o TX, e só temporização: espera de **300 ms após cada ACK** e **preâmbulo de 24 bytes** (em vez de 8) no primeiro quadro de cada rajada, os dois contra a [perda do primeiro quadro](#achado-o-primeiro-quadro-de-cada-rajada-sofre-mais). O quadro não mudou; o RX segue na v4.1. O simulador passa em todos os cenários com a v4.2.
+
+| Rep. | Resultado | Tempo | Retransmissões | ACKs recebidos |
+|---|---|---|---|---|
+| 1 | ✅ entregue, íntegra | 12,1 s | 0 | 5 |
+| 2 | ✅ entregue, íntegra | 12,1 s | 0 | 5 |
+| 3 | ❌ abandonada | 20,2 s | 24 (timeout) | 0 |
+
+- Nas entregas, **nenhuma retransmissão** (v4.1, a 1–1,5 m em 23/11: 6 a 7 por mensagem, quase todas do primeiro quadro da rajada).
+- Tempo previsto: 10,2 s do modelo para janela 4 + 4 × 300 ms + 5 × 133 ms de preâmbulo extra ≈ **12,1 s**; medido **12,10 s**.
+- Na repetição 3, o RX recebeu tudo e mandou 7 ACKs; nenhum chegou à placa A, cujo receptor não foi reajustado.
+- Com só três repetições, e com o receptor recém-ajustado, não dá para separar o ganho da v4.2 do ganho da sintonia.
+
+Arquivos: [`evidencias/2026-11-25_alcance_3.4m/`](../evidencias/2026-11-25_alcance_3.4m/).
