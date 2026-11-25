@@ -157,7 +157,7 @@ DATA do receptor ── 10 kΩ ──┬── D34          V(D34) = 5 V × 20 k
                            GND
 ```
 
-Antenas: fio reto de ¼ de onda soldado no furo ANT do módulo, λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**, nos quatro módulos. Até 24/11, um dos receptores (na placa A durante as baterias de 21 e 23/11) usou a antena helicoidal (mola) que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico da [Seção 5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511). Nos testes, as antenas ficaram na vertical e paralelas.
+Antenas: fio reto de ¼ de onda soldado no furo ANT do módulo, λ/4 = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**, nos quatro módulos. Até 24/11, o receptor da placa B (baterias de 21 e 23/11, visível nas fotos) usou a antena helicoidal (mola) que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico da [Seção 5.6](#56-ajuste-de-sintonia-versão-42-e-34-m-2411-e-2511). Nos testes, as antenas ficaram na vertical e paralelas.
 
 #### Cuidados que fizeram diferença na bancada
 
@@ -685,9 +685,9 @@ Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/
 
 ### 5.6 Ajuste de sintonia, versão 4.2 e 3,4 m (24/11 e 25/11)
 
-**Diagnóstico.** Em 24/11 o enlace só funcionava a menos de 50 cm: o RX recebia e respondia, mas o ACK não chegava à placa A. Alimentação medida nos dois notebooks (VIN 4,75–5,05 V) e troca dos FS1000A não mudaram nada. Trocando os MX-RM-5V entre as placas, a falha mudou de lado junto com o receptor da antena de mola. Trocar a mola por fio reto de 17,3 cm não resolveu; um módulo emprestado funcionou na mesma posição até sem antena. Com o TX da própria placa ligado, o DATA desse receptor ficava entre 1,6 e 2,9 V: vivo, mas pouco sensível.
+**Diagnóstico.** Em 24/11 o enlace só funcionava a menos de 50 cm; acima disso, o TX abandonava as mensagens após 20 s. Alimentação medida nos dois notebooks (VIN 4,75–5,05 V) e troca dos FS1000A não mudaram nada. Trocando os MX-RM-5V entre as placas, a falha mudou de lado junto com o receptor da antena de mola. Trocar a mola por fio reto de 17,3 cm não resolveu; um módulo emprestado funcionou na mesma posição até sem antena. Com o TX da própria placa ligado, o DATA desse receptor ficava entre 1,6 e 2,9 V: vivo, mas pouco sensível.
 
-**Ajuste.** O componente de sintonia do MX-RM-5V foi girado em passos de ~1/8 de volta (posição original marcada, chave não metálica, placas a 1 m, `/teste 200`, olhando quadros aceitos × truncados no log do RX). O alcance voltou a 2 m e chegou a **~3,4 m**. Esse receptor ficou na placa B. Passo a passo em [`docs/montagem.md`](docs/montagem.md#sintonia-do-receptor).
+**Ajuste.** O componente de sintonia do MX-RM-5V foi girado em passos de ~1/8 de volta (posição original marcada, chave não metálica, placas a 1 m, `/teste 200`, olhando quadros aceitos × truncados no log do RX). O alcance voltou a 2 m e chegou a **~3,4 m**. Esse receptor está na placa B, onde estava nas baterias de 21 e 23/11. Passo a passo em [`docs/montagem.md`](docs/montagem.md#sintonia-do-receptor).
 
 **Versão 4.2 (só TX).** Espera de **300 ms após cada ACK** e **preâmbulo de 24 bytes** no primeiro quadro de cada rajada, contra a [perda do primeiro quadro](#515-achado-o-primeiro-quadro-de-cada-rajada-sofre-mais). O quadro não mudou e o RX continua na v4.1. O simulador passa em todos os cenários com a v4.2.
 

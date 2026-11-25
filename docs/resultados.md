@@ -157,7 +157,7 @@ Na mesma sessão (~78 min, incluindo tentativas de alcance acima de 1,7 m), o `/
 
 ## Diagnóstico do receptor e ajuste de sintonia (24/11 e 25/11)
 
-Em 24/11 o enlace só funcionava com as placas a menos de 50 cm: a placa B recebia os dados e respondia, mas o ACK não chegava à placa A.
+Em 24/11 o enlace só funcionava com as placas a menos de 50 cm; acima disso, o TX abandonava as mensagens após 20 s sem confirmação.
 
 | Teste | Resultado | Conclusão |
 |---|---|---|
@@ -169,7 +169,7 @@ Em 24/11 o enlace só funcionava com as placas a menos de 50 cm: a placa B receb
 | Módulo emprestado na mesma posição | Funcionou mesmo sem antena | Confirma o receptor |
 | Tensão média no DATA com o TX da própria placa ligado | 1,6–2,9 V | Receptor vivo, mas pouco sensível |
 
-**Ajuste:** o MX-RM-5V tem um componente de sintonia ajustável. Com a posição original marcada, ele foi girado em passos de ~1/8 de volta com chave não metálica, placas a 1 m e o TX enviando `/teste 200`, olhando no log do RX a proporção de quadros aceitos × truncados. O alcance voltou a 2 m e depois chegou a **~3,4 m**. Na configuração final esse receptor está na **placa B**.
+**Ajuste:** o MX-RM-5V tem um componente de sintonia ajustável. Com a posição original marcada, ele foi girado em passos de ~1/8 de volta com chave não metálica, placas a 1 m e o TX enviando `/teste 200`, olhando no log do RX a proporção de quadros aceitos × truncados. O alcance voltou a 2 m e depois chegou a **~3,4 m**. Na configuração final esse receptor está na **placa B**, onde também estava nas baterias de 21 e 23/11.
 
 ## Versão 4.2 e ensaio a 3,4 m (25/11)
 

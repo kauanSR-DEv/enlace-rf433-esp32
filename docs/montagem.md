@@ -69,7 +69,7 @@ Fio reto de um quarto de onda, soldado no furo ANT de cada módulo:
 
 λ/4 = c / (4·f) = 3×10⁸ / (4 × 433,92×10⁶) ≈ **17,3 cm**
 
-Nos testes, as antenas ficaram retas, na vertical e paralelas. Até 24/11 um dos receptores usou a antena de mola que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico descrito em [resultados.md](resultados.md#diagnóstico-do-receptor-e-ajuste-de-sintonia-2411-e-2511).
+Nos testes, as antenas ficaram retas, na vertical e paralelas. Até 24/11 o receptor da placa B usou a antena de mola que veio com ele; em 25/11 ela foi trocada por fio reto durante o diagnóstico descrito em [resultados.md](resultados.md#diagnóstico-do-receptor-e-ajuste-de-sintonia-2411-e-2511).
 
 ## Sintonia do receptor
 

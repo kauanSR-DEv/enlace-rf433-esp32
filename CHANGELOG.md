@@ -20,4 +20,4 @@
 
 | Data | Mudança |
 |---|---|
-| 25/11/2026 | Antena de mola de um receptor trocada por fio reto de 17,3 cm; sintonia desse receptor reajustada (alcance de <50 cm para ~3,4 m); ele passou para a placa B |
+| 25/11/2026 | Antena de mola de um receptor trocada por fio reto de 17,3 cm; sintonia desse receptor reajustada (alcance de <50 cm para ~3,4 m); é o receptor da placa B, onde estava nas baterias de 21 e 23/11 |
